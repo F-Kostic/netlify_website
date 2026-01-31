@@ -1,11 +1,21 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
+// ============================================================================
+// CHEVRON ICON COMPONENT
+// ============================================================================
+// Simple arrow icon used in the Start menu for submenus
 const ChevronRight = ({ size }: { size: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <polyline points="9 18 15 12 9 6" />
   </svg>
 );
 
+// ============================================================================
+// TYPESCRIPT INTERFACES
+// ============================================================================
+// These define the structure of our data objects
+
+// Desktop icon properties (icons on the desktop background)
 interface DesktopIcon {
   id: string;
   name: string;
@@ -17,6 +27,7 @@ interface DesktopIcon {
   items?: FolderItem[];
 }
 
+// Items inside a folder
 interface FolderItem {
   name: string;
   type: 'info' | 'image' | 'video';
@@ -24,6 +35,7 @@ interface FolderItem {
   url?: string;
 }
 
+// Window state properties
 interface WindowState {
   id: string;
   title: string;
@@ -39,6 +51,7 @@ interface WindowState {
   minimized: boolean;
 }
 
+// Selection marquee (drag-select box) properties
 interface Marquee {
   startX: number;
   startY: number;
@@ -46,12 +59,25 @@ interface Marquee {
   height: number;
 }
 
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
 const Win98Portfolio = () => {
+  // --------------------------------------------------------------------------
+  // CONSTANTS
+  // --------------------------------------------------------------------------
   const GRID_SIZE = 100;
   const GRID_OFFSET_X = 20;
   const GRID_OFFSET_Y = 20;
   
+  // --------------------------------------------------------------------------
+  // STATE MANAGEMENT
+  // --------------------------------------------------------------------------
+  // All windows currently open
   const [windows, setWindows] = useState<WindowState[]>([]);
+  
+  // Desktop icons configuration (folders, files, etc.)
+  // CUSTOMIZE: Add/remove/edit desktop icons here
   const [desktopIcons] = useState<DesktopIcon[]>([
     { 
       id: 'about',
@@ -78,9 +104,13 @@ const Win98Portfolio = () => {
       customIcon: null,
       items: [
         { name: 'Info', type: 'info', content: 'Gallery Collection\n\nCreated: 2024\n\nMedium: Digital Art\n\nThis collection explores themes of color and composition through digital mediums.' },
+        // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
+        // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
         { name: 'artwork1.jpg', type: 'image', url: 'https://via.placeholder.com/400x300/FF6B6B/FFFFFF?text=Artwork+1' },
         { name: 'artwork2.jpg', type: 'image', url: 'https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=Artwork+2' },
         { name: 'artwork3.jpg', type: 'image', url: 'https://via.placeholder.com/400x300/45B7D1/FFFFFF?text=Artwork+3' }
+        // CUSTOMIZE: To add more images, add a comma above and paste:
+        // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
       ]
     },
     { 
@@ -92,14 +122,17 @@ const Win98Portfolio = () => {
       customIcon: null,
       items: [
         { name: 'Info', type: 'info', content: 'Video Collection\n\nCreated: 2024\n\nA collection of video artworks exploring motion and time.' },
+        // CUSTOMIZE: Replace with your own video URL
         { name: 'demo.mp4', type: 'video', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }
       ]
     }
   ]);
   
+  // CUSTOMIZE: Edit these content strings for About and Contact info
   const aboutContent = 'Post-Net Artist\n\nExploring the intersection of digital culture and contemporary art.\n\nBio coming soon...';
   const contactContent = 'Email: artist@postnet.art\n\nInstagram: @postnetartist\n\nTwitter: @postnetart';
   
+  // UI state management
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [startSubmenu, setStartSubmenu] = useState<string | null>(null);
   const [showShutdown, setShowShutdown] = useState(false);
@@ -110,6 +143,7 @@ const Win98Portfolio = () => {
   const [draggingIcon, setDraggingIcon] = useState<string | null>(null);
   const [marquee, setMarquee] = useState<Marquee | null>(null);
   
+  // Refs for tracking drag and resize operations
   const dragRef = useRef<{
     isDragging: boolean;
     windowId: string | null;
@@ -129,15 +163,32 @@ const Win98Portfolio = () => {
     startTop: number;
   }>({ isResizing: false, windowId: null, edge: null, startX: 0, startY: 0, startWidth: 0, startHeight: 0, startLeft: 0, startTop: 0 });
 
+  // --------------------------------------------------------------------------
+  // CLOCK EFFECT
+  // --------------------------------------------------------------------------
+  // Updates the taskbar clock every second
+
+  // --------------------------------------------------------------------------
+  // CLOCK EFFECT
+  // --------------------------------------------------------------------------
+  // Updates the taskbar clock every second
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  // --------------------------------------------------------------------------
+  // UTILITY FUNCTIONS
+  // --------------------------------------------------------------------------
+  // Snap icons to grid positions (currently not used but available)
   const snapToGrid = (value: number, offset: number): number => {
     return Math.round((value - offset) / GRID_SIZE) * GRID_SIZE + offset;
   };
 
+  // --------------------------------------------------------------------------
+  // WINDOW MANAGEMENT FUNCTIONS
+  // --------------------------------------------------------------------------
+  // Opens a new window from a desktop icon or folder item
   const openWindow = useCallback((icon: DesktopIcon) => {
     const windowId = `window-${Date.now()}`;
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 0;
@@ -159,6 +210,7 @@ const Win98Portfolio = () => {
     setActiveWindow(windowId);
   }, [windows]);
 
+  // Closes a window by its ID
   const closeWindow = useCallback((id: string) => {
     setWindows(prev => prev.filter(w => w.id !== id));
     setActiveWindow(prev => {
@@ -170,6 +222,7 @@ const Win98Portfolio = () => {
     });
   }, [windows]);
 
+  // Minimizes a window (hides it but keeps it in taskbar)
   const minimizeWindow = useCallback((id: string) => {
     setWindows(prev => prev.map(w => 
       w.id === id ? { ...w, minimized: true } : w
@@ -177,6 +230,7 @@ const Win98Portfolio = () => {
     setActiveWindow(prev => prev === id ? null : prev);
   }, []);
 
+  // Restores a minimized window
   const restoreWindow = useCallback((id: string) => {
     setWindows(prev => prev.map(w => 
       w.id === id ? { ...w, minimized: false } : w
@@ -184,6 +238,7 @@ const Win98Portfolio = () => {
     setActiveWindow(id);
   }, []);
 
+  // Brings a window to the front (highest z-index)
   const bringToFront = useCallback((id: string) => {
     setWindows(prev => {
       const maxZ = Math.max(...prev.map(w => w.zIndex), 0);
@@ -461,11 +516,14 @@ const Win98Portfolio = () => {
   };
 
   return (
+    // ============================================================================
+    // MAIN DESKTOP CONTAINER
+    // ============================================================================
     <div 
       style={{
         width: '100vw',
         height: '100vh',
-        background: '#008080',
+        background: '#008080', // CUSTOMIZE: Desktop background color (teal = #008080)
         position: 'fixed',
         top: 0,
         left: 0,
@@ -477,6 +535,9 @@ const Win98Portfolio = () => {
       onMouseDown={handleDesktopMouseDown}
       onClick={() => setStartMenuOpen(false)}
     >
+      {/* ====================================================================== */}
+      {/* DESKTOP ICONS */}
+      {/* ====================================================================== */}
       {desktopIcons.map(icon => (
         <div
           key={icon.id}
@@ -489,28 +550,37 @@ const Win98Portfolio = () => {
             cursor: 'pointer',
             left: icon.x,
             top: icon.y,
-            backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0, 0, 170, 0.5)' : 'transparent'
+            // CUSTOMIZE: Icon selection highlight color
+            backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0, 0, 170, 0.5)' : 'transparent' // Blue highlight
           }}
           onClick={(e) => handleIconClick(e, icon.id)}
           onDoubleClick={(e) => handleIconDoubleClick(e, icon)}
         >
           <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* CUSTOMIZE: Folder icon colors */}
             {icon.type === 'folder' && (
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                <path d="M3 5 L10 5 L12 7 L21 7 L21 19 L3 19 Z" fill="#FFD700" stroke="#000000" strokeWidth="1"/>
-                <path d="M3 7 L21 7 L21 19 L3 19 Z" fill="#FFED4E"/>
+                <path d="M3 5 L10 5 L12 7 L21 7 L21 19 L3 19 Z" fill="#FFD700" stroke="#000000" strokeWidth="1"/> {/* Yellow folder */}
+                <path d="M3 7 L21 7 L21 19 L3 19 Z" fill="#FFED4E"/> {/* Light yellow */}
               </svg>
             )}
+            {/* CUSTOMIZE: Info/text file icon colors */}
             {icon.type === 'info' && (
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <rect x="3" y="3" width="18" height="18" fill="#FFFFFF" stroke="#000000"/>
+                <rect x="3" y="3" width="18" height="18" fill="#FFFFFF" stroke="#000000"/> {/* White paper */}
                 <line x1="8" y1="8" x2="16" y2="8" stroke="#000000"/>
                 <line x1="8" y1="12" x2="16" y2="12" stroke="#000000"/>
                 <line x1="8" y1="16" x2="13" y2="16" stroke="#000000"/>
               </svg>
             )}
           </div>
-          <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black' }}>{icon.name}</span>
+          {/* CUSTOMIZE: Icon text color and shadow */}
+          <span style={{ 
+            fontSize: '12px', 
+            color: 'white', // Icon label text color
+            textAlign: 'center', 
+            textShadow: '1px 1px 2px black' // Text shadow for readability
+          }}>{icon.name}</span>
         </div>
       ))}
 
@@ -529,15 +599,18 @@ const Win98Portfolio = () => {
         />
       )}
 
+      {/* ====================================================================== */}
+      {/* WINDOWS */}
+      {/* ====================================================================== */}
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1000 }}>
         {windows.filter(w => !w.minimized).map(win => (
           <div
             key={win.id}
             style={{
               position: 'absolute',
-              background: '#C0C0C0',
+              background: '#C0C0C0', // CUSTOMIZE: Window background color (gray)
               border: '2px solid',
-              borderColor: 'white black black white',
+              borderColor: 'white black black white', // Win98 3D border effect
               boxShadow: '2px 2px 4px rgba(0,0,0,0.5)',
               pointerEvents: 'auto',
               left: win.x,
@@ -550,6 +623,7 @@ const Win98Portfolio = () => {
             }}
             onMouseDown={() => bringToFront(win.id)}
           >
+            {/* WINDOW TITLE BAR */}
             <div 
               className="title-bar"
               style={{
@@ -559,12 +633,16 @@ const Win98Portfolio = () => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'move',
-                background: activeWindow === win.id ? 'linear-gradient(to right, #000080, #1084d0)' : '#808080'
+                // CUSTOMIZE: Active/inactive window title bar colors
+                background: activeWindow === win.id 
+                  ? 'linear-gradient(to right, #000080, #1084d0)' // Active window (blue gradient)
+                  : '#808080' // Inactive window (gray)
               }}
               onMouseDown={(e) => handleWindowMouseDown(e, win.id)}
             >
               <span style={{ color: 'white', fontSize: '14px', fontWeight: 'bold', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{win.title}</span>
               <div style={{ display: 'flex', gap: '2px' }}>
+                {/* MINIMIZE BUTTON */}
                 <button
                   style={{
                     width: '16px',
@@ -576,7 +654,20 @@ const Win98Portfolio = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 0,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'all 0.05s'
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.borderColor = 'black white white black';
+                    e.currentTarget.style.transform = 'translate(1px, 1px)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.borderColor = 'white black black white';
+                    e.currentTarget.style.transform = 'translate(0, 0)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'white black black white';
+                    e.currentTarget.style.transform = 'translate(0, 0)';
                   }}
                   onClick={() => minimizeWindow(win.id)}
                 >
@@ -595,7 +686,20 @@ const Win98Portfolio = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 0,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'all 0.05s'
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.borderColor = 'black white white black';
+                    e.currentTarget.style.transform = 'translate(1px, 1px)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.borderColor = 'white black black white';
+                    e.currentTarget.style.transform = 'translate(0, 0)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'white black black white';
+                    e.currentTarget.style.transform = 'translate(0, 0)';
                   }}
                 >
                   <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="4" strokeLinecap="round">
@@ -613,7 +717,22 @@ const Win98Portfolio = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 0,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'all 0.05s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#FF6B6B';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#C0C0C0';
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.borderColor = 'black white white black';
+                    e.currentTarget.style.transform = 'translate(1px, 1px)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.borderColor = 'white black black white';
+                    e.currentTarget.style.transform = 'translate(0, 0)';
                   }}
                   onClick={() => closeWindow(win.id)}
                 >
@@ -641,11 +760,28 @@ const Win98Portfolio = () => {
         ))}
       </div>
 
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28px', background: '#C0C0C0', borderTop: '2px solid white', display: 'flex', alignItems: 'center', padding: '0 4px', gap: '4px', zIndex: 1100 }}>
+      {/* ====================================================================== */}
+      {/* TASKBAR */}
+      {/* ====================================================================== */}
+      <div style={{ 
+        position: 'absolute', 
+        bottom: 0, 
+        left: 0, 
+        right: 0, 
+        height: '28px', 
+        background: '#C0C0C0', // CUSTOMIZE: Taskbar background color (gray)
+        borderTop: '2px solid white', 
+        display: 'flex', 
+        alignItems: 'center', 
+        padding: '0 4px', 
+        gap: '4px', 
+        zIndex: 1100 
+      }}>
+        {/* START BUTTON */}
         <button
           style={{
             padding: '2px 8px',
-            background: '#C0C0C0',
+            background: '#C0C0C0', // CUSTOMIZE: Start button background
             border: '2px solid',
             borderColor: 'white black black white',
             display: 'flex',
@@ -654,17 +790,37 @@ const Win98Portfolio = () => {
             cursor: 'pointer',
             fontSize: '14px',
             fontWeight: 'bold',
-            color: 'black'
+            color: 'black', // CUSTOMIZE: Start button text color
+            transition: 'all 0.1s'
+          }}
+          onMouseDown={(e) => {
+            e.currentTarget.style.borderColor = 'black white white black';
+            e.currentTarget.style.transform = 'translate(1px, 1px)';
+          }}
+          onMouseUp={(e) => {
+            e.currentTarget.style.borderColor = 'white black black white';
+            e.currentTarget.style.transform = 'translate(0, 0)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'white black black white';
+            e.currentTarget.style.transform = 'translate(0, 0)';
           }}
           onClick={(e) => {
             e.stopPropagation();
             setStartMenuOpen(!startMenuOpen);
           }}
         >
-          <div style={{ width: '16px', height: '16px', background: 'linear-gradient(135deg, #FF0000, #FFAA00)', borderRadius: '2px' }} />
-          <span>Start</span>
+          {/* CUSTOMIZE: Start button icon color (Windows logo) */}
+          <div style={{ 
+            width: '16px', 
+            height: '16px', 
+            background: 'linear-gradient(135deg, #FF0000, #FFAA00)', // Red to orange gradient
+            borderRadius: '2px' 
+          }} />
+          <span>Start</span> {/* CUSTOMIZE: Change "Start" text here */}
         </button>
 
+        {/* WINDOW BUTTONS IN TASKBAR */}
         {windows.map(win => (
           <button
             key={win.id}
@@ -695,14 +851,36 @@ const Win98Portfolio = () => {
           </button>
         ))}
 
-        <div style={{ marginLeft: 'auto', padding: '0 8px', border: '2px solid', borderColor: '#808080 white white #808080', fontSize: '14px', color: 'black' }}>
+        {/* TASKBAR CLOCK */}
+        <div style={{ 
+          marginLeft: 'auto', 
+          padding: '0 8px', 
+          border: '2px solid', 
+          borderColor: '#808080 white white #808080', 
+          fontSize: '14px', 
+          color: 'black' // CUSTOMIZE: Clock text color
+        }}>
           {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
       </div>
 
+      {/* ====================================================================== */}
+      {/* START MENU */}
+      {/* ====================================================================== */}
       {startMenuOpen && (
-        <div style={{ position: 'absolute', bottom: '28px', left: 0, width: '192px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', zIndex: 1200 }}>
+        <div style={{ 
+          position: 'absolute', 
+          bottom: '28px', 
+          left: 0, 
+          width: '192px', 
+          background: '#C0C0C0', // CUSTOMIZE: Start menu background color
+          border: '2px solid', 
+          borderColor: 'white black black white', 
+          boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', 
+          zIndex: 1200 
+        }}>
           <div style={{ padding: '4px' }}>
+            {/* START MENU ITEM: About/Contact */}
             <div 
               style={{
                 position: 'relative',
@@ -712,20 +890,33 @@ const Win98Portfolio = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                color: 'black'
+                color: 'black' // CUSTOMIZE: Menu item text color
               }}
               onClick={(e) => {
                 e.stopPropagation();
                 setStartSubmenu(startSubmenu === 'info' ? null : 'info');
               }}
+              // CUSTOMIZE: Menu hover colors - background becomes blue, text becomes white
               onMouseEnter={(e) => (e.currentTarget.style.background = '#0000AA', e.currentTarget.style.color = 'white')}
               onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent', e.currentTarget.style.color = 'black')}
             >
-              About/Contact
+              About/Contact {/* CUSTOMIZE: Change menu item text */}
               <ChevronRight size={12} />
               
+              {/* SUBMENU */}
               {startSubmenu === 'info' && (
-                <div style={{ position: 'absolute', left: '100%', top: 0, marginLeft: '4px', width: '192px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', zIndex: 50 }}>
+                <div style={{ 
+                  position: 'absolute', 
+                  left: '100%', 
+                  top: 0, 
+                  marginLeft: '4px', 
+                  width: '192px', 
+                  background: '#C0C0C0', // CUSTOMIZE: Submenu background
+                  border: '2px solid', 
+                  borderColor: 'white black black white', 
+                  boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', 
+                  zIndex: 50 
+                }}>
                   <div 
                     style={{ padding: '4px 8px', cursor: 'pointer', fontSize: '14px', color: 'black' }}
                     onClick={(e) => {
