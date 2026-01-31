@@ -140,6 +140,7 @@ const Win98Portfolio = () => {
 
   const openWindow = useCallback((icon: DesktopIcon) => {
     const windowId = `window-${Date.now()}`;
+    const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 0;
     const newWindow: WindowState = {
       id: windowId,
       title: icon.name,
@@ -151,12 +152,12 @@ const Win98Portfolio = () => {
       y: 50 + windows.length * 30,
       width: 500,
       height: 400,
-      zIndex: windows.length + 1,
+      zIndex: maxZ + 1,
       minimized: false
     };
     setWindows(prev => [...prev, newWindow]);
     setActiveWindow(windowId);
-  }, [windows.length]);
+  }, [windows]);
 
   const closeWindow = useCallback((id: string) => {
     setWindows(prev => prev.filter(w => w.id !== id));
