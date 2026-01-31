@@ -356,7 +356,8 @@ const Win98Portfolio = () => {
     );
   };
 
-  const handleFolderItemDoubleClick = (window: WindowState, item: FolderItem) => {
+  const handleFolderItemDoubleClick = (window: WindowState, item: FolderItem, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (item.type === 'info') {
       openWindow({
         id: `${window.id}-${item.name}`,
@@ -404,7 +405,7 @@ const Win98Portfolio = () => {
                 color: selectedFolderItems.includes(`${win.id}-${item.name}`) ? 'white' : 'black'
               }}
               onClick={() => handleFolderItemClick(win.id, item.name)}
-              onDoubleClick={() => handleFolderItemDoubleClick(win, item)}
+              onDoubleClick={(e) => handleFolderItemDoubleClick(win, item, e)}
             >
               <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {item.type === 'info' && (
