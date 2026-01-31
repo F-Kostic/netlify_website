@@ -106,8 +106,8 @@ const Win98Portfolio = () => {
         { name: 'Info', type: 'info', content: 'Gallery Collection\n\nCreated: 2024\n\nMedium: Digital Art\n\nThis collection explores themes of color and composition through digital mediums.' },
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
-        { name: 'Pro Mouse Grip 4 - 1', type: 'image', url: 'https://drive.google.com/file/d/1KTl1Rn_Pt4QsGOuoOhP10W1C-oRG1Uo1/view?usp=drive_link' },
-        { name: 'Pro Mouse Grip 4 -2', type: 'image', url: 'https://drive.google.com/file/d/19g_Dr7JdVOLmT3sk-N_axYiQUQ2Dz1xt/view?usp=drive_link' },
+        { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/SingleHand_01.png' },
+        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/SingleHand_02.png' },
         { name: 'artwork3.jpg', type: 'image', url: 'https://via.placeholder.com/400x300/45B7D1/FFFFFF?text=Artwork+3' }
         // CUSTOMIZE: To add more images, add a comma above and paste:
         // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
