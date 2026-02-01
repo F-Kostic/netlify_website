@@ -123,7 +123,7 @@ const Win98Portfolio = () => {
       items: [
         { name: 'Info', type: 'info', content: 'Video Collection\n\nCreated: 2024\n\nA collection of video artworks exploring motion and time.' },
         // CUSTOMIZE: Replace with your own video URL
-        { name: 'demo.mp4', type: 'video', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }
+        { name: 'Bed PC 24 Hour Stream (24 Mins)', type: 'video', url: 'https://www.youtube.com/embed/P_JqHqYQB8o' }
       ]
     }
   ]);
