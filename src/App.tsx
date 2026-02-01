@@ -592,7 +592,8 @@ const Win98Portfolio = () => {
             fontSize: '12px', 
             color: 'white', // Icon label text color
             textAlign: 'center', 
-            textShadow: '1px 1px 2px black' // Text shadow for readability
+            textShadow: '1px 1px 2px black', // Text shadow for readability
+            lineHeight: '1.2'   // CUSTOMIZE: Adjust line spacing
           }}>{icon.name}</span>
         </div>
       ))}
@@ -856,7 +857,7 @@ const Win98Portfolio = () => {
               } else if (activeWindow === win.id) {
                 minimizeWindow(win.id);
               } else {
-                setActiveWindow(win.id);
+                bringToFront(win.id);
               }
             }}
           >
@@ -871,7 +872,9 @@ const Win98Portfolio = () => {
           border: '2px solid', 
           borderColor: '#808080 white white #808080', 
           fontSize: '14px', 
-          color: 'black' // CUSTOMIZE: Clock text color
+          color: 'black',
+          flexShrink: 0, 
+          minWidth: '70px' // CUSTOMIZE: Clock text color
         }}>
           {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
