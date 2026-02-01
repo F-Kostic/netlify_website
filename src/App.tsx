@@ -96,14 +96,14 @@ const Win98Portfolio = () => {
       content: 'Email: artist@postnet.art\n\nInstagram: @postnetartist\n\nTwitter: @postnetart'
     },
     { 
-      id: 'gallery', 
-      name: 'Gallery', 
+      id: 'Pro Mouse Grip', 
+      name: 'Pro Mouse Grip (2025)', 
       type: 'folder', 
       x: 20, 
       y: 20, 
       customIcon: null,
       items: [
-        { name: 'Info', type: 'info', content: 'Gallery Collection\n\nCreated: 2024\n\nMedium: Digital Art\n\nThis collection explores themes of color and composition through digital mediums.' },
+        { name: 'Info', type: 'info', content: 'Pro Mouse Grip (1-7), (2025)\n\nVariable size hands on 13x13x31.5" mousepad pedestal\n\nSilicon-Copper cold cast' },
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
         { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/SingleHand_01.png' },
