@@ -107,8 +107,7 @@ const Win98Portfolio = () => {
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
         { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/SingleHand_01.png' },
-        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/SingleHand_02.png' },
-        { name: 'artwork3.jpg', type: 'image', url: 'https://via.placeholder.com/400x300/45B7D1/FFFFFF?text=Artwork+3' }
+        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/SingleHand_02.png' }
         // CUSTOMIZE: To add more images, add a comma above and paste:
         // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
       ]
@@ -504,11 +503,25 @@ const Win98Portfolio = () => {
         </div>
       );
     } else if (win.type === 'video') {
+      // Check if it's a YouTube URL
+      const isYouTube = win.content?.includes('youtube.com') || win.content?.includes('youtu.be');
+      
       return (
         <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          <video controls style={{ maxWidth: '100%', maxHeight: '100%' }}>
-            <source src={win.content} type="video/mp4" />
-          </video>
+          {isYouTube ? (
+            // YouTube video - use iframe
+            <iframe 
+              src={win.content} 
+              style={{ width: '100%', height: '100%', border: 'none' }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            // Regular MP4 video - use video tag
+            <video controls style={{ maxWidth: '100%', maxHeight: '100%' }}>
+              <source src={win.content} type="video/mp4" />
+            </video>
+          )}
         </div>
       );
     }
