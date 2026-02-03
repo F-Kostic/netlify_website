@@ -84,16 +84,16 @@ const Win98Portfolio = () => {
       name: 'About',
       type: 'info',
       x: 20,
-      y: 220,
-      content: 'Post-Net Artist\n\nExploring the intersection of digital culture and contemporary art.\n\nBio coming soon...'
+      y: 320,
+      content: 'CV Here'
     },
     { 
       id: 'contact',
       name: 'Contact',
       type: 'info',
       x: 20,
-      y: 320,
-      content: 'Email: artist@postnet.art\n\nInstagram: @postnetartist\n\nTwitter: @postnetart'
+      y: 420,
+      content: 'Email: email@filipkostic.computer\n\nInstagram: @flipkostic'
     },
     { 
       id: 'Pro Mouse Grip', 
@@ -106,30 +106,45 @@ const Win98Portfolio = () => {
         { name: 'Info', type: 'info', content: 'Pro Mouse Grip (1-7), (2025)\n\nVariable size hands on 13x13x31.5" mousepad pedestal\n\nSilicon-Copper cold cast' },
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
-        { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/SingleHand_01.png' },
-        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/SingleHand_02.png' }
+        { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/ProMouseGrip/SingleHand_01.png' },
+        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' }
         // CUSTOMIZE: To add more images, add a comma above and paste:
         // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
       ]
     },
-    { 
-      id: 'videos', 
-      name: 'Videos', 
-      type: 'folder', 
-      x: 20, 
-      y: 120, 
+    {
+      id: 'Bed PC',
+      name: 'Bed PC (2022)',
+      type: 'folder',  
+      x: 20,
+      y: 120,
       customIcon: null,
       items: [
-        { name: 'Info', type: 'info', content: 'Video Collection\n\nCreated: 2024\n\nA collection of video artworks exploring motion and time.' },
+        { name: 'Info', type: 'info', content: 'Bed PC, (2022)\n\nCustom built water cooled computer built into the frame of a Bed. Variable screens, blanket, pillows, variable peripheries including Keyboard, mouse, streaming microphone, webcams.' }, // ✅ Added colon
+        { name: 'Bed PC 2', type: 'image', url: '/images/BedPC/BedPC_Scherben_Main.jpg' },
+        { name: 'Bed PC Home', type: 'image', url: '/images/BedPC/BedPC_Home.jpg' },
+        { name: 'Bed PC(Twin)', type: 'image', url: '/images/BedPC/Bed_PC_HS_Twin.jpg' },
+        { name: 'BedPC(Twin) Install', type: 'image', url: '/images/BedPC/BedPC_HS_Install.jpg' }
+      ]
+    },
+    { 
+      id: 'BootyBayOpenStudios', 
+      name: 'Booty Bay Open Studios', 
+      type: 'folder', 
+      x: 20, 
+      y: 220, 
+      customIcon: null,
+      items: [
+        { name: 'Info', type: 'info', content: 'Booty Bay Open Studios (2020)\n\nHD Video, 7:18 TRT' },
         // CUSTOMIZE: Replace with your own video URL
-        { name: 'Bed PC 24 Hour Stream (24 Mins)', type: 'video', url: 'https://www.youtube.com/embed/P_JqHqYQB8o' }
+        { name: 'Booty Bay Open Studios(202)', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' }
       ]
     }
   ]);
   
   // CUSTOMIZE: Edit these content strings for About and Contact info
-  const aboutContent = 'Post-Net Artist\n\nExploring the intersection of digital culture and contemporary art.\n\nBio coming soon...';
-  const contactContent = 'Email: artist@postnet.art\n\nInstagram: @postnetartist\n\nTwitter: @postnetart';
+  const aboutContent = 'CV Here';
+  const contactContent = 'Email: email@filipkostic.computer\n\nInstagram: @flipkostic';
   
   // UI state management
   const [startMenuOpen, setStartMenuOpen] = useState(false);
