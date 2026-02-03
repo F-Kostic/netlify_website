@@ -67,7 +67,12 @@ const Win98Portfolio = () => {
   const GRID_SIZE = 100;
   const GRID_OFFSET_X = 20;
   const GRID_OFFSET_Y = 20;
-  
+  // Background configuration
+// CUSTOMIZE: Set background type, color, image URL, and tiling
+const backgroundType = 'image'; // 'color' or 'image'
+const backgroundColor = '#001EFF'; // Background color when type is 'color'
+const backgroundImage = '/images/BG_Rat_Blue.png'; // Background image URL when type is 'image'
+const backgroundTiled = false; // true = tiled, false = stretched/cover
   // --------------------------------------------------------------------------
   // STATE MANAGEMENT
   // --------------------------------------------------------------------------
@@ -78,7 +83,7 @@ const Win98Portfolio = () => {
   // CUSTOMIZE: Add/remove/edit desktop icons here
   const [desktopIcons] = useState<DesktopIcon[]>([
     { 
-      id: 'cb',
+      id: 'cv',
       name: 'CV',
       type: 'info',
       x: 20,
@@ -620,7 +625,19 @@ Professional Experience
       style={{
         width: '100vw',
         height: '100vh',
-        background: '#001EFF', // CUSTOMIZE: Desktop background color (teal = #008080)
+        // CUSTOMIZE: Background - set backgroundType, backgroundColor, backgroundImage, backgroundTiled above
+        background: backgroundType === 'image' 
+          ? `url(${backgroundImage})` 
+          : backgroundColor,
+        backgroundSize: backgroundType === 'image' 
+          ? (backgroundTiled ? 'auto' : 'cover') 
+          : undefined,
+        backgroundRepeat: backgroundType === 'image' 
+          ? (backgroundTiled ? 'repeat' : 'no-repeat') 
+          : undefined,
+        backgroundPosition: backgroundType === 'image' && !backgroundTiled 
+          ? 'center' 
+          : undefined,
         position: 'fixed',
         top: 0,
         left: 0,
