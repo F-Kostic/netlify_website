@@ -141,7 +141,7 @@ const Win98Portfolio = () => {
   ]);
   
   // CUSTOMIZE: Edit these content strings for About and Contact info
-  const aboutContent = 'CV Here';
+  const aboutContent = 'CV Here...';
   const contactContent = 'Email: email@filipkostic.computer\n\nInstagram: @flipkostic';
   
   // UI state management
