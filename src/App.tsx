@@ -78,8 +78,8 @@ const Win98Portfolio = () => {
   // CUSTOMIZE: Add/remove/edit desktop icons here
   const [desktopIcons] = useState<DesktopIcon[]>([
     { 
-      id: 'about',
-      name: 'About',
+      id: 'cb',
+      name: 'CV',
       type: 'info',
       x: 20,
       y: 320,
