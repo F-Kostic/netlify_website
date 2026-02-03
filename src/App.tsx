@@ -107,7 +107,8 @@ const Win98Portfolio = () => {
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
         { name: 'Pro Mouse Grip 1', type: 'image', url: '/images/ProMouseGrip/SingleHand_01.png' },
-        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' }
+        { name: 'Pro Mouse Grip 2', type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' },
+        { name: 'Installation View', type: 'image', url: '/images/ProMouseGrip/3quarterHands6Drawings.png' }
         // CUSTOMIZE: To add more images, add a comma above and paste:
         // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
       ]
@@ -136,7 +137,6 @@ const Win98Portfolio = () => {
       customIcon: null,
       items: [
         { name: 'Info', type: 'info', content: 'Booty Bay Open Studios (2020)\n\nHD Video, 7:18 TRT' },
-        // CUSTOMIZE: Replace with your own video URL
         { name: 'Booty Bay Open Studios(202)', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' }
       ]
     }
@@ -177,10 +177,6 @@ const Win98Portfolio = () => {
     startTop: number;
   }>({ isResizing: false, windowId: null, edge: null, startX: 0, startY: 0, startWidth: 0, startHeight: 0, startLeft: 0, startTop: 0 });
 
-  // --------------------------------------------------------------------------
-  // CLOCK EFFECT
-  // --------------------------------------------------------------------------
-  // Updates the taskbar clock every second
 
   // --------------------------------------------------------------------------
   // CLOCK EFFECT
@@ -551,7 +547,7 @@ const Win98Portfolio = () => {
       style={{
         width: '100vw',
         height: '100vh',
-        background: '#008080', // CUSTOMIZE: Desktop background color (teal = #008080)
+        background: '#001EFF', // CUSTOMIZE: Desktop background color (teal = #008080)
         position: 'fixed',
         top: 0,
         left: 0,
