@@ -83,7 +83,82 @@ const Win98Portfolio = () => {
       type: 'info',
       x: 20,
       y: 320,
-      content: 'CV Here'
+      content: `Filip Kostic
+(B.1993, Beograd, Serbia)
+Living and working in Los Angeles, CA
+
+Education
+MFA Film and Video Candidate, Bard College, 2022
+BFA ArtCenter College of Design, 2016
+
+Solo Exhibitions
+2017
+  Open Loop, Roger's Office (Los Angeles, CA)
+2016
+  Landgrab the Musical in Virtual Reality, Wind Tunnel Gallery (Pasadena, CA)
+  me, from the future., ArtCenter College of Design (Pasadena, CA)
+
+Group Exhibitions and Screenings
+2025
+  If/Then, Ujazdowski Castle Center for Contemporary Arts, (Warsaw, Poland) curated by Sara Szostak, Marta Grytczuk
+  The Mirror Effect, Chateau de Monstsoreau Museum of Contemporary Art (Motsoreau, France), curated by Lara Pan
+2024
+  Transcendence Creative, lower_cavity, (Holyoke, Massachusetts) as part of the lower_cavity artist residency
+  Neither Dream, Nor Delusion, China Heights Gallery, (Sydney, Australia) curated by Jarryd Lynagh
+2023
+  The Manic American Humanist Show, Public Works Administration, (New York City, New York) curated by Abbey Pusz
+2022
+  The Influencing Machine, Ujazdowski Castle Center for Contemporary Arts, (Warsaw, Poland) curated by Aaron K. Moulton
+  Klammern aus denen Blätter Spriessen(Berlin), Scherben (Berlin, Germany) curated by Hunter Shaw, Tarik Kentouche, Lorenz Liebig
+  Klammern aus denen Blätter Spriessen(LA), Hunter Shaw Fine Art (Los Angeles) curated by Hunter Shaw, Tarik Kentouche, Lorenz Liebig
+  Do Not Research: Group Show, Lower Cavity, (Holyoke, Massachusetts) curated by Joshua Citarella
+2020
+  Ars Electronica 2020, Ars Electronica, (Linz, Austria) as part of the Belgrade Gardens
+  Both Ways, Porto Vecchio di Trieste, (Trieste, Italy) Curated by Maja Ciric as part of the EuroScience Open Forum
+  Intelligence IO, Magacin, (Belgrade, Serbia) Curated by Maja Ciric as part of the Art + Science
+  FiDi Arsenale, Hot-Air/Mery Gates, (Manhattan, New York) Curated by Collin Clarke and Matt Shaw
+2019
+  Landgrab the Musical in Virtual Reality, SPRING/BREAK Art Show LA, (Los Angeles, California) curated by Hunter Shaw and presented by Hunter Shaw Fine Art
+  Filip Kostic vs Filip Kostic, Live on Twitch
+    Streamed at Rogers Office, (Los Angeles, CA)
+    Streamed at Mery Gates, (Brooklyn, NY)
+    Streamed at Alyssa Davis Gallery, (New York City, NY)
+2018
+  Spatial Reality, sp[a]ce gallery, (Pasadena, CA) Curated by Jessie Damiani.
+  Pilot, Elephant Art Space, (Los Angeles, CA) Group show with Andy Bennet and Colleen Hargaden.
+  ARC I, NAVEL, (Los Angeles, CA) A screening as part of the Arts Research Cooperative summer fellowship.
+  Fälschung, Projektwohnung Krudebude, (Leipzig, Germany) curated by Anja Seitz
+  Belly Flop, Pool Party, (Palm Springs, CA) curated by Adrian Pijoan and Ray Ewing
+  TWISTER, Elevator Mondays, (Los Angeles, CA) Collaborative project with Theo Triantyfillidis, curated by Don Edler
+2017
+  CACHE_LA, MINTMOUE, (Los Angeles, CA) Curated by Brandon Barr and Gou Shibata
+  Reality Show, Tiger Strikes Asteroid Los Angeles, Bendix Building(Los Angeles, CA) Curated by Brian Porray
+  SPRING/BREAK ART SHOW, 4 Times Square (New York, NY) Curated by Mariah Kitner
+  GHOSTING: 100% REAL VR/AR Exhibition, GLAS Animation Festival (Berkeley,CA) Curated by Ghosting.TV
+2015
+  Sculpture Exhibition, ArtCenter College of Design (Pasadena, CA)
+2014
+  Personal Tales, El Camino Community College (Torrance, CA)
+
+Awards and Residencies
+2024
+  Lower Cavity Artist Residency
+2018
+  ARC(Arts Research Cooperative) Fellow
+2017
+  Roger's Office Artist Residency
+
+Professional Experience
+2024-2026
+  Art Director and Technical Artist at Genpop interactive for the Hero Shooter video game SLiMECORE.
+2016-2022
+  Adjunct Faculty in Interaction Design and Fine Art departments at ArtCenter College of Design
+2021
+  Adjunct Faculty in Film and New Media Department at California State University Northridge
+2018-2021
+  Lead Technical Artist, Technical Animator, Game Designer at WEVR for Harry Potter VR Experiences
+2018-2019
+  Adjunct Faculty in Sculpture Department at Otis College of Art and Design`
     },
     { 
       id: 'contact',
