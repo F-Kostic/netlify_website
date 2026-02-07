@@ -71,7 +71,7 @@ const Win98Portfolio = () => {
 // CUSTOMIZE: Set background type, color, image URL, and tiling
 const backgroundType = 'image'; // 'color' or 'image'
 const backgroundColor = '#001EFF'; // Background color when type is 'color'
-const backgroundImage = '/images/BG_Rat_Blue.png'; // Background image URL when type is 'image'
+const backgroundImage = '/images/BG_Rat_Blue_notext.png'; // Background image URL when type is 'image'
 const backgroundTiled = false; // true = tiled, false = stretched/cover
   // --------------------------------------------------------------------------
   // STATE MANAGEMENT
@@ -216,6 +216,43 @@ Professional Experience
       items: [
         { name: 'Info', type: 'info', content: 'Booty Bay Open Studios (2020)\n\nHD Video, 7:18 TRT' },
         { name: 'Booty Bay Open Studios(202)', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' }
+      ]
+    },
+    { 
+      id: 'Filip Kostic VS Filip Kostic', 
+      name: 'Filip Kostic VS Filip Kostic (2019)', 
+      type: 'folder', 
+      x: 120, 
+      y: 20, 
+      customIcon: null,
+      items: [
+        { name: 'Info', type: 'info', content: 'Filip Kostic VS Filip Kostic(2019)\n\nLive Streamed Performance\n\nFilip Kostic VS Filip Kostic was a twitch streamed performance in which I(Filip Kostic) played a game of FIFA against Filip Kostic, professional Serbian soccer player of Eintracht Frankfurt, for the Instagram handle @filipkostic. Halftime performance performed by Mark Fingerhut\n\nSince 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show. ' },
+        // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
+        // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
+        { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/2KLr6qA' },
+        { name: 'Instagram Tags', type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' }
+        // CUSTOMIZE: To add more images, add a comma above and paste:
+        // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
+      ]
+    },
+    { 
+      id: 'Random Things', 
+      name: 'Random Things', 
+      type: 'folder', 
+      x: 620, 
+      y: 820, 
+      customIcon: null,
+      items: [
+        { name: 'Info', type: 'info', content: 'These are some random images of things I am looking at or thinking about.' },
+        // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
+        // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
+        { name: 'Fortnite1', type: 'image', url: '/images/Random/fortnite1.png' },
+        { name: 'Fortnite2', type: 'image', url: '/images/Random/fortnite2.png' },
+        { name: 'Tracker Dog', type: 'image', url: '/images/Random/dog.png' },
+        { name: 'Frog', type: 'image', url: '/images/Random/Frog.png' },
+        { name: 'Sodium Chloride', type: 'image', url: '/images/Random/salt.png' }
+        // CUSTOMIZE: To add more images, add a comma above and paste:
+        // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
       ]
     }
   ]);
