@@ -229,7 +229,7 @@ Professional Experience
         { name: 'Info', type: 'info', content: 'Filip Kostic VS Filip Kostic(2019)\n\nLive Streamed Performance\n\nFilip Kostic VS Filip Kostic was a twitch streamed performance in which I(Filip Kostic) played a game of FIFA against Filip Kostic, professional Serbian soccer player of Eintracht Frankfurt, for the Instagram handle @filipkostic. Halftime performance performed by Mark Fingerhut\n\nSince 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show. ' },
         // CUSTOMIZE: Replace these placeholder images with your own artwork URLs
         // Format: { name: 'filename.jpg', type: 'image', url: 'YOUR_IMAGE_URL' }
-        { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/2KLr6qA' },
+        { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/hdJ_2KLr6qA' },
         { name: 'Instagram Tags', type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' }
         // CUSTOMIZE: To add more images, add a comma above and paste:
         // { name: 'myimage.jpg', type: 'image', url: 'https://your-image-url.com/image.jpg' },
