@@ -1,0 +1,46 @@
+// ============================================================================
+// portfolioTypes.ts
+// ============================================================================
+// Shared TypeScript interfaces. Import from here in both portfolioContent.ts
+// and Win98Portfolio.tsx so the shape is defined in one place.
+// ============================================================================
+
+export interface FolderItem {
+  name: string;
+  type: 'info' | 'image' | 'video';
+  content?: string;
+  url?: string;
+}
+
+export interface DesktopIcon {
+  id: string;
+  name: string;
+  type: 'folder' | 'terminal' | 'info' | 'image' | 'video';
+  x: number;
+  y: number;
+  customIcon?: string | null;
+  content?: string;
+  items?: FolderItem[];
+}
+
+export interface WindowState {
+  id: string;
+  title: string;
+  type: 'folder' | 'terminal' | 'info' | 'image' | 'video';
+  content?: string;
+  items?: FolderItem[];
+  icon?: DesktopIcon;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  zIndex: number;
+  minimized: boolean;
+}
+
+export interface Marquee {
+  startX: number;
+  startY: number;
+  width: number;
+  height: number;
+}
