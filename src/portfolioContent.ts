@@ -1,9 +1,6 @@
 // ============================================================================
 // portfolioContent.ts
 // ============================================================================
-// This is the ONLY file you need to edit to update your portfolio content.
-// The main component (Win98Portfolio.tsx) imports everything from here.
-//
 // HOW TO ADD A NEW ARTWORK FOLDER:
 //   1. Add an entry to the `desktopIcons` array below with type: 'folder'
 //   2. Add items (info, image, video) inside its `items` array
@@ -12,8 +9,6 @@
 //
 // HOW TO USE INLINE TEXT vs. A SEPARATE FILE:
 //   - Inline:  content: `Your text here`
-//   - File:    Not needed — just edit the text strings below directly.
-//              They live here, not buried in component logic.
 // ============================================================================
 
 import type { DesktopIcon } from './portfolioTypes';
@@ -71,6 +66,8 @@ MFA Film and Video Candidate, Bard College, 2022
 BFA ArtCenter College of Design, 2016
 
 Solo Exhibitions
+2024
+  CATHEDRALS EVERYWHERE FOR THOSE WITH MONITORS TO SEE, Number 1 Main Road (Berlin, Germany)
 2017
   Open Loop, Roger's Office (Los Angeles, CA)
 2016
@@ -78,6 +75,8 @@ Solo Exhibitions
   me, from the future., ArtCenter College of Design (Pasadena, CA)
 
 Group Exhibitions and Screenings
+2026
+  Feminine Urge, (New York, NY) curated by Zarina Nares
 2025
   If/Then, Ujazdowski Castle Center for Contemporary Arts, (Warsaw, Poland) curated by Sara Szostak, Marta Grytczuk
   The Mirror Effect, Chateau de Monstsoreau Museum of Contemporary Art (Motsoreau, France), curated by Lara Pan
