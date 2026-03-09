@@ -463,7 +463,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
 
   {
     id: 'exeexp',
-    name: 'EXE.EXP(ongoing)',
+    name: 'EXE.EXP (ongoing)',
     type: 'folder',
     items: [
       {
@@ -495,6 +495,54 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
       { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
       { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
       { name: 'Executable Experience V4', type: 'video', url: 'https://www.youtube.com/embed/6kGrhJxOGQ0' },
+    ],
+  },
+
+  {
+    id: 'landgrab',
+    name: 'Landgrab the Musical in Virtual Reality (2016)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Landgrab the Musical in Virtual Reality, 2016
+        Variable size installation, VR Hardware, 5.1 Channel surround soud, 488x488cm staged platform, Inkjet Movie Poster scaled prints.
+        
+        Solo exhibition, December 2016-February 2017 at the Wind Tunnel Gallery, Pasadena.`,
+      },
+      { name: 'Landgrab the Musical (install 1)', type: 'image', url: '/images/Landgrab/Installation_NoFigure.jpg' },
+      { name: 'Landgrab the Musical (install 2)', type: 'image', url: '/images/Landgrab/Installation_Tyler.jpeg' },
+      { name: 'Landgrab the Musical (game view 1)', type: 'image', url: '/images/Landgrab/Figure_Screengrab.jpg' },
+      { name: 'Landgrab the Musical (install 3)', type: 'image', url: '/images/Landgrab/Installation_CloseUp.jpg' },
+      { name: 'Landgrab the Musical (game view 2)', type: 'image', url: '/images/Landgrab/Landgrab_Still1.jpg' },
+      { name: 'Landgrab the Musical (game view 3)', type: 'image', url: '/images/Landgrab/Landgrab_Still2.jpg' },
+      { name: 'Lie In My Wake Show Poster', type: 'image', url: '/images/Landgrab/MyWakePoster.png' },
+      { name: 'Scale Shift Show Poster', type: 'image', url: '/images/Landgrab/ScaleShiftPoster.jpg' },
+      { name: 'Reflections Show Poster', type: 'image', url: '/images/Landgrab/reflectionsPoster.jpg' },
+      { name: 'Vanishing Point Lovers Show Poster', type: 'image', url: '/images/Landgrab/vanishingposter.jpg' },
+      { name: 'Landgrab the Musical excerpt (video)', type: 'video', url: 'https://www.youtube.com/embed/aL5qHYetyZI' },
+    ],
+  },
+
+  {
+    id: 'oculusrock',
+    name: 'Oculus Rock (2016)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Oculus Rock, 2016
+        concrete, computer hardware, oculus virtual reality headset, sight specific model of encironment the rock is shown in`,
+      },
+      { name: 'Oculus Rock (install 1)', type: 'image', url: '/images/Oculusrock/oculusrock_1.jpeg' },
+      { name: 'Oculus Rock (install 2)', type: 'image', url: '/images/Oculusrock/oculusrock_2.jpeg' },
+      { name: 'Oculus Rock (install 3)', type: 'image', url: '/images/Oculusrock/oculusrock_3.jpeg' },
+      { name: 'Oculus Rock (install 4)', type: 'image', url: '/images/Oculusrock/oculusrock_4.jpeg' },
+      { name: 'Oculus Rock (install 5)', type: 'image', url: '/images/Oculusrock/oculusrock_5.jpeg' },
+      { name: 'Oculus Rock (install 6)', type: 'image', url: '/images/Oculusrock/oculusrock_6.jpeg' },
+      { name: 'Oculus Rock (video)', type: 'video', url: 'https://player.vimeo.com/video/162149041' },
     ],
   },
 
