@@ -347,11 +347,17 @@ const Win98Portfolio = () => {
       </div>
     );
     if (win.type === 'video') {
-      const isYT = win.content?.includes('youtube.com') || win.content?.includes('youtu.be');
+      const isEmbed = win.content?.includes('youtube.com') || win.content?.includes('youtu.be') || win.content?.includes('vimeo.com');
+      const isVimeo = win.content?.includes('vimeo.com');
       return (
         <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-          {isYT
-            ? <iframe src={win.content} style={{ width: '100%', height: '100%', border: 'none' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          {isEmbed
+            ? <iframe
+                src={win.content}
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                allow={isVimeo ? 'autoplay; fullscreen; picture-in-picture' : 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
+                allowFullScreen
+              />
             : <video controls style={{ maxWidth: '100%', maxHeight: '100%' }}><source src={win.content} type="video/mp4" /></video>
           }
         </div>

@@ -161,21 +161,30 @@ export const desktopIcons: DesktopIcon[] = [
 
   {
     id: 'pro-mouse-grip',
-    name: 'Pro Mouse Grip (2025)',
+    name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing(2025)',
     type: 'folder',
     items: [
       {
         name: 'Info',
         type: 'info',
-        content: `Pro Mouse Grip (1-7), (2025)
-
+        content: `Pro Mouse Grip (1-7), 2025
 Variable size hands on 13x13x31.5" mousepad pedestal
+Silicon-Copper cold cast
 
-Silicon-Copper cold cast`,
+Counter-Strike spray pattern drawing (1-18), 2025
+55x36cm
+Graphite drawing on paper, aluminum frame, mousepad backing
+
+Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contemporary Art.
+`,
       },
-      { name: 'Pro Mouse Grip 1',  type: 'image', url: '/images/ProMouseGrip/SingleHand_01.png' },
-      { name: 'Pro Mouse Grip 2',  type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' },
-      { name: 'Installation View', type: 'image', url: '/images/ProMouseGrip/3quarterHands6Drawings.png' },
+      { name: 'Install 1',  type: 'image', url: '/images/WarsawForWebsite/WhiteWall_Hands_01.jpg' },
+      { name: 'Pro Mouse Grip (1 of 7)',  type: 'image', url: '/images/WarsawForWebsite/SingleHand_01.jpg1' },
+      { name: 'Counter-Strike spray pattern drawing (1 of 18)', type: 'image', url: '/images/WarsawForWebsite/SingleBlueWall_01.jpg' },
+      { name: 'Install 2',  type: 'image', url: '/images/WarsawForWebsite/HandsStraightOn_01.jpg' },
+      { name: 'Pro Mouse Grip (2 of 7)',  type: 'image', url: '/images/WarsawForWebsite/SingleHand_02.jpg' },
+      { name: 'Pro Mouse Grip (3 of 7)',  type: 'image', url: '/images/WarsawForWebsite/CloseupMouseHand_01.jpg' },
+      { name: 'Install 3',  type: 'image', url: '/images/WarsawForWebsite/Wide_01.jpg' },
     ],
   },
 
