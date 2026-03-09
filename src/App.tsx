@@ -118,19 +118,24 @@ const ICON_H = 100;
 const PADDING = 16;
 const TASKBAR_H = 36;
 
-const computeIconPositions = (icons: DesktopIcon[], viewportHeight: number) => {
-  const usableHeight = viewportHeight - TASKBAR_H - PADDING;
-  const iconsPerColumn = Math.max(1, Math.floor(usableHeight / ICON_H));
+const MOBILE_SCALE = 0.65;
+
+const computeIconPositions = (icons: DesktopIcon[], viewportHeight: number, mobile = false) => {
+  const scale = mobile ? MOBILE_SCALE : 1;
+  const cellW = ICON_W * scale;
+  const cellH = ICON_H * scale;
+  const pad   = PADDING * scale;
+  const usableHeight = viewportHeight - TASKBAR_H - pad;
+  const iconsPerColumn = Math.max(1, Math.floor(usableHeight / cellH));
   let autoCol = 0, autoRow = 0;
 
   return icons.map((icon) => {
-    // If x and y are both explicitly set in portfolioContent, use them as-is
-    if (icon.x !== undefined && icon.y !== undefined) {
+    // On desktop: respect explicit x/y if set. On mobile: always auto-place.
+    if (!mobile && icon.x !== undefined && icon.y !== undefined) {
       return { ...icon, x: icon.x, y: icon.y };
     }
-    // Otherwise place in next auto slot
-    const x = PADDING + autoCol * (ICON_W + PADDING);
-    const y = PADDING + autoRow * ICON_H;
+    const x = pad + autoCol * (cellW + pad);
+    const y = pad + autoRow * cellH;
     autoRow++;
     if (autoRow >= iconsPerColumn) { autoRow = 0; autoCol++; }
     return { ...icon, x, y };
@@ -338,7 +343,7 @@ const Win98Portfolio = () => {
 
   const { width: viewportWidth, height: viewportHeight } = useWindowSize();
   const isMobile = viewportWidth < 768 && navigator.maxTouchPoints > 0;
-  const layoutIcons = computeIconPositions(desktopIcons, viewportHeight);
+  const layoutIcons = computeIconPositions(desktopIcons, viewportHeight, isMobile);
 
   // Resize maximized windows on orientation change / viewport resize (mobile)
   useEffect(() => {
@@ -626,7 +631,7 @@ const Win98Portfolio = () => {
       {/* ── DESKTOP ICONS ── auto-laid out, reflows on window resize ── */}
       {layoutIcons.map(icon => (
         <div key={icon.id}
-          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent', transform: isMobile ? 'scale(0.65)' : 'none', transformOrigin: 'top left' }}
+          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent', transform: isMobile ? `scale(${MOBILE_SCALE})` : 'none', transformOrigin: 'top left' }}
           onClick={(e) => {
             e.stopPropagation();
             if (isMobile) { openWindow(icon); return; }
