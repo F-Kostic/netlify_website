@@ -5,7 +5,7 @@
 // To update shared types:                     edit portfolioTypes.ts
 // ============================================================================
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { background, desktopIcons, cvContent, contactContent, iconDefaults } from './portfolioContent';
 import type { DesktopIcon, FolderItem, WindowState, Marquee } from './portfolioTypes';
 
@@ -218,10 +218,9 @@ const Win98Portfolio = () => {
     setWindows(prev => prev.map(w => {
       if (w.id !== id) return w;
       if (w.maximized) {
-        // restore to previous bounds
-        return { ...w, maximized: false, ...(w.prevBounds ?? {}) };
+        const b = w.prevBounds ?? { x: 100, y: 50, width: 500, height: 400 };
+        return { ...w, maximized: false, x: b.x, y: b.y, width: b.width, height: b.height };
       } else {
-        // save current bounds and go fullscreen (minus taskbar)
         return { ...w, maximized: true, prevBounds: { x: w.x, y: w.y, width: w.width, height: w.height }, x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 28 };
       }
     }));
@@ -266,10 +265,10 @@ const Win98Portfolio = () => {
         setWindows(prev => prev.map(w => {
           if (w.id !== windowId) return w;
           let nw = startWidth, nh = startHeight, nx = startLeft, ny = startTop;
-          if (edge.includes('e')) nw = Math.max(200, startWidth + dx);
-          if (edge.includes('w')) { nw = Math.max(200, startWidth - dx); nx = startLeft + (startWidth - nw); }
-          if (edge.includes('s')) nh = Math.max(150, startHeight + dy);
-          if (edge.includes('n')) { nh = Math.max(150, startHeight - dy); ny = startTop + (startHeight - nh); }
+          if (edge!.includes('e')) nw = Math.max(200, startWidth + dx);
+          if (edge!.includes('w')) { nw = Math.max(200, startWidth - dx); nx = startLeft + (startWidth - nw); }
+          if (edge!.includes('s')) nh = Math.max(150, startHeight + dy);
+          if (edge!.includes('n')) { nh = Math.max(150, startHeight - dy); ny = startTop + (startHeight - nh); }
           return { ...w, width: nw, height: nh, x: nx, y: ny };
         }));
       }

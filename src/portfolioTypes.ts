@@ -30,8 +30,8 @@ export interface WindowState {
   content?: string;
   items?: FolderItem[];
   icon?: DesktopIcon;
-  x?: number; // optional — positions are auto-calculated if omitted
-  y?: number;
+  x: number;
+  y: number;
   width: number;
   height: number;
   zIndex: number;
