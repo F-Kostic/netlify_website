@@ -145,6 +145,174 @@ const onMenuLeave = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 // ============================================================================
+// WINDOWS MEDIA PLAYER COMPONENT
+// ============================================================================
+const WinMediaPlayer = ({ src, title }: { src: string; title: string }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(0.8);
+  const animRef = useRef<number | null>(null);
+  const phaseRef = useRef(0);
+  const intensityRef = useRef(0);
+  const targetIntensityRef = useRef(0);
+
+  const fmt = (s: number) => {
+    const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+  };
+
+  // Draw sine wave on canvas
+  const drawWave = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, H);
+
+    // Smoothly ease intensity toward target
+    intensityRef.current += (targetIntensityRef.current - intensityRef.current) * 0.08;
+    const amp = intensityRef.current * (H / 2 - 4);
+    const freq = 0.04 + intensityRef.current * 0.06;
+    phaseRef.current += playing ? 0.07 + intensityRef.current * 0.08 : 0.01;
+
+    ctx.beginPath();
+    for (let x = 0; x < W; x++) {
+      const y = H / 2 + amp * Math.sin(freq * x + phaseRef.current)
+                      + (amp * 0.4) * Math.sin(freq * 2.3 * x + phaseRef.current * 1.3);
+      const t = x / W;
+      ctx.strokeStyle = `hsl(${200 + t * 60}, 100%, 55%)`;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    animRef.current = requestAnimationFrame(drawWave);
+  };
+
+  useEffect(() => {
+    targetIntensityRef.current = playing ? 0.7 + Math.random() * 0.3 : 0.05;
+    const jitter = playing ? setInterval(() => {
+      targetIntensityRef.current = 0.5 + Math.random() * 0.5;
+    }, 400) : null;
+    return () => { if (jitter) clearInterval(jitter); };
+  }, [playing]);
+
+  useEffect(() => {
+    animRef.current = requestAnimationFrame(drawWave);
+    return () => { if (animRef.current) cancelAnimationFrame(animRef.current); };
+  }, [playing]);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (playing) { audioRef.current.pause(); setPlaying(false); }
+    else { audioRef.current.play().then(() => setPlaying(true)).catch(() => {}); }
+  };
+
+  const stop = () => {
+    if (!audioRef.current) return;
+    audioRef.current.pause();
+    audioRef.current.currentTime = 0;
+    setPlaying(false); setCurrentTime(0);
+  };
+
+  // Win98 raised/sunken button style
+  const btn98 = (active = false): React.CSSProperties => ({
+    background: '#C0C0C0',
+    border: '2px solid',
+    borderColor: active ? '#808080 #fff #fff #808080' : '#fff #808080 #808080 #fff',
+    cursor: 'pointer',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    padding: '2px',
+    transform: active ? 'translate(1px,1px)' : 'none',
+  });
+
+  // SVG icons matching the Win98 media player look
+  const iconPlay  = <svg width="10" height="10" viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9" fill="#000"/></svg>;
+  const iconPause = <svg width="10" height="10" viewBox="0 0 10 10"><rect x="2" y="1" width="2.5" height="8" fill="#000"/><rect x="5.5" y="1" width="2.5" height="8" fill="#000"/></svg>;
+  const iconStop  = <svg width="10" height="10" viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" fill="#000"/></svg>;
+  const iconPrev  = <svg width="12" height="10" viewBox="0 0 12 10"><polygon points="6,1 1,5 6,9" fill="#000"/><polygon points="11,1 6,5 11,9" fill="#000"/><rect x="0" y="1" width="2" height="8" fill="#000"/></svg>;
+  const iconNext  = <svg width="12" height="10" viewBox="0 0 12 10"><polygon points="1,1 6,5 1,9" fill="#000"/><polygon points="6,1 11,5 6,9" fill="#000"/><rect x="10" y="1" width="2" height="8" fill="#000"/></svg>;
+
+  return (
+    <div style={{ background: '#C0C0C0', height: '100%', display: 'flex', flexDirection: 'column', fontFamily: 'Arial, sans-serif', userSelect: 'none' }}>
+
+      {/* Visualizer display — sunken inset */}
+      <div style={{ margin: '6px', border: '2px solid', borderColor: '#808080 #fff #fff #808080', background: '#000', flex: 1, display: 'flex', flexDirection: 'column', minHeight: '80px', overflow: 'hidden' }}>
+        <div style={{ padding: '3px 5px', borderBottom: '1px solid #333', display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: '#00aaff', fontSize: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '70%' }}>{title}</span>
+          <span style={{ color: '#00ff88', fontSize: '10px', fontFamily: 'monospace' }}>{fmt(currentTime)}{duration ? ` / ${fmt(duration)}` : ''}</span>
+        </div>
+        <canvas ref={canvasRef} width={400} height={60} style={{ width: '100%', flex: 1, display: 'block' }} />
+      </div>
+
+      {/* Progress bar */}
+      <div style={{ padding: '0 6px 4px' }}>
+        <div style={{ border: '2px solid', borderColor: '#808080 #fff #fff #808080', background: '#fff', padding: '1px' }}>
+          <input type="range" min={0} max={duration || 100} value={currentTime} step={0.1}
+            onChange={e => { if (audioRef.current) { audioRef.current.currentTime = Number(e.target.value); setCurrentTime(Number(e.target.value)); } }}
+            style={{ width: '100%', accentColor: '#000080', display: 'block', margin: 0, cursor: 'pointer' }}
+          />
+        </div>
+      </div>
+
+      {/* Transport controls */}
+      <div style={{ padding: '4px 6px 6px', display: 'flex', alignItems: 'center', gap: '2px', borderTop: '1px solid #808080' }}>
+        <button style={{ ...btn98(), width: '28px', height: '24px' }}
+          onMouseDown={e => e.currentTarget.style.borderColor = '#808080 #fff #fff #808080'}
+          onMouseUp={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onClick={() => { if (audioRef.current) audioRef.current.currentTime = 0; }}>{iconPrev}</button>
+
+        <button style={{ ...btn98(playing), width: '36px', height: '28px' }}
+          onMouseDown={e => e.currentTarget.style.borderColor = '#808080 #fff #fff #808080'}
+          onMouseUp={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onClick={togglePlay}>{playing ? iconPause : iconPlay}</button>
+
+        <button style={{ ...btn98(), width: '28px', height: '24px' }}
+          onMouseDown={e => e.currentTarget.style.borderColor = '#808080 #fff #fff #808080'}
+          onMouseUp={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onClick={stop}>{iconStop}</button>
+
+        <button style={{ ...btn98(), width: '28px', height: '24px' }}
+          onMouseDown={e => e.currentTarget.style.borderColor = '#808080 #fff #fff #808080'}
+          onMouseUp={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onMouseLeave={e => e.currentTarget.style.borderColor = '#fff #808080 #808080 #fff'}
+          onClick={() => { if (audioRef.current) audioRef.current.currentTime = duration; }}>{iconNext}</button>
+
+        {/* Volume — Win98 style: speaker SVG + sunken slider track */}
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <polygon points="2,5 2,11 5,11 9,14 9,2 5,5" fill={volume === 0 ? '#808080' : '#000'}/>
+            {volume > 0 && <path d="M11,5 Q13,8 11,11" stroke="#000" strokeWidth="1.5" fill="none" strokeLinecap="round"/>}
+            {volume > 0.5 && <path d="M12.5,3 Q15.5,8 12.5,13" stroke="#000" strokeWidth="1.5" fill="none" strokeLinecap="round"/>}
+          </svg>
+          <div style={{ border: '2px solid', borderColor: '#808080 #fff #fff #808080', background: '#C0C0C0', padding: '2px 4px', display: 'flex', alignItems: 'center' }}>
+            <input type="range" min={0} max={1} step={0.01} value={volume}
+              onChange={e => { const v = Number(e.target.value); setVolume(v); if (audioRef.current) audioRef.current.volume = v; }}
+              style={{ width: '70px', accentColor: '#000080', cursor: 'pointer', margin: 0 }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <audio ref={audioRef} src={src}
+        onTimeUpdate={() => { if (audioRef.current) setCurrentTime(audioRef.current.currentTime); }}
+        onLoadedMetadata={() => { if (audioRef.current) { setDuration(audioRef.current.duration); audioRef.current.volume = volume; } }}
+        onEnded={() => setPlaying(false)}
+      />
+    </div>
+  );
+};
+
+// ============================================================================
 // MAIN COMPONENT
 // ============================================================================
 const Win98Portfolio = () => {
@@ -182,7 +350,7 @@ const Win98Portfolio = () => {
       id, title: icon.name, type: icon.type, content: icon.content,
       items: icon.items, icon,
       x: 100 + windows.length * 30, y: 50 + windows.length * 30,
-      width: 500, height: 400, zIndex: maxZ + 1, minimized: false, maximized: false,
+      width: 750, height: 600, zIndex: maxZ + 1, minimized: false, maximized: false,
     }]);
     setActiveWindow(id);
   }, [windows]);
@@ -218,7 +386,7 @@ const Win98Portfolio = () => {
     setWindows(prev => prev.map(w => {
       if (w.id !== id) return w;
       if (w.maximized) {
-        const b = w.prevBounds ?? { x: 100, y: 50, width: 500, height: 400 };
+        const b = w.prevBounds ?? { x: 100, y: 50, width: 750, height: 600 };
         return { ...w, maximized: false, x: b.x, y: b.y, width: b.width, height: b.height };
       } else {
         return { ...w, maximized: true, prevBounds: { x: w.x, y: w.y, width: w.width, height: w.height }, x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 28 };
@@ -371,17 +539,8 @@ const Win98Portfolio = () => {
         </div>
       );
     }
-    if (win.type === 'audio') return (
-      <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '16px', background: '#C0C0C0' }}>
-        <div style={{ fontSize: '13px', fontWeight: 'bold', textAlign: 'center', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{win.title}</div>
-        <audio controls autoPlay style={{ width: '100%' }}>
-          <source src={win.content} type="audio/mpeg" />
-          <source src={win.content} type="audio/ogg" />
-          <source src={win.content} type="audio/wav" />
-          Your browser does not support audio.
-        </audio>
-      </div>
-    );
+    if (win.type === 'audio') return <WinMediaPlayer src={win.content ?? ''} title={win.title} />;
+
     if (win.type === 'bandcamp') return (
       <div style={{ width: '100%', height: '100%' }}>
         <iframe
