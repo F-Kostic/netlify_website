@@ -6,7 +6,7 @@
 // ============================================================================
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { background, desktopIcons, aboutContent, contactContent } from './portfolioContent';
+import { background, desktopIcons, cvContent, contactContent } from './portfolioContent';
 import type { DesktopIcon, FolderItem, WindowState, Marquee } from './portfolioTypes';
 
 // ============================================================================
@@ -85,6 +85,44 @@ const SubmenuRow = ({ label, children }: { label: string; children: React.ReactN
 };
 
 // ============================================================================
+// WINDOW SIZE HOOK — tracks live viewport dimensions
+// ============================================================================
+const useWindowSize = () => {
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  useEffect(() => {
+    const onResize = () => setSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+  return size;
+};
+
+// ============================================================================
+// ICON LAYOUT — fills a column top-to-bottom, then starts the next column.
+// ICON_W/H  = cell size (icon + label)
+// PADDING   = gap from screen edges
+// TASKBAR_H = space reserved at the bottom for the taskbar
+// ============================================================================
+const ICON_W = 80;
+const ICON_H = 90;
+const PADDING = 16;
+const TASKBAR_H = 36;
+
+const computeIconPositions = (icons: DesktopIcon[], viewportHeight: number) => {
+  const usableHeight = viewportHeight - TASKBAR_H - PADDING;
+  const iconsPerColumn = Math.max(1, Math.floor(usableHeight / ICON_H));
+  return icons.map((icon, i) => {
+    const col = Math.floor(i / iconsPerColumn);
+    const row = i % iconsPerColumn;
+    return {
+      ...icon,
+      x: PADDING + col * (ICON_W + PADDING),
+      y: PADDING + row * ICON_H,
+    };
+  });
+};
+
+// ============================================================================
 // SHARED MENU ITEM HOVER HANDLERS
 // ============================================================================
 const onMenuEnter = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -114,6 +152,9 @@ const Win98Portfolio = () => {
 
   const resizeRef = useRef<{ isResizing: boolean; windowId: string | null; edge: string | null; startX: number; startY: number; startWidth: number; startHeight: number; startLeft: number; startTop: number }>
     ({ isResizing: false, windowId: null, edge: null, startX: 0, startY: 0, startWidth: 0, startHeight: 0, startLeft: 0, startTop: 0 });
+
+  const { width: viewportWidth, height: viewportHeight } = useWindowSize();
+  const layoutIcons = computeIconPositions(desktopIcons, viewportHeight);
 
   // Clock
   useEffect(() => {
@@ -216,7 +257,10 @@ const Win98Portfolio = () => {
         setMarquee({ ...marquee, width: w, height: h });
         const ml = Math.min(marquee.startX, e.clientX), mt = Math.min(marquee.startY, e.clientY);
         const mr = Math.max(marquee.startX, e.clientX), mb = Math.max(marquee.startY, e.clientY);
-        setSelectedIcons(desktopIcons.filter(ic => !(ic.x + 64 < ml || ic.x > mr || ic.y + 64 < mt || ic.y > mb)).map(ic => ic.id));
+        setSelectedIcons(desktopIcons.filter((_, i) => {
+          const ic = layoutIcons[i];
+          return !(ic.x! + ICON_W < ml || ic.x! > mr || ic.y! + ICON_H < mt || ic.y! > mb);
+        }).map(ic => ic.id));
       }
     };
     const onUp = () => {
@@ -343,10 +387,10 @@ const Win98Portfolio = () => {
       onClick={() => setStartMenuOpen(false)}
     >
 
-      {/* ── DESKTOP ICONS ── */}
-      {desktopIcons.map(icon => (
+      {/* ── DESKTOP ICONS ── auto-laid out, reflows on window resize ── */}
+      {layoutIcons.map(icon => (
         <div key={icon.id}
-          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '64px', cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent' }}
+          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent' }}
           onClick={(e) => {
             e.stopPropagation();
             e.ctrlKey || e.metaKey
@@ -371,7 +415,7 @@ const Win98Portfolio = () => {
               </svg>
             )}
           </div>
-          <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.2' }}>{icon.name}</span>
+          <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.2', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{icon.name}</span>
         </div>
       ))}
 
@@ -467,11 +511,11 @@ const Win98Portfolio = () => {
         >
           <div style={{ padding: '4px' }}>
 
-            <SubmenuRow label="About/Contact">
+            <SubmenuRow label="CV/Contact">
               <div style={{ padding: '4px 8px', cursor: 'pointer', fontSize: '14px', color: 'black' }}
-                onClick={() => { openWindow({ id: 'about-file', name: 'About', type: 'info', x: 0, y: 0, content: aboutContent }); setStartMenuOpen(false); }}
+                onClick={() => { openWindow({ id: 'cv-file', name: 'CV', type: 'info', x: 0, y: 0, content: cvContent }); setStartMenuOpen(false); }}
                 onMouseEnter={onMenuEnter} onMouseLeave={onMenuLeave}
-              >About</div>
+              >CV</div>
               <div style={{ padding: '4px 8px', cursor: 'pointer', fontSize: '14px', color: 'black' }}
                 onClick={() => { openWindow({ id: 'contact-file', name: 'Contact', type: 'info', x: 0, y: 0, content: contactContent }); setStartMenuOpen(false); }}
                 onMouseEnter={onMenuEnter} onMouseLeave={onMenuLeave}

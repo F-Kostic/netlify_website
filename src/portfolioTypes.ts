@@ -16,8 +16,8 @@ export interface DesktopIcon {
   id: string;
   name: string;
   type: 'folder' | 'terminal' | 'info' | 'image' | 'video';
-  x: number;
-  y: number;
+  x?: number; // optional — positions are auto-calculated if omitted
+  y?: number;
   customIcon?: string | null;
   content?: string;
   items?: FolderItem[];
@@ -30,8 +30,8 @@ export interface WindowState {
   content?: string;
   items?: FolderItem[];
   icon?: DesktopIcon;
-  x: number;
-  y: number;
+  x?: number; // optional — positions are auto-calculated if omitted
+  y?: number;
   width: number;
   height: number;
   zIndex: number;

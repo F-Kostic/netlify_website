@@ -6,9 +6,6 @@
 //   2. Add items (info, image, video) inside its `items` array
 //   3. Give it an x/y position on the desktop
 //   Done — it will automatically appear in the desktop and Start > Artworks menu.
-//
-// HOW TO USE INLINE TEXT vs. A SEPARATE FILE:
-//   - Inline:  content: `Your text here`
 // ============================================================================
 
 import type { DesktopIcon } from './portfolioTypes';
@@ -24,40 +21,10 @@ export const background = {
 };
 
 // ----------------------------------------------------------------------------
-// START MENU — About / Contact text
-// These appear when you open About or Contact from the Start menu.
+// CV — used by both the desktop icon and Start > CV/Contact > CV
+// Edit this one string and both places update automatically.
 // ----------------------------------------------------------------------------
-export const aboutContent = `CV Here...`;
-
-export const contactContent = `Email: email@filipkostic.computer
-
-Instagram: @flipkostic`;
-
-// ----------------------------------------------------------------------------
-// DESKTOP ICONS
-// Each entry is either a standalone info/text file or a folder with items.
-//
-// POSITIONS: x/y are pixels from the top-left of the desktop.
-// TYPES:
-//   'info'   — opens a text window
-//   'folder' — opens a folder window with items inside
-//   'image'  — opens an image viewer  (used inside folder items)
-//   'video'  — opens a video player   (used inside folder items)
-//              YouTube embed URLs work automatically.
-// ----------------------------------------------------------------------------
-export const desktopIcons: DesktopIcon[] = [
-
-  // --------------------------------------------------------------------------
-  // STANDALONE TEXT FILES (appear directly on desktop)
-  // --------------------------------------------------------------------------
-
-  {
-    id: 'cv',
-    name: 'CV',
-    type: 'info',
-    x: 20,
-    y: 320,
-    content: `Filip Kostic
+export const cvContent = `Filip Kostic
 (B.1993, Beograd, Serbia)
 Living and working in Los Angeles, CA
 
@@ -136,18 +103,45 @@ Professional Experience
 2018-2021
   Lead Technical Artist, Technical Animator, Game Designer at WEVR for Harry Potter VR Experiences
 2018-2019
-  Adjunct Faculty in Sculpture Department at Otis College of Art and Design`,
+  Adjunct Faculty in Sculpture Department at Otis College of Art and Design`;
+
+// ----------------------------------------------------------------------------
+// CONTACT — used by the desktop icon and Start > CV/Contact > Contact
+// ----------------------------------------------------------------------------
+export const contactContent = `Email: email@filipkostic.computer
+
+Instagram: @flipkostic`;
+
+// ----------------------------------------------------------------------------
+// DESKTOP ICONS
+// Each entry is either a standalone info/text file or a folder with items.
+//
+// POSITIONS: x/y are pixels from the top-left of the desktop.
+// TYPES:
+//   'info'   — opens a text window
+//   'folder' — opens a folder window with items inside
+//   'image'  — opens an image viewer  (used inside folder items)
+//   'video'  — opens a video player   (used inside folder items)
+//              YouTube embed URLs work automatically.
+// ----------------------------------------------------------------------------
+export const desktopIcons: DesktopIcon[] = [
+
+  // --------------------------------------------------------------------------
+  // STANDALONE TEXT FILES (appear directly on desktop)
+  // --------------------------------------------------------------------------
+
+  {
+    id: 'cv',
+    name: 'CV',
+    type: 'info',
+        content: cvContent,   // ← references the single source above
   },
 
   {
     id: 'contact',
     name: 'Contact',
     type: 'info',
-    x: 20,
-    y: 420,
-    content: `Email: email@filipkostic.computer
-
-Instagram: @flipkostic`,
+        content: contactContent,   // ← references the single source above
   },
 
   // --------------------------------------------------------------------------
@@ -159,9 +153,7 @@ Instagram: @flipkostic`,
     id: 'pro-mouse-grip',
     name: 'Pro Mouse Grip (2025)',
     type: 'folder',
-    x: 20,
-    y: 20,
-    items: [
+        items: [
       {
         name: 'Info',
         type: 'info',
@@ -171,9 +163,9 @@ Variable size hands on 13x13x31.5" mousepad pedestal
 
 Silicon-Copper cold cast`,
       },
-      { name: 'Pro Mouse Grip 1',    type: 'image', url: '/images/ProMouseGrip/SingleHand_01.png' },
-      { name: 'Pro Mouse Grip 2',    type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' },
-      { name: 'Installation View',   type: 'image', url: '/images/ProMouseGrip/3quarterHands6Drawings.png' },
+      { name: 'Pro Mouse Grip 1',  type: 'image', url: '/images/ProMouseGrip/SingleHand_01.png' },
+      { name: 'Pro Mouse Grip 2',  type: 'image', url: '/images/ProMouseGrip/SingleHand_02.png' },
+      { name: 'Installation View', type: 'image', url: '/images/ProMouseGrip/3quarterHands6Drawings.png' },
     ],
   },
 
@@ -181,9 +173,7 @@ Silicon-Copper cold cast`,
     id: 'bed-pc',
     name: 'Bed PC (2022)',
     type: 'folder',
-    x: 20,
-    y: 120,
-    items: [
+        items: [
       {
         name: 'Info',
         type: 'info',
@@ -191,9 +181,9 @@ Silicon-Copper cold cast`,
 
 Custom built water cooled computer built into the frame of a Bed. Variable screens, blanket, pillows, variable peripheries including Keyboard, mouse, streaming microphone, webcams.`,
       },
-      { name: 'Bed PC 2',          type: 'image', url: '/images/BedPC/BedPC_Scherben_Main.jpg' },
-      { name: 'Bed PC Home',       type: 'image', url: '/images/BedPC/BedPC_Home.jpg' },
-      { name: 'Bed PC (Twin)',     type: 'image', url: '/images/BedPC/Bed_PC_HS_Twin.jpg' },
+      { name: 'Bed PC 2',            type: 'image', url: '/images/BedPC/BedPC_Scherben_Main.jpg' },
+      { name: 'Bed PC Home',         type: 'image', url: '/images/BedPC/BedPC_Home.jpg' },
+      { name: 'Bed PC (Twin)',       type: 'image', url: '/images/BedPC/Bed_PC_HS_Twin.jpg' },
       { name: 'BedPC(Twin) Install', type: 'image', url: '/images/BedPC/BedPC_HS_Install.jpg' },
     ],
   },
@@ -202,9 +192,7 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
     id: 'booty-bay-open-studios',
     name: 'Booty Bay Open Studios',
     type: 'folder',
-    x: 20,
-    y: 220,
-    items: [
+        items: [
       {
         name: 'Info',
         type: 'info',
@@ -220,9 +208,7 @@ HD Video, 7:18 TRT`,
     id: 'fk-vs-fk',
     name: 'Filip Kostic VS Filip Kostic (2019)',
     type: 'folder',
-    x: 120,
-    y: 20,
-    items: [
+        items: [
       {
         name: 'Info',
         type: 'info',
@@ -243,9 +229,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
     id: 'random-things',
     name: 'Random Things',
     type: 'folder',
-    x: 620,
-    y: 820,
-    items: [
+        items: [
       {
         name: 'Info',
         type: 'info',
@@ -266,8 +250,6 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
   //   id: 'my-new-work',           // unique ID, no spaces
   //   name: 'My New Work (2025)',   // display name on desktop + Start menu
   //   type: 'folder',
-  //   x: 220,                      // desktop position (pixels from left)
-  //   y: 20,                       // desktop position (pixels from top)
   //   items: [
   //     {
   //       name: 'Info',
