@@ -404,7 +404,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         Installation view at the ArtCenter Windtunnel Gallery`,
       },
       { name: 'Zetetic Method (2018)', type: 'video', url: 'https://www.youtube.com/embed/t0jTg-3a71A' },
-      { name: 'Zetetuc Method Install', type: 'image', url: '/images/Zetetic/Zetetic.jpg' },
+      { name: 'Zetetic Method Install', type: 'image', url: '/images/Zetetic/Zetetic.jpg' },
 
     ],
   },
@@ -490,7 +490,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         Virtual Reality video
         Shown and comissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
       },
-      { name: 'EXE.EXP  Poster',      type: 'image', url: '/images/ExeExpCover.jpg' },
+      { name: 'EXE.EXP  Poster',      type: 'image', url: '/images/EXEEXP/ExeExpCover.jpg' },
       { name: 'Executable Experience V1', type: 'video', url: 'https://www.youtube.com/embed/zJ53U6278Rw' },
       { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
       { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
