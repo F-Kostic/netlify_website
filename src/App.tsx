@@ -113,8 +113,8 @@ const useWindowSize = () => {
 // PADDING   = gap from screen edges
 // TASKBAR_H = space reserved at the bottom for the taskbar
 // ============================================================================
-const ICON_W = 80;
-const ICON_H = 90;
+const ICON_W = 90;
+const ICON_H = 100;
 const PADDING = 16;
 const TASKBAR_H = 36;
 
@@ -415,7 +415,7 @@ const Win98Portfolio = () => {
               <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
           </div>
-          <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.2', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{icon.name}</span>
+          <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.4', paddingBottom: '2px', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', wordBreak: 'break-word' }}>{icon.name}</span>
         </div>
       ))}
 
