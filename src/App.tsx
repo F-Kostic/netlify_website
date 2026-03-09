@@ -340,7 +340,7 @@ const Win98Portfolio = () => {
       );
     }
     if (win.type === 'info') return (
-      <div style={{ padding: '16px', fontFamily: 'monospace', fontSize: '14px', whiteSpace: 'pre-wrap', color: 'black' }}>{win.content}</div>
+      <div style={{ padding: '16px', fontFamily: 'monospace', fontSize: '14px', whiteSpace: 'pre-wrap', color: 'black', userSelect: 'text', cursor: 'text' }}>{win.content}</div>
     );
     if (win.type === 'image') return (
       <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
@@ -386,7 +386,7 @@ const Win98Portfolio = () => {
 
   return (
     <div
-      style={{ width: '100vw', height: '100vh', position: 'fixed', top: 0, left: 0, overflow: 'hidden', userSelect: 'none', margin: 0, padding: 0, ...bgStyle }}
+      style={{ width: '100vw', height: '100vh', position: 'fixed', top: 0, left: 0, overflow: 'hidden', userSelect: marquee ? 'none' : 'auto', margin: 0, padding: 0, ...bgStyle }}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
           setSelectedIcons([]);
@@ -469,7 +469,7 @@ const Win98Portfolio = () => {
               </div>
             </div>
             {/* Content area */}
-            <div style={{ flex: 1, background: 'white', overflow: 'auto', borderTop: '2px solid #808080' }}>
+            <div style={{ flex: 1, background: 'white', overflow: 'auto', borderTop: '2px solid #808080', userSelect: win.type === 'info' ? 'text' : 'none' }}>
               {renderWindowContent(win)}
             </div>
             {/* Resize handles */}
