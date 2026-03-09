@@ -357,7 +357,7 @@ const Win98Portfolio = () => {
   // --------------------------------------------------------------------------
   // WINDOW MANAGEMENT
   // --------------------------------------------------------------------------
-  const openWindow = useCallback((icon: DesktopIcon) => {
+  const openWindow = useCallback((icon: DesktopIcon, siblingData?: { siblingItems: FolderItem[], siblingIndex: number, parentId: string }) => {
     const id = `window-${Date.now()}`;
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 0;
     const mobile = window.innerWidth < 768 && navigator.maxTouchPoints > 0;
@@ -369,6 +369,7 @@ const Win98Portfolio = () => {
       width:  mobile ? window.innerWidth  : 750,
       height: mobile ? window.innerHeight - 28 : 600,
       zIndex: maxZ + 1, minimized: false, maximized: mobile,
+      ...(siblingData ?? {}),
     }]);
     setActiveWindow(id);
   }, [windows]);
@@ -497,12 +498,13 @@ const Win98Portfolio = () => {
     if (e) e.stopPropagation();
     const siblings = win.items ?? [];
     const idx = siblings.indexOf(item);
-    const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0, parentId: win.id, siblingItems: siblings, siblingIndex: idx };
-    if (item.type === 'info')     openWindow({ ...base, type: 'info'     as const, content: item.content });
-    if (item.type === 'image')    openWindow({ ...base, type: 'image'    as const, content: item.url });
-    if (item.type === 'video')    openWindow({ ...base, type: 'video'    as const, content: item.url });
-    if (item.type === 'audio')    openWindow({ ...base, type: 'audio'    as const, content: item.url });
-    if (item.type === 'bandcamp') openWindow({ ...base, type: 'bandcamp' as const, content: item.url });
+    const siblingData = { siblingItems: siblings, siblingIndex: idx, parentId: win.id };
+    const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0 };
+    if (item.type === 'info')     openWindow({ ...base, type: 'info'     as const, content: item.content }, siblingData);
+    if (item.type === 'image')    openWindow({ ...base, type: 'image'    as const, content: item.url },    siblingData);
+    if (item.type === 'video')    openWindow({ ...base, type: 'video'    as const, content: item.url },    siblingData);
+    if (item.type === 'audio')    openWindow({ ...base, type: 'audio'    as const, content: item.url },    siblingData);
+    if (item.type === 'bandcamp') openWindow({ ...base, type: 'bandcamp' as const, content: item.url },    siblingData);
   };
 
   // --------------------------------------------------------------------------
@@ -624,7 +626,7 @@ const Win98Portfolio = () => {
       {/* ── DESKTOP ICONS ── auto-laid out, reflows on window resize ── */}
       {layoutIcons.map(icon => (
         <div key={icon.id}
-          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent' }}
+          style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent', transform: isMobile ? 'scale(0.65)' : 'none', transformOrigin: 'top left' }}
           onClick={(e) => {
             e.stopPropagation();
             if (isMobile) { openWindow(icon); return; }
@@ -746,7 +748,7 @@ const Win98Portfolio = () => {
       </div>
 
       {/* ── TASKBAR ── */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28px', background: '#C0C0C0', borderTop: '2px solid white', display: 'flex', alignItems: 'center', padding: '0 4px', gap: '4px', zIndex: 2000 }}>
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '28px', background: '#C0C0C0', borderTop: '2px solid white', display: 'flex', alignItems: 'center', padding: '0 4px', gap: '4px', zIndex: 2000 }}>
         <button
           style={{ padding: '2px 8px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 'bold', color: 'black' }}
           onMouseDown={(e) => { e.currentTarget.style.borderColor = 'black white white black'; e.currentTarget.style.transform = 'translate(1px,1px)'; }}
