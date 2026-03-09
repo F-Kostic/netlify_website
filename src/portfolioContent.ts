@@ -290,7 +290,26 @@ Silicon-Copper cold cast`,
     ],
   },
 
-
+  {
+    id: 'PCBook',
+    name: 'Personal Computers (2022)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Personal Computers, 2022
+        Personal Computers is a book of computer builds archived from 2002-2022 sourced from all over the internet aswell as my own personal computer builds. Publisshed by Special Effects. 2 Editions of the book were published, the second Edition was co-designed with Rachel Jax and Brandon Bandy. Photo documentation of the book taken by Brandon Bandy.`,
+      },
+      { name: 'Personal Computers, 2nd Edition Cover', type: 'image', url: '/images/PersonalComputers/PC_2_Cover.jpg' },
+      { name: 'Personal Computers, 2nd Edition Interior 1', type: 'image', url: '/images/PersonalComputers/PC_2_Inside1.jpg' },
+      { name: 'Personal Computers, 2nd Edition Interior 2', type: 'image', url: '/images/PersonalComputers/PC_2_Inside2.jpg' },
+      { name: 'Personal Computers, 1st Edition Cover', type: 'image', url: '/images/PersonalComputers/PC_1_Cover.jpg' },
+      { name: 'Personal Computers, 1st Edition Interior 1', type: 'image', url: '/images/PersonalComputers/PC_1_Inside1.jpg' },
+      { name: 'Personal Computers, 1st Edition Interior 2', type: 'image', url: '/images/PersonalComputers/PC_1_Inside2.jpg' },
+      
+    ],
+  },
   
   {
     id: 'bed-pc',
@@ -331,6 +350,23 @@ HD Video, 7:18 TRT`,
   },
 
   {
+    id: 'fps',
+    name: 'Running at Frame Rate(2020)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Running at Frame Rate, 2020
+        Software
+        Running at Frame Rate is a software which foregrounds frame rate as its core mechanic. It asserts that ‘running at frame rate’ is an economic proposition. The artwork addresses the assumption in gaming and technology that ‘realism’ is the constant and exponential movement of hardware and software towards photo-real representation of the physical world. In the work, the computer is the main character whose primary goal is to render efficiently while trying to push itself to extreme ends. The software continually remembers its performance and reacts to it—at times optimizing itself by taking breaks, resetting, or trying to render better. It is an exercise in world building through both the pragmatic assembling of the world on screen, and the narrative that emerges from the computer’s reaction to the software. It is through this that the work questions the increasingly accurate photoreal representation of the world in games and simulation, without the simultaneous representation of the material realities of said world. `,
+      },
+      { name: 'Running at Frame Rate (video)', type: 'video', url: 'https://www.youtube.com/embed/n2lBKq8vm2k' },
+
+    ],
+  },
+  
+  {
     id: 'fk-vs-fk',
     name: 'Filip Kostic VS Filip Kostic (2019)',
     type: 'folder',
@@ -352,6 +388,113 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
       { name: 'Emails', type: 'image', url: '/images/FK_VS_FK/emails.jpg' },
       { name: 'First Contact', type: 'image', url: '/images/FK_VS_FK/hubert.jpg' },
       { name: 'IMDB', type: 'image', url: '/images/FK_VS_FK/imdb.jpg' },
+    ],
+  },
+
+  {
+    id: 'zetetic',
+    name: 'Zetetic Method (2018)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Zetetic Method, 2018
+        HD Video, TRT 4:38 looping. 
+        Installation view at the ArtCenter Windtunnel Gallery`,
+      },
+      { name: 'Zetetic Method (2018)', type: 'video', url: 'https://www.youtube.com/embed/t0jTg-3a71A' },
+      { name: 'Zetetuc Method Install', type: 'image', url: '/images/Zetetic/Zetetic.jpg' },
+
+    ],
+  },
+
+  {
+    id: 'barycenter',
+    name: 'Barycenter (2018)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Barycenter, 2018
+        Real-time simulation
+        Barycenter is a simulation of two asteroids in an orbit around the exhibition space, destined to collide once at random during open hours, and then continue on their adjusted orbit for the rest of the show.`,
+      },
+      { name: 'Barycenter (idle)', type: 'image', url: '/images/Barycenter/Barycenter_01.jpeg' },
+      { name: 'Barycenter (collision)', type: 'image', url: '/images/Barycenter/BaryCenter_02.jpeg' },
+    ],
+  },
+
+  {
+    id: 'Open-loop',
+    name: 'Open Loop',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Open Loop, 2017
+        Open Loop was a solo exhibition at Roger's Office in Los Angeles that spanned from October 7, 2017 - November 4, 2017
+        In order as seen in folder:
+         
+        Open Loop, 2017
+        Real-time AI simulation simulation, 8 monitors, custom built computer, custom GPU and CPU cooling loops, steel and acrylic structure
+        
+        Closed Loop (Red), 2017
+        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, red coolant
+        
+        Closed Loop (Green), 2017
+        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, green coolant
+        
+        Closed Loop (Blue), 2017
+        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, blue coolant`,
+      },
+      { name: 'Open Loop (2017) 1',      type: 'image', url: '/images/OpenLoop/OpenLoop_1.jpg' },
+      { name: 'Open Loop (2017) 2',      type: 'image', url: '/images/OpenLoop/OpenLoop_2.jpg' },
+      { name: 'Open Loop (2017) 3',      type: 'image', url: '/images/OpenLoop/OpenLoop_1.jpg' },
+      { name: 'Open Loop (2017) Detail',      type: 'image', url: '/images/OpenLoop/OpenLoop_PC.jpg' },
+      { name: 'Open Loop (Video)', type: 'video', url: 'https://www.youtube.com/embed/HwsuJSWdzAQ' },
+      { name: 'Closed Loop (Red) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Red.jpg' },
+      { name: 'Closed Loop (Green) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Green.jpeg' },
+      { name: 'Closed Loop (Blue) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Blue.jpg' },
+        ],
+  },
+
+  {
+    id: 'exeexp',
+    name: 'EXE.EXP(ongoing)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Executable Experience (EXE.EXP), 2017-
+        Software
+        Executable Experience (EXE.EXP) is an ongoing practice in which I produce site specific executable files as works based on a short deadline as defined by an exhibition, conference, talk, or any platform under which work could be comissioned and shown. The works are then packaged and editioned as a CD or USB with an installation guide.
+        In order as seen in folder:
+        
+        Executable Experience V1, 2017 
+        Virtual reality software, 8 minute approximate TRT
+        Shown at and comissioned by SPRINGBREAK Art Show, 2017
+        
+        Executable Experience V2, 2017
+        Virtual reality software
+        Shown at and comissioned by TSALA as part of the group show Reality Show, 2017
+        
+        Executable Experience V3, 2018
+        Augmented Reality software installed on the gallerist's phone.
+        Shown and comissioned by Pool Party as part of the group show Belly Flop, 2018
+        
+        Executable Experience V4, 2018
+        Virtual Reality video
+        Shown and comissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
+      },
+      { name: 'EXE.EXP  Poster',      type: 'image', url: '/images/ExeExpCover.jpg' },
+      { name: 'Executable Experience V1', type: 'video', url: 'https://www.youtube.com/embed/zJ53U6278Rw' },
+      { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
+      { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
+      { name: 'Executable Experience V4', type: 'video', url: 'https://www.youtube.com/embed/6kGrhJxOGQ0' },
     ],
   },
 
