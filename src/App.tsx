@@ -340,6 +340,14 @@ const Win98Portfolio = () => {
   const isMobile = viewportWidth < 768 && navigator.maxTouchPoints > 0;
   const layoutIcons = computeIconPositions(desktopIcons, viewportHeight);
 
+  // Resize maximized windows on orientation change / viewport resize (mobile)
+  useEffect(() => {
+    if (!isMobile) return;
+    setWindows(prev => prev.map(w =>
+      w.maximized ? { ...w, width: viewportWidth, height: viewportHeight - 28, x: 0, y: 0 } : w
+    ));
+  }, [viewportWidth, viewportHeight, isMobile]);
+
   // Clock
   useEffect(() => {
     const t = setInterval(() => setTime(new Date()), 1000);
@@ -352,7 +360,7 @@ const Win98Portfolio = () => {
   const openWindow = useCallback((icon: DesktopIcon) => {
     const id = `window-${Date.now()}`;
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 0;
-    const mobile = window.innerWidth < 768;
+    const mobile = window.innerWidth < 768 && navigator.maxTouchPoints > 0;
     setWindows(prev => [...prev, {
       id, title: icon.name, type: icon.type, content: icon.content,
       items: icon.items, icon,
@@ -510,8 +518,11 @@ const Win98Portfolio = () => {
             return (
               <div key={idx}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80px', minHeight: '100px', padding: '6px 4px', cursor: 'pointer', backgroundColor: sel ? '#0000AA' : 'transparent', color: sel ? 'white' : 'black', boxSizing: 'border-box' }}
-                onClick={() => setSelectedFolderItems(prev => prev.includes(key) ? prev.filter(k => k !== key) : [key])}
-                onDoubleClick={(e) => handleFolderItemDoubleClick(win, item, e)}
+                onClick={(e) => {
+                  if (isMobile) { handleFolderItemDoubleClick(win, item); return; }
+                  setSelectedFolderItems(prev => prev.includes(key) ? prev.filter(k => k !== key) : [key]);
+                }}
+                onDoubleClick={(e) => { if (!isMobile) handleFolderItemDoubleClick(win, item, e); }}
               >
                 <div style={{ width: '48px', height: '48px', marginBottom: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {item.type === 'info' && (
@@ -688,42 +699,44 @@ const Win98Portfolio = () => {
               {renderWindowContent(win)}
             </div>
             {/* Prev / Next nav — shown on any non-folder window opened from a folder */}
-            {win.siblingItems && win.type !== 'folder' && (() => {
-              const idx = win.siblingIndex ?? 0;
-              const total = win.siblingItems.length;
-              const canPrev = idx > 0;
-              const canNext = idx < total - 1;
-              const navBtn = (enabled: boolean): React.CSSProperties => ({
-                background: '#C0C0C0', border: '2px solid',
-                borderColor: enabled ? 'white black black white' : '#C0C0C0',
-                color: enabled ? 'black' : '#999',
-                cursor: enabled ? 'pointer' : 'default',
-                padding: '2px 12px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '4px',
-              });
-              return (
-                <div style={{ background: '#C0C0C0', borderTop: '2px solid #808080', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <button style={navBtn(canPrev)} disabled={!canPrev}
-                    onMouseDown={e => { if (canPrev) e.currentTarget.style.borderColor = 'black white white black'; }}
-                    onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
-                    onClick={() => canPrev && navigateSibling(win.id, -1)}
-                  >
-                    <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="8,0 0,5 8,10" fill={canPrev ? '#000' : '#999'}/></svg>
-                    Prev
-                  </button>
-                  <span style={{ fontSize: '11px', color: '#444' }}>{idx + 1} / {total}</span>
-                  <button style={navBtn(canNext)} disabled={!canNext}
-                    onMouseDown={e => { if (canNext) e.currentTarget.style.borderColor = 'black white white black'; }}
-                    onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
-                    onClick={() => canNext && navigateSibling(win.id, 1)}
-                  >
-                    Next
-                    <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="0,0 8,5 0,10" fill={canNext ? '#000' : '#999'}/></svg>
-                  </button>
-                </div>
-              );
-            })()}
+            {win.siblingItems && win.type !== 'folder' && (
+              <div style={{ background: '#C0C0C0', borderTop: '2px solid #808080', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+                {(() => {
+                  const idx = win.siblingIndex ?? 0;
+                  const total = win.siblingItems!.length;
+                  const canPrev = idx > 0;
+                  const canNext = idx < total - 1;
+                  const navBtn = (enabled: boolean): React.CSSProperties => ({
+                    background: '#C0C0C0', border: '2px solid',
+                    borderColor: enabled ? 'white black black white' : '#808080 #C0C0C0 #C0C0C0 #808080',
+                    color: enabled ? 'black' : '#999',
+                    cursor: enabled ? 'pointer' : 'default',
+                    padding: '2px 12px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px',
+                  });
+                  return <>
+                    <button style={navBtn(canPrev)}
+                      onMouseDown={e => { if (canPrev) e.currentTarget.style.borderColor = 'black white white black'; }}
+                      onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                      onClick={() => canPrev && navigateSibling(win.id, -1)}
+                    >
+                      <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="8,0 0,5 8,10" fill={canPrev ? '#000' : '#999'}/></svg>
+                      Prev
+                    </button>
+                    <span style={{ fontSize: '11px', color: '#444' }}>{idx + 1} / {total}</span>
+                    <button style={navBtn(canNext)}
+                      onMouseDown={e => { if (canNext) e.currentTarget.style.borderColor = 'black white white black'; }}
+                      onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                      onClick={() => canNext && navigateSibling(win.id, 1)}
+                    >
+                      Next
+                      <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="0,0 8,5 0,10" fill={canNext ? '#000' : '#999'}/></svg>
+                    </button>
+                  </>;
+                })()}
+              </div>
+            )}
             {/* Resize handles — desktop only */}
             {!isMobile && resizeHandles.map(([edge, cur, pos]) => (
               <div key={edge} style={{ position: 'absolute', cursor: cur, ...pos }} onMouseDown={(e) => handleResizeMouseDown(e, win.id, edge)} />
@@ -733,7 +746,7 @@ const Win98Portfolio = () => {
       </div>
 
       {/* ── TASKBAR ── */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28px', background: '#C0C0C0', borderTop: '2px solid white', display: 'flex', alignItems: 'center', padding: '0 4px', gap: '4px', zIndex: 1100 }}>
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '28px', background: '#C0C0C0', borderTop: '2px solid white', display: 'flex', alignItems: 'center', padding: '0 4px', gap: '4px', zIndex: 2000 }}>
         <button
           style={{ padding: '2px 8px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 'bold', color: 'black' }}
           onMouseDown={(e) => { e.currentTarget.style.borderColor = 'black white white black'; e.currentTarget.style.transform = 'translate(1px,1px)'; }}
