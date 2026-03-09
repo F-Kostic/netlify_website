@@ -179,6 +179,9 @@ Counter-Strike spray pattern drawing (1-18), 2025
 55x36cm
 Graphite drawing on paper, aluminum frame, mousepad backing
 
+Counter-Strike 1.6 being played in the other room (2025)
+the sound of Counter-Strike 1.6 being played in another room coming through the walls of the gallery for the duration of the exhibition.
+
 Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contemporary Art.
 `,
       },
@@ -189,6 +192,7 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
       { name: 'Pro Mouse Grip (2 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/SingleHand_02.jpg' },
       { name: 'Pro Mouse Grip (3 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/CloseupMouseHand_01.jpg' },
       { name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing Install 3', type: 'image', url: '/images/WarsawForWebsite/Wide_01.jpg' },
+      { name: 'Counter-Strike 1.6 being played in the other room (excerpt)',     type: 'audio',    url: '/images/WarsawForWebsite/CS_OtherRoom_Except.mp3' },
     ],
   },
 
