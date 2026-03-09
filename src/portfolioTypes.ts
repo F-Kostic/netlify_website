@@ -7,7 +7,7 @@
 
 export interface FolderItem {
   name: string;
-  type: 'info' | 'image' | 'video';
+  type: 'info' | 'image' | 'video' | 'audio' | 'bandcamp';
   content?: string;
   url?: string;
 }
@@ -15,8 +15,8 @@ export interface FolderItem {
 export interface DesktopIcon {
   id: string;
   name: string;
-  type: 'folder' | 'terminal' | 'info' | 'image' | 'video';
-  x?: number; // optional — positions are auto-calculated if omitted
+  type: 'folder' | 'terminal' | 'info' | 'image' | 'video' | 'audio' | 'bandcamp';
+  x?: number;
   y?: number;
   customIcon?: string | null;
   content?: string;
@@ -26,7 +26,7 @@ export interface DesktopIcon {
 export interface WindowState {
   id: string;
   title: string;
-  type: 'folder' | 'terminal' | 'info' | 'image' | 'video';
+  type: 'folder' | 'terminal' | 'info' | 'image' | 'video' | 'audio' | 'bandcamp';
   content?: string;
   items?: FolderItem[];
   icon?: DesktopIcon;

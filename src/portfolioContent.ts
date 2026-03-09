@@ -15,10 +15,12 @@ import type { DesktopIcon } from './portfolioTypes';
 // folder windows. Put your images in public/images and update the paths here.
 // ----------------------------------------------------------------------------
 export const iconDefaults = {
-  folder: '/images/Icons/folder64_01.png',  // default icon for all folders
-  info:   '/images/Icons/txt64_01.png',     // default icon for all text files
-  image:  '/images/Icons/image64_01.png',   // default icon for all image files
-  video:  '/images/Icons/video64_01.png',   // default icon for all video files
+  folder:   '/images/Icons/folder64_01.png',  // default icon for all folders
+  info:     '/images/Icons/txt64_01.png',     // default icon for all text files
+  image:    '/images/Icons/image64_01.png',   // default icon for all image files
+  video:    '/images/Icons/video64_01.png',   // default icon for all video files
+  audio:    '/images/Icons/audio64_01.png',   // default icon for audio files
+  bandcamp: '/images/Icons/audio64_01.png',   // reuses audio icon, change if you want
 };
 
 // ----------------------------------------------------------------------------
@@ -128,11 +130,14 @@ Instagram: @flipkostic`;
 // Each entry is either a standalone info/text file or a folder with items.
 //
 // TYPES:
-//   'info'   — opens a text window
-//   'folder' — opens a folder window with items inside
-//   'image'  — opens an image viewer  (used inside folder items)
-//   'video'  — opens a video player   (used inside folder items)
-//              YouTube embed URLs work automatically.
+//   'info'     — opens a text window
+//   'folder'   — opens a folder window with items inside
+//   'image'    — opens an image viewer       (used inside folder items)
+//   'video'    — opens a video player        (used inside folder items)
+//              YouTube and Vimeo embed URLs work automatically.
+//   'audio'    — opens a native audio player (used inside folder items)
+//   'bandcamp' — opens a Bandcamp embed      (used inside folder items)
+//              Use the src URL from Bandcamp's Share > Embed iframe code.
 // ----------------------------------------------------------------------------
 export const desktopIcons: DesktopIcon[] = [
 
@@ -156,7 +161,6 @@ export const desktopIcons: DesktopIcon[] = [
 
   // --------------------------------------------------------------------------
   // ARTWORK FOLDERS
-  // To add a new artwork: copy one of these blocks, change the fields, save.
   // --------------------------------------------------------------------------
 
   {
@@ -178,13 +182,13 @@ Graphite drawing on paper, aluminum frame, mousepad backing
 Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contemporary Art.
 `,
       },
-      { name: 'Install 1',  type: 'image', url: '/images/WarsawForWebsite/WhiteWall_Hands_01.jpg' },
-      { name: 'Pro Mouse Grip (1 of 7)',  type: 'image', url: '/images/WarsawForWebsite/SingleHand_01.jpg1' },
-      { name: 'Counter-Strike spray pattern drawing (1 of 18)', type: 'image', url: '/images/WarsawForWebsite/SingleBlueWall_01.jpg' },
-      { name: 'Install 2',  type: 'image', url: '/images/WarsawForWebsite/HandsStraightOn_01.jpg' },
-      { name: 'Pro Mouse Grip (2 of 7)',  type: 'image', url: '/images/WarsawForWebsite/SingleHand_02.jpg' },
-      { name: 'Pro Mouse Grip (3 of 7)',  type: 'image', url: '/images/WarsawForWebsite/CloseupMouseHand_01.jpg' },
-      { name: 'Install 3',  type: 'image', url: '/images/WarsawForWebsite/Wide_01.jpg' },
+      { name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing Install 1', type: 'image', url: '/images/WarsawForWebsite/WhiteWall_Hands_01.jpg' },
+      { name: 'Pro Mouse Grip (1 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/SingleHand_01.jpg' },
+      { name: 'Counter-Strike spray pattern drawing (1 of 18)',                  type: 'image', url: '/images/WarsawForWebsite/SingleBlueWall_01.jpg' },
+      { name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing Install 2', type: 'image', url: '/images/WarsawForWebsite/HandsStraightOn_01.jpg' },
+      { name: 'Pro Mouse Grip (2 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/SingleHand_02.jpg' },
+      { name: 'Pro Mouse Grip (3 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/CloseupMouseHand_01.jpg' },
+      { name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing Install 3', type: 'image', url: '/images/WarsawForWebsite/Wide_01.jpg' },
     ],
   },
 
@@ -222,46 +226,45 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
         
         LAN Cable Management, 2024
         Variable size
-        Network cables, network panel`
-        ,
+        Network cables, network panel`,
       },
-      { name: 'Sarcophagus for my dead computer, 2024',            type: 'image', url: '/images/Cathedrals/Sarc_3quarter_1.jpg' },
-      { name: 'Sarcophagus Side 1',         type: 'image', url: '/images/Cathedrals/SarcDetail2.jpg' },
-      { name: 'Sarcophagus Side 2',       type: 'image', url: '/images/Cathedrals/SarcDetail3.jpg' },
-      { name: 'Sarcophagus Side 3', type: 'image', url: '/images/Cathedrals/SarcDetail1.jpg' },
-      { name: 'Sarcophagus Side 4', type: 'image', url: '/images/Cathedrals/SarcDetail4.jpg' },
-      { name: 'Sarcophagus Lid', type: 'image', url: '/images/Cathedrals/SarcLid.jpg' },
-      { name: 'Sarcophagus Detail 1', type: 'image', url: '/images/Cathedrals/SarCDetail7.jpg' },
-      { name: 'the boys convening, 2024', type: 'image', url: '/images/Cathedrals/BoysConvening1.jpg' },
-      { name: 'Brotherhood (The Burning Crusade), 2024', type: 'image', url: '/images/Cathedrals/HeadOn_Boys.jpg' },
-      { name: 'Brotherhood Detail 1', type: 'image', url: '/images/Cathedrals/BrotherhoodDetail.jpg' },
+      { name: 'Sarcophagus for my dead computer, 2024', type: 'image', url: '/images/Cathedrals/Sarc_3quarter_1.jpg' },
+      { name: 'Sarcophagus Side 1',                     type: 'image', url: '/images/Cathedrals/SarcDetail2.jpg' },
+      { name: 'Sarcophagus Side 2',                     type: 'image', url: '/images/Cathedrals/SarcDetail3.jpg' },
+      { name: 'Sarcophagus Side 3',                     type: 'image', url: '/images/Cathedrals/SarcDetail1.jpg' },
+      { name: 'Sarcophagus Side 4',                     type: 'image', url: '/images/Cathedrals/SarcDetail4.jpg' },
+      { name: 'Sarcophagus Lid',                        type: 'image', url: '/images/Cathedrals/SarcLid.jpg' },
+      { name: 'Sarcophagus Detail 1',                   type: 'image', url: '/images/Cathedrals/SarCDetail7.jpg' },
+      { name: 'the boys convening, 2024',               type: 'image', url: '/images/Cathedrals/BoysConvening1.jpg' },
+      { name: 'Brotherhood (The Burning Crusade), 2024',type: 'image', url: '/images/Cathedrals/HeadOn_Boys.jpg' },
+      { name: 'Brotherhood Detail 1',                   type: 'image', url: '/images/Cathedrals/BrotherhoodDetail.jpg' },
       { name: 'Assembly of the First Computer (At a Sleepover), 2024', type: 'image', url: '/images/Cathedrals/FirstAssemblyFront.jpg' },
-      { name: 'The first computer (Financed by Mom), 2024', type: 'image', url: '/images/Cathedrals/Woman_Front.jpg' },
-      { name: 'LAN Cable Management, 2024 1', type: 'image', url: '/images/Cathedrals/LanCableManagement_1.jpg' },
-      { name: 'LAN Cable Management, 2024 2', type: 'image', url: '/images/Cathedrals/LanCableManagement_2.jpg' },
-      { name: 'LAN Cable Management, 2024 3', type: 'image', url: '/images/Cathedrals/LanCableManagement_3.jpg' },
-      { name: 'LAN Cable Management, 2024 4', type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_1.jpg' },
-      { name: 'LAN Cable Management, 2024 5', type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_2.jpg' },
-      { name: 'Install 1', type: 'image', url: '/images/Cathedrals/Install_1.jpg' },
-      { name: 'Install 2', type: 'image', url: '/images/Cathedrals/Install_2.jpg' },
-      { name: 'Install 3', type: 'image', url: '/images/Cathedrals/Install_3.jpg' },
-      { name: 'Install 4', type: 'image', url: '/images/Cathedrals/Install3.jpg' },
+      { name: 'The first computer (Financed by Mom), 2024',            type: 'image', url: '/images/Cathedrals/Woman_Front.jpg' },
+      { name: 'LAN Cable Management, 2024 1',           type: 'image', url: '/images/Cathedrals/LanCableManagement_1.jpg' },
+      { name: 'LAN Cable Management, 2024 2',           type: 'image', url: '/images/Cathedrals/LanCableManagement_2.jpg' },
+      { name: 'LAN Cable Management, 2024 3',           type: 'image', url: '/images/Cathedrals/LanCableManagement_3.jpg' },
+      { name: 'LAN Cable Management, 2024 4',           type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_1.jpg' },
+      { name: 'LAN Cable Management, 2024 5',           type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_2.jpg' },
+      { name: 'Install 1',                              type: 'image', url: '/images/Cathedrals/Install_1.jpg' },
+      { name: 'Install 2',                              type: 'image', url: '/images/Cathedrals/Install_2.jpg' },
+      { name: 'Install 3',                              type: 'image', url: '/images/Cathedrals/Install_3.jpg' },
+      { name: 'Install 4',                              type: 'image', url: '/images/Cathedrals/Install3.jpg' },
     ],
   },
 
   {
     id: 'only_show',
-    name: 'The only show I`ve ever curated (my time as a technical artist on Warner bros game) at Hogwarts (2024)',
+    name: "The only show I've ever curated (my time as a technical artist on Warner bros game) at Hogwarts (2024)",
     type: 'folder',
     items: [
       {
         name: 'Info',
         type: 'info',
         content: `The only show I've ever curated (my time as a technical artist on Warner bros game) at Hogwarts, 2024
-        Variable size print and looping video
-        Video texture asset from game of Filip and his roommate, vinyl print of texture map from game of pre-approvewd paintings from films and royalty free Getty Collectioon`,
+Variable size print and looping video
+Video texture asset from game of Filip and his roommate, vinyl print of texture map from game of pre-approved paintings from films and royalty free Getty Collection`,
       },
-      { name: 'The only show I`ve ever curated (my time as a technical artist on Warner bros game) at Hogwarts (Install)', type: 'image', url: '/images/OnlyShow/OnlyShowInstall.jpg' },
+      { name: "The only show I've ever curated (Install)", type: 'image', url: '/images/OnlyShow/OnlyShowInstall.jpg' },
     ],
   },
 
@@ -274,7 +277,7 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
         name: 'Info',
         type: 'info',
         content: `Couch Computer, 2023
-        custom couch, custom water cooled computer, split keyboard, mouse and other peripherals, two monitors, 1 hour loooped desktop performance two channel video`,
+Custom couch, custom water cooled computer, split keyboard, mouse and other peripherals, two monitors, 1 hour looped desktop performance two channel video`,
       },
       { name: 'Couch Computer, 2023 1', type: 'image', url: '/images/couchPC/3quarterCouch.jpg' },
       { name: 'Couch Computer, 2023 2', type: 'image', url: '/images/couchPC/AltCouch.jpg' },
@@ -291,11 +294,12 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
         name: 'Info',
         type: 'info',
         content: `Fortnite:007 Merciful Angel, 2022
-        Software
-        Fortnite: 007 Merciful Angel is a remake of the game Fortnite in Unreal Engine 5. The project was commissioned by Aaron Moulton for his show "The Influencing Machine" at the Ujazdowski Castle Museum for Contemporary Art in Warsaw.`,},
-      { name: 'Fortnite: 007 Merciful Angel Poster', type: 'image', url: '/images/Fortnite007/posterSmall.jpg' },
+Software
+Fortnite: 007 Merciful Angel is a remake of the game Fortnite in Unreal Engine 5. The project was commissioned by Aaron Moulton for his show "The Influencing Machine" at the Ujazdowski Castle Museum for Contemporary Art in Warsaw.`,
+      },
+      { name: 'Fortnite: 007 Merciful Angel Poster',           type: 'image', url: '/images/Fortnite007/posterSmall.jpg' },
       { name: 'Fortnite: 007 Merciful Angel Opening Sequence', type: 'video', url: 'https://www.youtube.com/embed/xzlieVVxu-U' },
-      { name: 'Fortnite: 007 Merciful Angel Scarlett Witch', type: 'video', url: 'https://www.youtube.com/embed/KGypetPtGuQ' },
+      { name: 'Fortnite: 007 Merciful Angel Scarlett Witch',   type: 'video', url: 'https://www.youtube.com/embed/KGypetPtGuQ' },
     ],
   },
 
@@ -308,18 +312,17 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
         name: 'Info',
         type: 'info',
         content: `Personal Computers, 2022
-        Personal Computers is a book of computer builds archived from 2002-2022 sourced from all over the internet aswell as my own personal computer builds. Publisshed by Special Effects. 2 Editions of the book were published, the second Edition was co-designed with Rachel Jax and Brandon Bandy. Photo documentation of the book taken by Brandon Bandy.`,
+Personal Computers is a book of computer builds archived from 2002-2022 sourced from all over the internet as well as my own personal computer builds. Published by Special Effects. 2 Editions of the book were published, the second Edition was co-designed with Rachel Jax and Brandon Bandy. Photo documentation of the book taken by Brandon Bandy.`,
       },
-      { name: 'Personal Computers, 2nd Edition Cover', type: 'image', url: '/images/PersonalComputers/PC_2_Cover.jpg' },
-      { name: 'Personal Computers, 2nd Edition Interior 1', type: 'image', url: '/images/PersonalComputers/PC_2_Inside1.jpg' },
-      { name: 'Personal Computers, 2nd Edition Interior 2', type: 'image', url: '/images/PersonalComputers/PC_2_Inside2.jpg' },
-      { name: 'Personal Computers, 1st Edition Cover', type: 'image', url: '/images/PersonalComputers/PC_1_Cover.jpg' },
-      { name: 'Personal Computers, 1st Edition Interior 1', type: 'image', url: '/images/PersonalComputers/PC_1_Inside1.jpg' },
-      { name: 'Personal Computers, 1st Edition Interior 2', type: 'image', url: '/images/PersonalComputers/PC_1_Inside2.jpg' },
-      
+      { name: 'Personal Computers, 2nd Edition Cover',     type: 'image', url: '/images/PersonalComputers/PC_2_Cover.jpg' },
+      { name: 'Personal Computers, 2nd Edition Interior 1',type: 'image', url: '/images/PersonalComputers/PC_2_Inside1.jpg' },
+      { name: 'Personal Computers, 2nd Edition Interior 2',type: 'image', url: '/images/PersonalComputers/PC_2_Inside2.jpg' },
+      { name: 'Personal Computers, 1st Edition Cover',     type: 'image', url: '/images/PersonalComputers/PC_1_Cover.jpg' },
+      { name: 'Personal Computers, 1st Edition Interior 1',type: 'image', url: '/images/PersonalComputers/PC_1_Inside1.jpg' },
+      { name: 'Personal Computers, 1st Edition Interior 2',type: 'image', url: '/images/PersonalComputers/PC_1_Inside2.jpg' },
     ],
   },
-  
+
   {
     id: 'bed-pc',
     name: 'Bed PC (2022)',
@@ -352,29 +355,28 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
 HD Video, 7:18 TRT`,
       },
       { name: 'Booty Bay Open Studios (video)', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' },
-      { name: 'Booty Bay Screenshot 1', type: 'image', url: '/images/BootyBay/BBOS_04.jpg' },
-      { name: 'Booty Bay Screenshot 2', type: 'image', url: '/images/BootyBay/BBOS_05.jpg' },
-      { name: 'Booty Bay Screenshot 3', type: 'image', url: '/images/BootyBay/BBOS_07.jpg' },
+      { name: 'Booty Bay Screenshot 1',         type: 'image', url: '/images/BootyBay/BBOS_04.jpg' },
+      { name: 'Booty Bay Screenshot 2',         type: 'image', url: '/images/BootyBay/BBOS_05.jpg' },
+      { name: 'Booty Bay Screenshot 3',         type: 'image', url: '/images/BootyBay/BBOS_07.jpg' },
     ],
   },
 
   {
     id: 'fps',
-    name: 'Running at Frame Rate(2020)',
+    name: 'Running at Frame Rate (2020)',
     type: 'folder',
     items: [
       {
         name: 'Info',
         type: 'info',
         content: `Running at Frame Rate, 2020
-        Software
-        Running at Frame Rate is a software which foregrounds frame rate as its core mechanic. It asserts that ‘running at frame rate’ is an economic proposition. The artwork addresses the assumption in gaming and technology that ‘realism’ is the constant and exponential movement of hardware and software towards photo-real representation of the physical world. In the work, the computer is the main character whose primary goal is to render efficiently while trying to push itself to extreme ends. The software continually remembers its performance and reacts to it—at times optimizing itself by taking breaks, resetting, or trying to render better. It is an exercise in world building through both the pragmatic assembling of the world on screen, and the narrative that emerges from the computer’s reaction to the software. It is through this that the work questions the increasingly accurate photoreal representation of the world in games and simulation, without the simultaneous representation of the material realities of said world. `,
+Software
+Running at Frame Rate is a software which foregrounds frame rate as its core mechanic. It asserts that 'running at frame rate' is an economic proposition. The artwork addresses the assumption in gaming and technology that 'realism' is the constant and exponential movement of hardware and software towards photo-real representation of the physical world. In the work, the computer is the main character whose primary goal is to render efficiently while trying to push itself to extreme ends. The software continually remembers its performance and reacts to it—at times optimizing itself by taking breaks, resetting, or trying to render better. It is an exercise in world building through both the pragmatic assembling of the world on screen, and the narrative that emerges from the computer's reaction to the software. It is through this that the work questions the increasingly accurate photoreal representation of the world in games and simulation, without the simultaneous representation of the material realities of said world.`,
       },
       { name: 'Running at Frame Rate (video)', type: 'video', url: 'https://www.youtube.com/embed/n2lBKq8vm2k' },
-
     ],
   },
-  
+
   {
     id: 'fk-vs-fk',
     name: 'Filip Kostic VS Filip Kostic (2019)',
@@ -392,11 +394,11 @@ Filip Kostic VS Filip Kostic was a twitch streamed performance in which I (Filip
 Since 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show.`,
       },
       { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/hdJ_2KLr6qA' },
-      { name: 'Jersey', type: 'image', url: '/images/FK_VS_FK/Jersey.jpg' },
-      { name: 'Instagram Tags', type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' },
-      { name: 'Emails', type: 'image', url: '/images/FK_VS_FK/emails.jpg' },
+      { name: 'Jersey',        type: 'image', url: '/images/FK_VS_FK/Jersey.jpg' },
+      { name: 'Instagram Tags',type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' },
+      { name: 'Emails',        type: 'image', url: '/images/FK_VS_FK/emails.jpg' },
       { name: 'First Contact', type: 'image', url: '/images/FK_VS_FK/hubert.jpg' },
-      { name: 'IMDB', type: 'image', url: '/images/FK_VS_FK/imdb.jpg' },
+      { name: 'IMDB',          type: 'image', url: '/images/FK_VS_FK/imdb.jpg' },
     ],
   },
 
@@ -409,12 +411,11 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         name: 'Info',
         type: 'info',
         content: `Zetetic Method, 2018
-        HD Video, TRT 4:38 looping. 
-        Installation view at the ArtCenter Windtunnel Gallery`,
+HD Video, TRT 4:38 looping.
+Installation view at the ArtCenter Windtunnel Gallery`,
       },
       { name: 'Zetetic Method (2018)', type: 'video', url: 'https://www.youtube.com/embed/t0jTg-3a71A' },
-      { name: 'Zetetic Method Install', type: 'image', url: '/images/Zetetic/Zetetic.jpg' },
-
+      { name: 'Zetetic Method Install',type: 'image', url: '/images/Zetetic/Zetetic.jpg' },
     ],
   },
 
@@ -427,47 +428,47 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         name: 'Info',
         type: 'info',
         content: `Barycenter, 2018
-        Real-time simulation
-        Barycenter is a simulation of two asteroids in an orbit around the exhibition space, destined to collide once at random during open hours, and then continue on their adjusted orbit for the rest of the show.`,
+Real-time simulation
+Barycenter is a simulation of two asteroids in an orbit around the exhibition space, destined to collide once at random during open hours, and then continue on their adjusted orbit for the rest of the show.`,
       },
-      { name: 'Barycenter (idle)', type: 'image', url: '/images/Barycenter/Barycenter_01.jpeg' },
-      { name: 'Barycenter (collision)', type: 'image', url: '/images/Barycenter/BaryCenter_02.jpeg' },
+      { name: 'Barycenter (idle)',     type: 'image', url: '/images/Barycenter/Barycenter_01.jpeg' },
+      { name: 'Barycenter (collision)',type: 'image', url: '/images/Barycenter/BaryCenter_02.jpeg' },
     ],
   },
 
   {
     id: 'Open-loop',
-    name: 'Open Loop',
+    name: 'Open Loop (2017)',
     type: 'folder',
     items: [
       {
         name: 'Info',
         type: 'info',
         content: `Open Loop, 2017
-        Open Loop was a solo exhibition at Roger's Office in Los Angeles that spanned from October 7, 2017 - November 4, 2017
-        In order as seen in folder:
-         
-        Open Loop, 2017
-        Real-time AI simulation simulation, 8 monitors, custom built computer, custom GPU and CPU cooling loops, steel and acrylic structure
-        
-        Closed Loop (Red), 2017
-        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, red coolant
-        
-        Closed Loop (Green), 2017
-        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, green coolant
-        
-        Closed Loop (Blue), 2017
-        Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, blue coolant`,
+Open Loop was a solo exhibition at Roger's Office in Los Angeles that spanned from October 7, 2017 - November 4, 2017
+In order as seen in folder:
+
+Open Loop, 2017
+Real-time AI simulation, 8 monitors, custom built computer, custom GPU and CPU cooling loops, steel and acrylic structure
+
+Closed Loop (Red), 2017
+Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, red coolant
+
+Closed Loop (Green), 2017
+Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, green coolant
+
+Closed Loop (Blue), 2017
+Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer power supply, blue coolant`,
       },
       { name: 'Open Loop (2017) 1',      type: 'image', url: '/images/OpenLoop/OpenLoop_1.jpg' },
       { name: 'Open Loop (2017) 2',      type: 'image', url: '/images/OpenLoop/OpenLoop_2.jpg' },
       { name: 'Open Loop (2017) 3',      type: 'image', url: '/images/OpenLoop/OpenLoop_1.jpg' },
-      { name: 'Open Loop (2017) Detail',      type: 'image', url: '/images/OpenLoop/OpenLoop_PC.jpg' },
-      { name: 'Open Loop (Video)', type: 'video', url: 'https://www.youtube.com/embed/HwsuJSWdzAQ' },
-      { name: 'Closed Loop (Red) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Red.jpg' },
-      { name: 'Closed Loop (Green) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Green.jpeg' },
-      { name: 'Closed Loop (Blue) (2017)',      type: 'image', url: '/images/OpenLoop/ClosedLoop_Blue.jpg' },
-        ],
+      { name: 'Open Loop (2017) Detail', type: 'image', url: '/images/OpenLoop/OpenLoop_PC.jpg' },
+      { name: 'Open Loop (Video)',        type: 'video', url: 'https://www.youtube.com/embed/HwsuJSWdzAQ' },
+      { name: 'Closed Loop (Red) (2017)',  type: 'image', url: '/images/OpenLoop/ClosedLoop_Red.jpg' },
+      { name: 'Closed Loop (Green) (2017)',type: 'image', url: '/images/OpenLoop/ClosedLoop_Green.jpeg' },
+      { name: 'Closed Loop (Blue) (2017)', type: 'image', url: '/images/OpenLoop/ClosedLoop_Blue.jpg' },
+    ],
   },
 
   {
@@ -479,27 +480,27 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         name: 'Info',
         type: 'info',
         content: `Executable Experience (EXE.EXP), 2017-
-        Software
-        Executable Experience (EXE.EXP) is an ongoing practice in which I produce site specific executable files as works based on a short deadline as defined by an exhibition, conference, talk, or any platform under which work could be comissioned and shown. The works are then packaged and editioned as a CD or USB with an installation guide.
-        In order as seen in folder:
-        
-        Executable Experience V1, 2017 
-        Virtual reality software, 8 minute approximate TRT
-        Shown at and comissioned by SPRINGBREAK Art Show, 2017
-        
-        Executable Experience V2, 2017
-        Virtual reality software
-        Shown at and comissioned by TSALA as part of the group show Reality Show, 2017
-        
-        Executable Experience V3, 2018
-        Augmented Reality software installed on the gallerist's phone.
-        Shown and comissioned by Pool Party as part of the group show Belly Flop, 2018
-        
-        Executable Experience V4, 2018
-        Virtual Reality video
-        Shown and comissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
+Software
+Executable Experience (EXE.EXP) is an ongoing practice in which I produce site specific executable files as works based on a short deadline as defined by an exhibition, conference, talk, or any platform under which work could be commissioned and shown. The works are then packaged and editioned as a CD or USB with an installation guide.
+In order as seen in folder:
+
+Executable Experience V1, 2017
+Virtual reality software, 8 minute approximate TRT
+Shown at and commissioned by SPRINGBREAK Art Show, 2017
+
+Executable Experience V2, 2017
+Virtual reality software
+Shown at and commissioned by TSALA as part of the group show Reality Show, 2017
+
+Executable Experience V3, 2018
+Augmented Reality software installed on the gallerist's phone.
+Shown and commissioned by Pool Party as part of the group show Belly Flop, 2018
+
+Executable Experience V4, 2018
+Virtual Reality video
+Shown and commissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
       },
-      { name: 'EXE.EXP  Poster',      type: 'image', url: '/images/EXEEXP/ExeExpCover.jpg' },
+      { name: 'EXE.EXP Poster',          type: 'image', url: '/images/EXEEXP/ExeExpCover.jpg' },
       { name: 'Executable Experience V1', type: 'video', url: 'https://www.youtube.com/embed/zJ53U6278Rw' },
       { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
       { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
@@ -516,19 +517,19 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         name: 'Info',
         type: 'info',
         content: `Landgrab the Musical in Virtual Reality, 2016
-        Variable size installation, VR Hardware, 5.1 Channel surround soud, 488x488cm staged platform, Inkjet Movie Poster scaled prints.
-        
-        Solo exhibition, December 2016-February 2017 at the Wind Tunnel Gallery, Pasadena.`,
+Variable size installation, VR Hardware, 5.1 Channel surround sound, 488x488cm staged platform, Inkjet Movie Poster scaled prints.
+
+Solo exhibition, December 2016-February 2017 at the Wind Tunnel Gallery, Pasadena.`,
       },
-      { name: 'Landgrab the Musical (install 1)', type: 'image', url: '/images/Landgrab/Installation_NoFigure.jpg' },
-      { name: 'Landgrab the Musical (install 2)', type: 'image', url: '/images/Landgrab/Installation_Tyler.jpeg' },
+      { name: 'Landgrab the Musical (install 1)',   type: 'image', url: '/images/Landgrab/Installation_NoFigure.jpg' },
+      { name: 'Landgrab the Musical (install 2)',   type: 'image', url: '/images/Landgrab/Installation_Tyler.jpeg' },
       { name: 'Landgrab the Musical (game view 1)', type: 'image', url: '/images/Landgrab/Figure_Screengrab.jpg' },
-      { name: 'Landgrab the Musical (install 3)', type: 'image', url: '/images/Landgrab/Installation_CloseUp.jpg' },
+      { name: 'Landgrab the Musical (install 3)',   type: 'image', url: '/images/Landgrab/Installation_CloseUp.jpg' },
       { name: 'Landgrab the Musical (game view 2)', type: 'image', url: '/images/Landgrab/Landgrab_Still1.jpg' },
       { name: 'Landgrab the Musical (game view 3)', type: 'image', url: '/images/Landgrab/Landgrab_Still2.jpg' },
-      { name: 'Lie In My Wake Show Poster', type: 'image', url: '/images/Landgrab/MyWakePoster.png' },
-      { name: 'Scale Shift Show Poster', type: 'image', url: '/images/Landgrab/ScaleShiftPoster.jpg' },
-      { name: 'Reflections Show Poster', type: 'image', url: '/images/Landgrab/reflectionsPoster.jpg' },
+      { name: 'Lie In My Wake Show Poster',         type: 'image', url: '/images/Landgrab/MyWakePoster.png' },
+      { name: 'Scale Shift Show Poster',            type: 'image', url: '/images/Landgrab/ScaleShiftPoster.jpg' },
+      { name: 'Reflections Show Poster',            type: 'image', url: '/images/Landgrab/reflectionsPoster.jpg' },
       { name: 'Vanishing Point Lovers Show Poster', type: 'image', url: '/images/Landgrab/vanishingposter.jpg' },
       { name: 'Landgrab the Musical excerpt (video)', type: 'video', url: 'https://www.youtube.com/embed/aL5qHYetyZI' },
     ],
@@ -543,7 +544,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
         name: 'Info',
         type: 'info',
         content: `Oculus Rock, 2016
-        concrete, computer hardware, oculus virtual reality headset, sight specific model of encironment the rock is shown in`,
+Concrete, computer hardware, oculus virtual reality headset, sight specific model of environment the rock is shown in`,
       },
       { name: 'Oculus Rock (install 1)', type: 'image', url: '/images/Oculusrock/oculusrock_1.jpeg' },
       { name: 'Oculus Rock (install 2)', type: 'image', url: '/images/Oculusrock/oculusrock_2.jpeg' },
@@ -551,7 +552,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
       { name: 'Oculus Rock (install 4)', type: 'image', url: '/images/Oculusrock/oculusrock_4.jpeg' },
       { name: 'Oculus Rock (install 5)', type: 'image', url: '/images/Oculusrock/oculusrock_5.jpeg' },
       { name: 'Oculus Rock (install 6)', type: 'image', url: '/images/Oculusrock/oculusrock_6.jpeg' },
-      { name: 'Oculus Rock (video)', type: 'video', url: 'https://player.vimeo.com/video/162149041' },
+      { name: 'Oculus Rock (video)',     type: 'video', url: 'https://player.vimeo.com/video/162149041' },
     ],
   },
 
@@ -586,8 +587,10 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
   //       type: 'info',
   //       content: `Title, (Year)\n\nMedium, dimensions.`,
   //     },
-  //     { name: 'Image 1', type: 'image', url: '/images/MyWork/image1.jpg' },
-  //     { name: 'Video',   type: 'video', url: 'https://www.youtube.com/embed/VIDEO_ID' },
+  //     { name: 'Image 1',   type: 'image',    url: '/images/MyWork/image1.jpg' },
+  //     { name: 'Video',     type: 'video',    url: 'https://www.youtube.com/embed/VIDEO_ID' },
+  //     { name: 'Audio',     type: 'audio',    url: '/audio/mytrack.mp3' },
+  //     { name: 'Bandcamp',  type: 'bandcamp', url: 'https://bandcamp.com/EmbeddedPlayer/track=XXXXXXX/...' },
   //   ],
   // },
   // --------------------------------------------------------------------------

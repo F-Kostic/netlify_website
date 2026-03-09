@@ -299,9 +299,11 @@ const Win98Portfolio = () => {
   const handleFolderItemDoubleClick = (win: WindowState, item: FolderItem, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0 };
-    if (item.type === 'info')  openWindow({ ...base, type: 'info',  content: item.content });
-    if (item.type === 'image') openWindow({ ...base, type: 'image', content: item.url });
-    if (item.type === 'video') openWindow({ ...base, type: 'video', content: item.url });
+    if (item.type === 'info')     openWindow({ ...base, type: 'info'     as const, content: item.content });
+    if (item.type === 'image')    openWindow({ ...base, type: 'image'    as const, content: item.url });
+    if (item.type === 'video')    openWindow({ ...base, type: 'video'    as const, content: item.url });
+    if (item.type === 'audio')    openWindow({ ...base, type: 'audio'    as const, content: item.url });
+    if (item.type === 'bandcamp') openWindow({ ...base, type: 'bandcamp' as const, content: item.url });
   };
 
   // --------------------------------------------------------------------------
@@ -329,6 +331,12 @@ const Win98Portfolio = () => {
                   )}
                   {item.type === 'video' && (
                     <img src={iconDefaults.video} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                  )}
+                  {item.type === 'audio' && (
+                    <img src={iconDefaults.audio} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                  )}
+                  {item.type === 'bandcamp' && (
+                    <img src={iconDefaults.bandcamp} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                 </div>
                 <span style={{ fontSize: '12px', textAlign: 'center', lineHeight: '1.2', width: '100%', wordBreak: 'break-word', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{item.name}</span>
@@ -363,7 +371,26 @@ const Win98Portfolio = () => {
         </div>
       );
     }
-    return null;
+    if (win.type === 'audio') return (
+      <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '16px', background: '#C0C0C0' }}>
+        <div style={{ fontSize: '13px', fontWeight: 'bold', textAlign: 'center', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{win.title}</div>
+        <audio controls autoPlay style={{ width: '100%' }}>
+          <source src={win.content} type="audio/mpeg" />
+          <source src={win.content} type="audio/ogg" />
+          <source src={win.content} type="audio/wav" />
+          Your browser does not support audio.
+        </audio>
+      </div>
+    );
+    if (win.type === 'bandcamp') return (
+      <div style={{ width: '100%', height: '100%' }}>
+        <iframe
+          src={win.content}
+          style={{ width: '100%', height: '100%', border: 'none' }}
+          allow="autoplay"
+        />
+      </div>
+    );
   };
 
   // --------------------------------------------------------------------------
