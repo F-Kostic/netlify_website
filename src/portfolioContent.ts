@@ -180,6 +180,119 @@ Silicon-Copper cold cast`,
   },
 
   {
+    id: 'cathedrals',
+    name: 'CATHEDRALS EVERYWHERE FOR THOSE WITH MONITORS TO SEE (2024)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `CATHEDRALS EVERYWHERE FOR THOSE WITH MONITORS TO SEE was a solo exhibition at the gallery Number 1 Main Road in Berlin. September 12.2024 - October 12, 2024.
+        In order as seen in folder:
+
+        Sarcophagus for my dead computer, 2024
+        68.5x68.5x31cm (Ultra Tower Case)
+        UV Resin, Crushed Silicon Rock, Polyurethane, Water damaged computer hardware
+        
+        
+        the boys convening, 2024
+        61x61cm (Full Tower Side Panel)
+        UV Resin, Crushed Silicon Rock, Polyurethane 
+        
+        Brotherhood (The Burning Crusade), 2024
+        68x68cm (Full Tower Side Panel)
+        UV Resin, Crushed Silicon Rock, Polyurethane
+        
+        Assmembly of the First Computer (At a Sleepoever), 2024
+        32x31cm (Micro-ITX Side Panel)
+        UV Resin, Crushed Silicon Rock, Polyurethane
+        
+        The first computer (Financed by Mom), 2024
+        32x32cm (Mini-ITX Side Panel)
+        UV Resin, Crushed Silicon Rock, Polyurethane
+        
+        LAN Cable Management, 2024
+        Variable size
+        Network cables, network panel`
+        ,
+      },
+      { name: 'Sarcophagus for my dead computer, 2024',            type: 'image', url: '/images/Cathedrals/Sarc_3quarter_1.jpg' },
+      { name: 'Sarcophagus Side 1',         type: 'image', url: '/images/Cathedrals/SarcDetail2.jpg' },
+      { name: 'Sarcophagus Side 2',       type: 'image', url: '/images/Cathedrals/SarcDetail3.jpg' },
+      { name: 'Sarcophagus Side 3', type: 'image', url: '/images/Cathedrals/SarcDetail1.jpg' },
+      { name: 'Sarcophagus Side 4', type: 'image', url: '/images/Cathedrals/SarcDetail4.jpg' },
+      { name: 'Sarcophagus Lid', type: 'image', url: '/images/Cathedrals/SarcLid.jpg' },
+      { name: 'Sarcophagus Detail 1', type: 'image', url: '/images/Cathedrals/SarCDetail7.jpg' },
+      { name: 'the boys convening, 2024', type: 'image', url: '/images/Cathedrals/BoysConvening1.jpg' },
+      { name: 'Brotherhood (The Burning Crusade), 2024', type: 'image', url: '/images/Cathedrals/HeadOn_Boys.jpg' },
+      { name: 'Brotherhood Detail 1', type: 'image', url: '/images/Cathedrals/BrotherhoodDetail.jpg' },
+      { name: 'Assembly of the First Computer (At a Sleepover), 2024', type: 'image', url: '/images/Cathedrals/FirstAssemblyFront.jpg' },
+      { name: 'The first computer (Financed by Mom), 2024', type: 'image', url: '/images/Cathedrals/Woman_Front.jpg' },
+      { name: 'LAN Cable Management, 2024 1', type: 'image', url: '/images/Cathedrals/LanCableManagement_1.jpg' },
+      { name: 'LAN Cable Management, 2024 2', type: 'image', url: '/images/Cathedrals/LanCableManagement_2.jpg' },
+      { name: 'LAN Cable Management, 2024 3', type: 'image', url: '/images/Cathedrals/LanCableManagement_3.jpg' },
+      { name: 'LAN Cable Management, 2024 4', type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_1.jpg' },
+      { name: 'LAN Cable Management, 2024 5', type: 'image', url: '/images/Cathedrals/LanCableManagementSmall_2.jpg' },
+      { name: 'Install 1', type: 'image', url: '/images/Cathedrals/Install_1.jpg' },
+      { name: 'Install 2', type: 'image', url: '/images/Cathedrals/Install_2.jpg' },
+      { name: 'Install 3', type: 'image', url: '/images/Cathedrals/Install_3.jpg' },
+      { name: 'Install 4', type: 'image', url: '/images/Cathedrals/Install3.jpg' },
+    ],
+  },
+
+  {
+    id: 'only_show',
+    name: 'The only show I`ve ever curated (my time as a technical artist on Warner bros game) at Hogwarts (2024)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `The only show I've ever curated (my time as a technical artist on Warner bros game) at Hogwarts, 2024
+        Variable size print and looping video
+        Video texture asset from game of Filip and his roommate, vinyl print of texture map from game of pre-approvewd paintings from films and royalty free Getty Collectioon`,
+      },
+      { name: 'The only show I`ve ever curated (my time as a technical artist on Warner bros game) at Hogwarts (Install)', type: 'image', url: '/images/OnlyShow/OnlyShowInstall.jpg' },
+    ],
+  },
+
+  {
+    id: 'couchPC',
+    name: 'Couch Computer (2023)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Couch Computer, 2023
+        custom couch, custom water cooled computer, split keyboard, mouse and other peripherals, two monitors, 1 hour loooped desktop performance two channel video`,
+      },
+      { name: 'Couch Computer, 2023 1', type: 'image', url: '/images/couchPC/3quarterCouch.jpg' },
+      { name: 'Couch Computer, 2023 2', type: 'image', url: '/images/couchPC/AltCouch.jpg' },
+      { name: 'Couch Computer, 2023 3', type: 'image', url: '/images/couchPC/sideview.jpg' },
+    ],
+  },
+
+  {
+    id: 'Fortnite',
+    name: 'Fortnite:007 Merciful Angel (2022)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Fortnite:007 Merciful Angel, 2022
+        Software
+        Fortnite: 007 Merciful Angel is a remake of the game Fortnite in Unreal Engine 5. The project was commissioned by Aaron Moulton for his show "The Influencing Machine" at the Ujazdowski Castle Museum for Contemporary Art in Warsaw.`,},
+      { name: 'Fortnite: 007 Merciful Angel Poster', type: 'image', url: '/images/Fortnite007/posterSmall.jpg' },
+      { name: 'Fortnite: 007 Merciful Angel Opening Sequence', type: 'video', url: 'https://www.youtube.com/embed/xzlieVVxu-U' },
+      { name: 'Fortnite: 007 Merciful Angel Scarlett Witch', type: 'video', url: 'https://www.youtube.com/embed/KGypetPtGuQ' },
+    ],
+  },
+
+
+  
+  {
     id: 'bed-pc',
     name: 'Bed PC (2022)',
     type: 'folder',
@@ -200,7 +313,7 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
 
   {
     id: 'booty-bay-open-studios',
-    name: 'Booty Bay Open Studios',
+    name: 'Booty Bay Open Studios (2020)',
     type: 'folder',
     items: [
       {
@@ -210,7 +323,10 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
 
 HD Video, 7:18 TRT`,
       },
-      { name: 'Booty Bay Open Studios', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' },
+      { name: 'Booty Bay Open Studios (video)', type: 'video', url: 'https://www.youtube.com/embed/EccTUHy3V8A' },
+      { name: 'Booty Bay Screenshot 1', type: 'image', url: '/images/BootyBay/BBOS_04.jpg' },
+      { name: 'Booty Bay Screenshot 2', type: 'image', url: '/images/BootyBay/BBOS_05.jpg' },
+      { name: 'Booty Bay Screenshot 3', type: 'image', url: '/images/BootyBay/BBOS_07.jpg' },
     ],
   },
 
@@ -231,7 +347,11 @@ Filip Kostic VS Filip Kostic was a twitch streamed performance in which I (Filip
 Since 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show.`,
       },
       { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/hdJ_2KLr6qA' },
+      { name: 'Jersey', type: 'image', url: '/images/FK_VS_FK/Jersey.jpg' },
       { name: 'Instagram Tags', type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' },
+      { name: 'Emails', type: 'image', url: '/images/FK_VS_FK/emails.jpg' },
+      { name: 'First Contact', type: 'image', url: '/images/FK_VS_FK/hubert.jpg' },
+      { name: 'IMDB', type: 'image', url: '/images/FK_VS_FK/imdb.jpg' },
     ],
   },
 

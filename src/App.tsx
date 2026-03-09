@@ -25,11 +25,19 @@ const ChevronRight = ({ size }: { size: number }) => (
 const SmartSubmenu = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [openUpward, setOpenUpward] = useState(false);
+  const [maxH, setMaxH] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
-      if (window.innerHeight - rect.top < rect.height) setOpenUpward(true);
+      const spaceBelow = window.innerHeight - rect.top;
+      const spaceAbove = rect.top;
+      if (spaceBelow < rect.height) {
+        setOpenUpward(true);
+        setMaxH(spaceAbove - 8);
+      } else if (rect.height > spaceBelow) {
+        setMaxH(spaceBelow - 8);
+      }
     }
   }, []);
 
@@ -38,6 +46,8 @@ const SmartSubmenu = ({ children, style }: { children: React.ReactNode; style?: 
       position: 'absolute', left: '100%', marginLeft: '4px', width: '192px',
       background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white',
       boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', zIndex: 50,
+      overflowY: maxH ? 'auto' : 'visible',
+      maxHeight: maxH ? `${maxH}px` : undefined,
       ...(openUpward ? { bottom: 0 } : { top: 0 }),
       ...style,
     }}>
@@ -172,7 +182,7 @@ const Win98Portfolio = () => {
       id, title: icon.name, type: icon.type, content: icon.content,
       items: icon.items, icon,
       x: 100 + windows.length * 30, y: 50 + windows.length * 30,
-      width: 500, height: 400, zIndex: maxZ + 1, minimized: false,
+      width: 500, height: 400, zIndex: maxZ + 1, minimized: false, maximized: false,
     }]);
     setActiveWindow(id);
   }, [windows]);
@@ -204,7 +214,18 @@ const Win98Portfolio = () => {
     setActiveWindow(id);
   }, []);
 
-  // Shutdown: close tab, fallback to blank if browser blocks it
+  const maximizeWindow = useCallback((id: string) => {
+    setWindows(prev => prev.map(w => {
+      if (w.id !== id) return w;
+      if (w.maximized) {
+        // restore to previous bounds
+        return { ...w, maximized: false, ...(w.prevBounds ?? {}) };
+      } else {
+        // save current bounds and go fullscreen (minus taskbar)
+        return { ...w, maximized: true, prevBounds: { x: w.x, y: w.y, width: w.width, height: w.height }, x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 28 };
+      }
+    }));
+  }, []);
   const handleShutdown = () => {
     window.close();
     setTimeout(() => { window.location.href = 'about:blank'; }, 300);
@@ -217,7 +238,7 @@ const Win98Portfolio = () => {
     if (resizeRef.current.isResizing) return;
     if (!(e.target as HTMLElement).closest('.title-bar')) return;
     const win = windows.find(w => w.id === windowId);
-    if (!win) return;
+    if (!win || win.maximized) return;
     dragRef.current = { isDragging: true, windowId, offsetX: e.clientX - win.x, offsetY: e.clientY - win.y };
     bringToFront(windowId);
   }, [windows, bringToFront]);
@@ -225,7 +246,7 @@ const Win98Portfolio = () => {
   const handleResizeMouseDown = useCallback((e: React.MouseEvent, windowId: string, edge: string) => {
     e.stopPropagation();
     const win = windows.find(w => w.id === windowId);
-    if (!win) return;
+    if (!win || win.maximized) return;
     resizeRef.current = { isResizing: true, windowId, edge, startX: e.clientX, startY: e.clientY, startWidth: win.width, startHeight: win.height, startLeft: win.x, startTop: win.y };
     bringToFront(windowId);
   }, [windows, bringToFront]);
@@ -290,17 +311,17 @@ const Win98Portfolio = () => {
   const renderWindowContent = (win: WindowState) => {
     if (win.type === 'folder' && win.items) {
       return (
-        <div style={{ padding: '8px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+        <div style={{ padding: '12px', display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', gap: '0' }}>
           {win.items.map((item, idx) => {
             const key = `${win.id}-${item.name}`;
             const sel = selectedFolderItems.includes(key);
             return (
               <div key={idx}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '8px', cursor: 'pointer', backgroundColor: sel ? '#0000AA' : 'transparent', color: sel ? 'white' : 'black' }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80px', minHeight: '100px', padding: '6px 4px', cursor: 'pointer', backgroundColor: sel ? '#0000AA' : 'transparent', color: sel ? 'white' : 'black', boxSizing: 'border-box' }}
                 onClick={() => setSelectedFolderItems(prev => prev.includes(key) ? prev.filter(k => k !== key) : [key])}
                 onDoubleClick={(e) => handleFolderItemDoubleClick(win, item, e)}
               >
-                <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: '48px', height: '48px', marginBottom: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {item.type === 'info' && (
                     <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
@@ -311,7 +332,7 @@ const Win98Portfolio = () => {
                     <img src={iconDefaults.video} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                 </div>
-                <span style={{ fontSize: '12px', textAlign: 'center', wordBreak: 'break-word', width: '100%' }}>{item.name}</span>
+                <span style={{ fontSize: '12px', textAlign: 'center', lineHeight: '1.2', width: '100%', wordBreak: 'break-word', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{item.name}</span>
               </div>
             );
           })}
@@ -425,12 +446,18 @@ const Win98Portfolio = () => {
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
                   onClick={() => minimizeWindow(win.id)}
                 ><svg width="8" height="2" viewBox="0 0 8 2"><rect width="8" height="2" fill="#000" /></svg></button>
-                {/* Maximize (placeholder) */}
+                {/* Maximize / Restore */}
                 <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
                   onMouseDown={(e) => { e.currentTarget.style.borderColor = 'black white white black'; e.currentTarget.style.transform = 'translate(1px,1px)'; }}
                   onMouseUp={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
-                ><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" /></svg></button>
+                  onClick={() => maximizeWindow(win.id)}
+                >
+                  {win.maximized
+                    ? <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round"><rect x="6" y="3" width="15" height="15" /><polyline points="3,6 3,21 18,21" /></svg>
+                    : <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" /></svg>
+                  }
+                </button>
                 {/* Close */}
                 <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = '#FF6B6B'; }}

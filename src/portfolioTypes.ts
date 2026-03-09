@@ -36,6 +36,8 @@ export interface WindowState {
   height: number;
   zIndex: number;
   minimized: boolean;
+  maximized: boolean;
+  prevBounds?: { x: number; y: number; width: number; height: number };
 }
 
 export interface Marquee {
