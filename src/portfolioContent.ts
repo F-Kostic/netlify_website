@@ -4,11 +4,22 @@
 // HOW TO ADD A NEW ARTWORK FOLDER:
 //   1. Add an entry to the `desktopIcons` array below with type: 'folder'
 //   2. Add items (info, image, video) inside its `items` array
-//   3. Give it an x/y position on the desktop
 //   Done — it will automatically appear in the desktop and Start > Artworks menu.
 // ============================================================================
 
 import type { DesktopIcon } from './portfolioTypes';
+
+// ----------------------------------------------------------------------------
+// DEFAULT ICONS
+// Set the image used for each file type across the whole desktop and inside
+// folder windows. Put your images in public/images and update the paths here.
+// ----------------------------------------------------------------------------
+export const iconDefaults = {
+  folder: '/images/Icons/folder64_01.png',  // default icon for all folders
+  info:   '/images/Icons/txt64_01.png',     // default icon for all text files
+  image:  '/images/Icons/image64_01.png',   // default icon for all image files
+  video:  '/images/Icons/video64_01.png',   // default icon for all video files
+};
 
 // ----------------------------------------------------------------------------
 // DESKTOP BACKGROUND
@@ -116,7 +127,6 @@ Instagram: @flipkostic`;
 // DESKTOP ICONS
 // Each entry is either a standalone info/text file or a folder with items.
 //
-// POSITIONS: x/y are pixels from the top-left of the desktop.
 // TYPES:
 //   'info'   — opens a text window
 //   'folder' — opens a folder window with items inside
@@ -134,14 +144,14 @@ export const desktopIcons: DesktopIcon[] = [
     id: 'cv',
     name: 'CV',
     type: 'info',
-        content: cvContent,   // ← references the single source above
+    content: cvContent,
   },
 
   {
     id: 'contact',
     name: 'Contact',
     type: 'info',
-        content: contactContent,   // ← references the single source above
+    content: contactContent,
   },
 
   // --------------------------------------------------------------------------
@@ -153,7 +163,7 @@ export const desktopIcons: DesktopIcon[] = [
     id: 'pro-mouse-grip',
     name: 'Pro Mouse Grip (2025)',
     type: 'folder',
-        items: [
+    items: [
       {
         name: 'Info',
         type: 'info',
@@ -173,7 +183,7 @@ Silicon-Copper cold cast`,
     id: 'bed-pc',
     name: 'Bed PC (2022)',
     type: 'folder',
-        items: [
+    items: [
       {
         name: 'Info',
         type: 'info',
@@ -192,7 +202,7 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
     id: 'booty-bay-open-studios',
     name: 'Booty Bay Open Studios',
     type: 'folder',
-        items: [
+    items: [
       {
         name: 'Info',
         type: 'info',
@@ -208,7 +218,7 @@ HD Video, 7:18 TRT`,
     id: 'fk-vs-fk',
     name: 'Filip Kostic VS Filip Kostic (2019)',
     type: 'folder',
-        items: [
+    items: [
       {
         name: 'Info',
         type: 'info',
@@ -229,7 +239,7 @@ Since 2012 my online identity has been mistaken with that of the Serbian soccer 
     id: 'random-things',
     name: 'Random Things',
     type: 'folder',
-        items: [
+    items: [
       {
         name: 'Info',
         type: 'info',

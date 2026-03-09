@@ -6,7 +6,7 @@
 // ============================================================================
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { background, desktopIcons, cvContent, contactContent } from './portfolioContent';
+import { background, desktopIcons, cvContent, contactContent, iconDefaults } from './portfolioContent';
 import type { DesktopIcon, FolderItem, WindowState, Marquee } from './portfolioTypes';
 
 // ============================================================================
@@ -302,25 +302,13 @@ const Win98Portfolio = () => {
               >
                 <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {item.type === 'info' && (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" strokeWidth="1">
-                      <rect x="3" y="3" width="18" height="18" fill="#FFFFFF" stroke="#000000" />
-                      <line x1="8" y1="8" x2="16" y2="8" stroke="#000000" />
-                      <line x1="8" y1="12" x2="16" y2="12" stroke="#000000" />
-                      <line x1="8" y1="16" x2="13" y2="16" stroke="#000000" />
-                    </svg>
+                    <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'image' && (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                      <rect x="3" y="3" width="18" height="18" fill="#FFD700" stroke="#000000" strokeWidth="1" />
-                      <circle cx="8" cy="9" r="2" fill="#FF6B6B" />
-                      <path d="M3 17 L8 12 L12 16 L16 11 L21 16 V21 H3 Z" fill="#4ECDC4" />
-                    </svg>
+                    <img src={iconDefaults.image} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'video' && (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                      <rect x="3" y="5" width="18" height="14" fill="#9B59B6" stroke="#000000" strokeWidth="1" />
-                      <polygon points="10,9 10,15 15,12" fill="#FFFFFF" />
-                    </svg>
+                    <img src={iconDefaults.video} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                 </div>
                 <span style={{ fontSize: '12px', textAlign: 'center', wordBreak: 'break-word', width: '100%' }}>{item.name}</span>
@@ -401,18 +389,10 @@ const Win98Portfolio = () => {
         >
           <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {icon.type === 'folder' && (
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                <path d="M3 5 L10 5 L12 7 L21 7 L21 19 L3 19 Z" fill="#FFD700" stroke="#000000" strokeWidth="1" />
-                <path d="M3 7 L21 7 L21 19 L3 19 Z" fill="#FFED4E" />
-              </svg>
+              <img src={iconDefaults.folder} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
             {icon.type === 'info' && (
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" strokeWidth="1">
-                <rect x="3" y="3" width="18" height="18" fill="#FFFFFF" stroke="#000000" />
-                <line x1="8" y1="8" x2="16" y2="8" stroke="#000000" />
-                <line x1="8" y1="12" x2="16" y2="12" stroke="#000000" />
-                <line x1="8" y1="16" x2="13" y2="16" stroke="#000000" />
-              </svg>
+              <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
           </div>
           <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.2', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{icon.name}</span>
