@@ -38,6 +38,9 @@ export interface WindowState {
   minimized: boolean;
   maximized: boolean;
   prevBounds?: { x: number; y: number; width: number; height: number };
+  parentId?: string;           // id of the folder window this was opened from
+  siblingItems?: FolderItem[]; // all items in that folder, for prev/next nav
+  siblingIndex?: number;       // index of this item in siblingItems
 }
 
 export interface Marquee {

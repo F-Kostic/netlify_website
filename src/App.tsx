@@ -121,14 +121,19 @@ const TASKBAR_H = 36;
 const computeIconPositions = (icons: DesktopIcon[], viewportHeight: number) => {
   const usableHeight = viewportHeight - TASKBAR_H - PADDING;
   const iconsPerColumn = Math.max(1, Math.floor(usableHeight / ICON_H));
-  return icons.map((icon, i) => {
-    const col = Math.floor(i / iconsPerColumn);
-    const row = i % iconsPerColumn;
-    return {
-      ...icon,
-      x: PADDING + col * (ICON_W + PADDING),
-      y: PADDING + row * ICON_H,
-    };
+  let autoCol = 0, autoRow = 0;
+
+  return icons.map((icon) => {
+    // If x and y are both explicitly set in portfolioContent, use them as-is
+    if (icon.x !== undefined && icon.y !== undefined) {
+      return { ...icon, x: icon.x, y: icon.y };
+    }
+    // Otherwise place in next auto slot
+    const x = PADDING + autoCol * (ICON_W + PADDING);
+    const y = PADDING + autoRow * ICON_H;
+    autoRow++;
+    if (autoRow >= iconsPerColumn) { autoRow = 0; autoCol++; }
+    return { ...icon, x, y };
   });
 };
 
@@ -332,6 +337,7 @@ const Win98Portfolio = () => {
     ({ isResizing: false, windowId: null, edge: null, startX: 0, startY: 0, startWidth: 0, startHeight: 0, startLeft: 0, startTop: 0 });
 
   const { width: viewportWidth, height: viewportHeight } = useWindowSize();
+  const isMobile = viewportWidth < 768 && navigator.maxTouchPoints > 0;
   const layoutIcons = computeIconPositions(desktopIcons, viewportHeight);
 
   // Clock
@@ -346,11 +352,15 @@ const Win98Portfolio = () => {
   const openWindow = useCallback((icon: DesktopIcon) => {
     const id = `window-${Date.now()}`;
     const maxZ = windows.length > 0 ? Math.max(...windows.map(w => w.zIndex)) : 0;
+    const mobile = window.innerWidth < 768;
     setWindows(prev => [...prev, {
       id, title: icon.name, type: icon.type, content: icon.content,
       items: icon.items, icon,
-      x: 100 + windows.length * 30, y: 50 + windows.length * 30,
-      width: 750, height: 600, zIndex: maxZ + 1, minimized: false, maximized: false,
+      x: mobile ? 0 : 100 + windows.length * 30,
+      y: mobile ? 0 : 50 + windows.length * 30,
+      width:  mobile ? window.innerWidth  : 750,
+      height: mobile ? window.innerHeight - 28 : 600,
+      zIndex: maxZ + 1, minimized: false, maximized: mobile,
     }]);
     setActiveWindow(id);
   }, [windows]);
@@ -393,6 +403,17 @@ const Win98Portfolio = () => {
       }
     }));
   }, []);
+  const navigateSibling = useCallback((winId: string, direction: -1 | 1) => {
+    setWindows(prev => prev.map(w => {
+      if (w.id !== winId || !w.siblingItems) return w;
+      const newIdx = (w.siblingIndex ?? 0) + direction;
+      if (newIdx < 0 || newIdx >= w.siblingItems.length) return w;
+      const item = w.siblingItems[newIdx];
+      const content = item.type === 'info' ? item.content : item.url;
+      return { ...w, title: item.name, type: item.type, content, siblingIndex: newIdx };
+    }));
+  }, []);
+
   const handleShutdown = () => {
     window.close();
     setTimeout(() => { window.location.href = 'about:blank'; }, 300);
@@ -466,7 +487,9 @@ const Win98Portfolio = () => {
   // --------------------------------------------------------------------------
   const handleFolderItemDoubleClick = (win: WindowState, item: FolderItem, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0 };
+    const siblings = win.items ?? [];
+    const idx = siblings.indexOf(item);
+    const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0, parentId: win.id, siblingItems: siblings, siblingIndex: idx };
     if (item.type === 'info')     openWindow({ ...base, type: 'info'     as const, content: item.content });
     if (item.type === 'image')    openWindow({ ...base, type: 'image'    as const, content: item.url });
     if (item.type === 'video')    openWindow({ ...base, type: 'video'    as const, content: item.url });
@@ -593,11 +616,12 @@ const Win98Portfolio = () => {
           style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', width: `${ICON_W}px`, cursor: 'pointer', left: icon.x, top: icon.y, backgroundColor: selectedIcons.includes(icon.id) ? 'rgba(0,0,170,0.5)' : 'transparent' }}
           onClick={(e) => {
             e.stopPropagation();
+            if (isMobile) { openWindow(icon); return; }
             e.ctrlKey || e.metaKey
               ? setSelectedIcons(prev => prev.includes(icon.id) ? prev.filter(i => i !== icon.id) : [...prev, icon.id])
               : setSelectedIcons([icon.id]);
           }}
-          onDoubleClick={(e) => { e.stopPropagation(); openWindow(icon); }}
+          onDoubleClick={(e) => { if (isMobile) return; e.stopPropagation(); openWindow(icon); }}
         >
           <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {icon.type === 'folder' && (
@@ -625,20 +649,20 @@ const Win98Portfolio = () => {
           >
             {/* Title bar */}
             <div className="title-bar"
-              style={{ height: '24px', padding: '0 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'move', background: activeWindow === win.id ? 'linear-gradient(to right,#000080,#1084d0)' : '#808080' }}
+              style={{ height: '24px', padding: '0 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: isMobile ? 'default' : 'move', background: activeWindow === win.id ? 'linear-gradient(to right,#000080,#1084d0)' : '#808080' }}
               onMouseDown={(e) => handleWindowMouseDown(e, win.id)}
             >
               <span style={{ color: 'white', fontSize: '14px', fontWeight: 'bold', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{win.title}</span>
               <div style={{ display: 'flex', gap: '2px' }}>
-                {/* Minimize */}
-                <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
+                {/* Minimize — desktop only */}
+                {!isMobile && <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
                   onMouseDown={(e) => { e.currentTarget.style.borderColor = 'black white white black'; e.currentTarget.style.transform = 'translate(1px,1px)'; }}
                   onMouseUp={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
                   onClick={() => minimizeWindow(win.id)}
-                ><svg width="8" height="2" viewBox="0 0 8 2"><rect width="8" height="2" fill="#000" /></svg></button>
-                {/* Maximize / Restore */}
-                <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
+                ><svg width="8" height="2" viewBox="0 0 8 2"><rect width="8" height="2" fill="#000" /></svg></button>}
+                {/* Maximize / Restore — desktop only */}
+                {!isMobile && <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
                   onMouseDown={(e) => { e.currentTarget.style.borderColor = 'black white white black'; e.currentTarget.style.transform = 'translate(1px,1px)'; }}
                   onMouseUp={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
@@ -648,7 +672,7 @@ const Win98Portfolio = () => {
                     ? <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round"><rect x="6" y="3" width="15" height="15" /><polyline points="3,6 3,21 18,21" /></svg>
                     : <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="4" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" /></svg>
                   }
-                </button>
+                </button>}
                 {/* Close */}
                 <button style={{ width: '16px', height: '16px', background: '#C0C0C0', border: '1px solid', borderColor: 'white black black white', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = '#FF6B6B'; }}
@@ -663,8 +687,45 @@ const Win98Portfolio = () => {
             <div style={{ flex: 1, background: 'white', overflow: 'auto', borderTop: '2px solid #808080', userSelect: win.type === 'info' ? 'text' : 'none' }}>
               {renderWindowContent(win)}
             </div>
-            {/* Resize handles */}
-            {resizeHandles.map(([edge, cur, pos]) => (
+            {/* Prev / Next nav — shown on any non-folder window opened from a folder */}
+            {win.siblingItems && win.type !== 'folder' && (() => {
+              const idx = win.siblingIndex ?? 0;
+              const total = win.siblingItems.length;
+              const canPrev = idx > 0;
+              const canNext = idx < total - 1;
+              const navBtn = (enabled: boolean): React.CSSProperties => ({
+                background: '#C0C0C0', border: '2px solid',
+                borderColor: enabled ? 'white black black white' : '#C0C0C0',
+                color: enabled ? 'black' : '#999',
+                cursor: enabled ? 'pointer' : 'default',
+                padding: '2px 12px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '4px',
+              });
+              return (
+                <div style={{ background: '#C0C0C0', borderTop: '2px solid #808080', padding: '4px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <button style={navBtn(canPrev)} disabled={!canPrev}
+                    onMouseDown={e => { if (canPrev) e.currentTarget.style.borderColor = 'black white white black'; }}
+                    onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                    onClick={() => canPrev && navigateSibling(win.id, -1)}
+                  >
+                    <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="8,0 0,5 8,10" fill={canPrev ? '#000' : '#999'}/></svg>
+                    Prev
+                  </button>
+                  <span style={{ fontSize: '11px', color: '#444' }}>{idx + 1} / {total}</span>
+                  <button style={navBtn(canNext)} disabled={!canNext}
+                    onMouseDown={e => { if (canNext) e.currentTarget.style.borderColor = 'black white white black'; }}
+                    onMouseUp={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'white black black white'; }}
+                    onClick={() => canNext && navigateSibling(win.id, 1)}
+                  >
+                    Next
+                    <svg width="8" height="10" viewBox="0 0 8 10"><polygon points="0,0 8,5 0,10" fill={canNext ? '#000' : '#999'}/></svg>
+                  </button>
+                </div>
+              );
+            })()}
+            {/* Resize handles — desktop only */}
+            {!isMobile && resizeHandles.map(([edge, cur, pos]) => (
               <div key={edge} style={{ position: 'absolute', cursor: cur, ...pos }} onMouseDown={(e) => handleResizeMouseDown(e, win.id, edge)} />
             ))}
           </div>
