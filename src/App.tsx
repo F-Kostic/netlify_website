@@ -565,19 +565,19 @@ const Win98Portfolio = () => {
               >
                 <div style={{ width: '48px', height: '48px', marginBottom: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {item.type === 'info' && (
-                    <img src={iconDefaults.info} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'image' && (
-                    <img src={iconDefaults.image} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.image} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'video' && (
-                    <img src={iconDefaults.video} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.video} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'audio' && (
-                    <img src={iconDefaults.audio} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.audio} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'bandcamp' && (
-                    <img src={iconDefaults.bandcamp} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.bandcamp} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                 </div>
                 <span style={{ fontSize: '12px', textAlign: 'center', lineHeight: '1.2', width: '100%', wordBreak: 'break-word', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{item.name}</span>
@@ -593,12 +593,10 @@ const Win98Portfolio = () => {
     if (win.type === 'image') return (
       <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#fff' }}>
         <img
-          key={win.content}
           src={win.content}
           alt={win.title}
-          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', opacity: 0, transition: 'opacity 0.15s ease' }}
-          onLoad={e => { (e.target as HTMLImageElement).style.opacity = '1'; }}
-          onError={e => { (e.target as HTMLImageElement).style.opacity = '0'; }}
+          decoding="async"
+          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
         />
       </div>
     );
@@ -682,10 +680,10 @@ const Win98Portfolio = () => {
         >
           <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {icon.type === 'folder' && (
-              <img src={iconDefaults.folder} decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+              <img src={iconDefaults.folder} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
             {icon.type === 'info' && (
-              <img src={iconDefaults.info} decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+              <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
           </div>
           <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.4', paddingBottom: '2px', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', wordBreak: 'break-word' }}>{icon.name}</span>
