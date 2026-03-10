@@ -21,6 +21,7 @@ export const iconDefaults = {
   video:    '/images/Icons/video64_01.png',   // default icon for all video files
   audio:    '/images/Icons/audio64_01.png',   // default icon for audio files
   bandcamp: '/images/Icons/audio64_01.png',   // reuses audio icon, change if you want
+  startButton: '/images/Icons/folder64_01.png', //icon for start buttton
 };
 
 // ----------------------------------------------------------------------------
@@ -29,7 +30,7 @@ export const iconDefaults = {
 export const background = {
   type: 'image' as 'image' | 'color', // 'image' or 'color'
   color: '#001EFF',                    // used when type is 'color'
-  image: '/images/BG_Rat_Blue_notext.png', // used when type is 'image'
+  image: '/images/Dreamhack1.jpg', // used when type is 'image'
   tiled: false,                        // true = tile, false = cover/stretch
 };
 
@@ -476,43 +477,6 @@ Heat-bent PETG tubing, LED compression fittings, pump and reservoir, computer po
   },
 
   {
-    id: 'exeexp',
-    name: 'EXE.EXP (ongoing)',
-    type: 'folder',
-    items: [
-      {
-        name: 'Info',
-        type: 'info',
-        content: `Executable Experience (EXE.EXP), 2017-
-Software
-Executable Experience (EXE.EXP) is an ongoing practice in which I produce site specific executable files as works based on a short deadline as defined by an exhibition, conference, talk, or any platform under which work could be commissioned and shown. The works are then packaged and editioned as a CD or USB with an installation guide.
-In order as seen in folder:
-
-Executable Experience V1, 2017
-Virtual reality software, 8 minute approximate TRT
-Shown at and commissioned by SPRINGBREAK Art Show, 2017
-
-Executable Experience V2, 2017
-Virtual reality software
-Shown at and commissioned by TSALA as part of the group show Reality Show, 2017
-
-Executable Experience V3, 2018
-Augmented Reality software installed on the gallerist's phone.
-Shown and commissioned by Pool Party as part of the group show Belly Flop, 2018
-
-Executable Experience V4, 2018
-Virtual Reality video
-Shown and commissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
-      },
-      { name: 'EXE.EXP Poster',          type: 'image', url: '/images/EXEEXP/ExeExpCover.jpg' },
-      { name: 'Executable Experience V1', type: 'video', url: 'https://www.youtube.com/embed/zJ53U6278Rw' },
-      { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
-      { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
-      { name: 'Executable Experience V4', type: 'video', url: 'https://www.youtube.com/embed/6kGrhJxOGQ0' },
-    ],
-  },
-
-  {
     id: 'landgrab',
     name: 'Landgrab the Musical in Virtual Reality (2016)',
     type: 'folder',
@@ -561,20 +525,87 @@ Concrete, computer hardware, oculus virtual reality headset, sight specific mode
   },
 
   {
+    id: 'exeexp',
+    name: 'EXE.EXP (ongoing)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Executable Experience (EXE.EXP), 2017-
+Software
+Executable Experience (EXE.EXP) is an ongoing practice in which I produce site specific executable files as works based on a short deadline as defined by an exhibition, conference, talk, or any platform under which work could be commissioned and shown. The works are then packaged and editioned as a CD or USB with an installation guide.
+In order as seen in folder:
+
+Executable Experience V1, 2017
+Virtual reality software, 8 minute approximate TRT
+Shown at and commissioned by SPRINGBREAK Art Show, 2017
+
+Executable Experience V2, 2017
+Virtual reality software
+Shown at and commissioned by TSALA as part of the group show Reality Show, 2017
+
+Executable Experience V3, 2018
+Augmented Reality software installed on the gallerist's phone.
+Shown and commissioned by Pool Party as part of the group show Belly Flop, 2018
+
+Executable Experience V4, 2018
+Virtual Reality video
+Shown and commissioned by Projektwohnung Krudebude as part of the group show Falschung, 2018`,
+      },
+      { name: 'EXE.EXP Poster',          type: 'image', url: '/images/EXEEXP/ExeExpCover.jpg' },
+      { name: 'Executable Experience V1', type: 'video', url: 'https://www.youtube.com/embed/zJ53U6278Rw' },
+      { name: 'Executable Experience V2', type: 'video', url: 'https://www.youtube.com/embed/lfAxWHpf7kU' },
+      { name: 'Executable Experience V3', type: 'video', url: 'https://www.youtube.com/embed/4RF1jD0mNRk' },
+      { name: 'Executable Experience V4', type: 'video', url: 'https://www.youtube.com/embed/6kGrhJxOGQ0' },
+    ],
+  },
+
+
+  {
     id: 'random-things',
     name: 'Random Things',
     type: 'folder',
+    x: 864,
+    y: 16,
     items: [
       {
         name: 'Info',
         type: 'info',
         content: `These are some random images of things I am looking at or thinking about.`,
       },
-      { name: 'Fortnite 1',      type: 'image', url: '/images/Random/fortnite1.png' },
-      { name: 'Fortnite 2',      type: 'image', url: '/images/Random/fortnite2.png' },
+      { name: 'Fortnite',      type: 'image', url: '/images/Random/fortnite1.png' },
+      { name: 'My Studio 1',      type: 'image', url: '/images/Random/studio.jpg' },
+      { name: 'My Studio 2',      type: 'image', url: '/images/Random/studio1.jpg' },
       { name: 'Tracker Dog',     type: 'image', url: '/images/Random/dog.png' },
       { name: 'Frog',            type: 'image', url: '/images/Random/Frog.png' },
       { name: 'Sodium Chloride', type: 'image', url: '/images/Random/salt.png' },
+      { name: 'Plate Gloves',      type: 'image', url: '/images/Random/gloves.jpg' },
+      { name: 'Jeff Probst Weird',      type: 'image', url: '/images/Random/jeffprobst.jpg' },
+      { name: 'Blizzard Employee Skateboard',      type: 'image', url: '/images/Random/skateboard.webp' },
+      { name: 'PETG Test Print (spray painted)',      type: 'image', url: '/images/Random/relieftest.jpg' },
+    ],
+  },
+
+  {
+    id: 'computer-builds',
+    name: 'Custom Computer Builds (ongoing)',
+    type: 'folder',
+    x: 864,
+    y: 116,
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `These are computers I've built as sort of sculptural objects that I also use to make my work. They are fully functional`,
+      },
+      { name: 'Wetware 1',      type: 'image', url: '/images/CustomPCS/wetware.jpg' },
+      { name: 'Wetware 2',      type: 'image', url: '/images/CustomPCS/wetware1.jpg' },
+      { name: 'Wetware 3',      type: 'image', url: '/images/CustomPCS/wetware2.jpg' },
+      { name: 'Studio Personal Computer 1',      type: 'image', url: '/images/CustomPCS/3quarter.jpg' },
+      { name: 'Studio Personal Computer 2',      type: 'image', url: '/images/CustomPCS/Front.jpg' },
+      { name: 'Fountain of Everything (server)',      type: 'image', url: '/images/CustomPCS/WholeCollage.jpg' },
+      
     ],
   },
 
@@ -585,6 +616,8 @@ Concrete, computer hardware, oculus virtual reality headset, sight specific mode
   //   id: 'my-new-work',           // unique ID, no spaces
   //   name: 'My New Work (2025)',   // display name on desktop + Start menu
   //   type: 'folder',
+  //   x: 900,
+  //   y: 50, 
   //   items: [
   //     {
   //       name: 'Info',

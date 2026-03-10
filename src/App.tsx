@@ -784,7 +784,9 @@ const Win98Portfolio = () => {
           onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'white black black white'; e.currentTarget.style.transform = ''; }}
           onClick={(e) => { e.stopPropagation(); setStartMenuOpen(o => !o); }}
         >
-          <div style={{ width: '16px', height: '16px', background: 'linear-gradient(135deg,#FF0000,#FFAA00)', borderRadius: '2px' }} />
+          <div style={{ width: '16px', height: '16px', flexShrink: 0 }}>
+            <img src={iconDefaults.startButton} style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+          </div>
           <span>Start</span>
         </button>
 
