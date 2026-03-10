@@ -584,6 +584,7 @@ Shown and commissioned by Projektwohnung Krudebude as part of the group show Fal
       { name: 'Jeff Probst Weird',      type: 'image', url: '/images/Random/jeffprobst.jpg' },
       { name: 'Blizzard Employee Skateboard',      type: 'image', url: '/images/Random/skateboard.webp' },
       { name: 'PETG Test Print (spray painted)',      type: 'image', url: '/images/Random/relieftest.jpg' },
+      { name: 'Dylan Brady - Of Course I still Love You', type: 'video', url: 'https://www.youtube.com/embed/xDootNGnt6s' },
     ],
   },
 
@@ -607,6 +608,26 @@ Shown and commissioned by Projektwohnung Krudebude as part of the group show Fal
       { name: 'Fountain of Everything (server)',      type: 'image', url: '/images/CustomPCS/WholeCollage.jpg' },
       
     ],
+    
+  },
+
+  {
+    id: 'ipad-paintings',
+    name: 'ipad paintings (ongoing)',
+    type: 'folder',
+    x: 970,
+    y: 116,
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Some still life paintings I made on my ipad on procreate.`,
+      },
+      { name: 'Airport',      type: 'image', url: '/images/ipad/Airport.jpg' },
+      { name: 'Harris',      type: 'image', url: '/images/ipad/Harris.jpg' },
+    
+    ],
+    
   },
 
   // --------------------------------------------------------------------------
