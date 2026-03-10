@@ -575,8 +575,15 @@ const Win98Portfolio = () => {
       <div style={{ padding: '16px', fontFamily: 'monospace', fontSize: '14px', whiteSpace: 'pre-wrap', color: 'black', userSelect: 'text', cursor: 'text' }}>{win.content}</div>
     );
     if (win.type === 'image') return (
-      <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <img src={win.content} alt={win.title} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+      <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#fff' }}>
+        <img
+          key={win.content}
+          src={win.content}
+          alt={win.title}
+          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', opacity: 0, transition: 'opacity 0.15s ease' }}
+          onLoad={e => { (e.target as HTMLImageElement).style.opacity = '1'; }}
+          onError={e => { (e.target as HTMLImageElement).style.opacity = '0'; }}
+        />
       </div>
     );
     if (win.type === 'video') {
@@ -846,8 +853,8 @@ const Win98Portfolio = () => {
             </div>
             <div style={{ marginBottom: '16px', fontSize: '14px', color: 'black' }}>Are you sure you want to shut down?</div>
             <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-              <button style={{ padding: '4px 16px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', fontSize: '14px', cursor: 'pointer' }} onClick={() => setShowShutdown(false)}>No</button>
-              <button style={{ padding: '4px 16px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', fontSize: '14px', cursor: 'pointer' }} onClick={handleShutdown}>Yes</button>
+              <button style={{ padding: '4px 16px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', fontSize: '14px', cursor: 'pointer', color: 'black' }} onClick={() => setShowShutdown(false)}>No</button>
+              <button style={{ padding: '4px 16px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', fontSize: '14px', cursor: 'pointer', color: 'black' }} onClick={handleShutdown}>Yes</button>
             </div>
           </div>
         </div>
