@@ -165,58 +165,74 @@ const WinMediaPlayer = ({ src, title }: { src: string; title: string }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.8);
   const animRef = useRef<number | null>(null);
+  const playingRef = useRef(false);
+  const freqRef = useRef(0.03);
+  const ampRef = useRef(0);
+  const targetAmpRef = useRef(0);
+  const targetFreqRef = useRef(0.03);
   const phaseRef = useRef(0);
-  const intensityRef = useRef(0);
-  const targetIntensityRef = useRef(0);
 
   const fmt = (s: number) => {
     const m = Math.floor(s / 60), sec = Math.floor(s % 60);
     return `${m}:${sec.toString().padStart(2, '0')}`;
   };
 
-  // Draw sine wave on canvas
-  const drawWave = () => {
+  const drawWave = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
+
+    // Ease amp and freq toward targets
+    ampRef.current  += (targetAmpRef.current  - ampRef.current)  * 0.05;
+    freqRef.current += (targetFreqRef.current - freqRef.current) * 0.03;
+
+    // Snap to zero below threshold so it's a truly flat line at rest
+    if (ampRef.current < 0.3) ampRef.current = 0;
+
+    // Advance phase only when playing
+    if (playingRef.current) phaseRef.current += 0.04;
+
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, W, H);
 
-    // Smoothly ease intensity toward target
-    intensityRef.current += (targetIntensityRef.current - intensityRef.current) * 0.08;
-    const amp = intensityRef.current * (H / 2 - 4);
-    const freq = 0.04 + intensityRef.current * 0.06;
-    phaseRef.current += playing ? 0.07 + intensityRef.current * 0.08 : 0.01;
-
     ctx.beginPath();
-    for (let x = 0; x < W; x++) {
-      const y = H / 2 + amp * Math.sin(freq * x + phaseRef.current)
-                      + (amp * 0.4) * Math.sin(freq * 2.3 * x + phaseRef.current * 1.3);
-      const t = x / W;
-      ctx.strokeStyle = `hsl(${200 + t * 60}, 100%, 55%)`;
-      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    }
+    ctx.strokeStyle = '#00aaff';
     ctx.lineWidth = 1.5;
+    for (let x = 0; x <= W; x++) {
+      const amp = ampRef.current;
+      const freq = freqRef.current;
+      const y = H / 2
+        + amp * Math.sin(freq * x + phaseRef.current)
+        + amp * 0.3 * Math.sin(freq * 2.5 * x + phaseRef.current * 1.1 + 1.2);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
     ctx.stroke();
 
     animRef.current = requestAnimationFrame(drawWave);
-  };
+  }, []);
 
+  // Jitter freq + amp while playing — slow, organic changes
   useEffect(() => {
-    targetIntensityRef.current = playing ? 0.7 + Math.random() * 0.3 : 0.05;
-    const jitter = playing ? setInterval(() => {
-      targetIntensityRef.current = 0.5 + Math.random() * 0.5;
-    }, 400) : null;
-    return () => { if (jitter) clearInterval(jitter); };
+    playingRef.current = playing;
+    if (playing) {
+      targetAmpRef.current  = 10 + Math.random() * 10;
+      targetFreqRef.current = 0.02 + Math.random() * 0.04;
+      const jitter = setInterval(() => {
+        targetAmpRef.current  = 8 + Math.random() * 12;
+        targetFreqRef.current = 0.018 + Math.random() * 0.042;
+      }, 1200);
+      return () => clearInterval(jitter);
+    } else {
+      targetAmpRef.current  = 0;
+    }
   }, [playing]);
 
   useEffect(() => {
     animRef.current = requestAnimationFrame(drawWave);
     return () => { if (animRef.current) cancelAnimationFrame(animRef.current); };
-  }, [playing]);
+  }, [drawWave]);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
