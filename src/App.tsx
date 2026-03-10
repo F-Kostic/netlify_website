@@ -808,7 +808,7 @@ const Win98Portfolio = () => {
       */}
       {startMenuOpen && (
         <div
-          style={{ position: 'absolute', bottom: '28px', left: 0, width: '192px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', zIndex: 1200 }}
+          style={{ position: 'fixed', bottom: '28px', left: 0, width: '192px', background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', boxShadow: '2px 2px 4px rgba(0,0,0,0.5)', zIndex: 2100 }}
           onClick={(e) => e.stopPropagation()}
         >
           <div style={{ padding: '4px' }}>
@@ -824,7 +824,7 @@ const Win98Portfolio = () => {
               >Contact</div>
             </SubmenuRow>
 
-            <SubmenuRow label="Artworks">
+            <SubmenuRow label="Folders">
               {desktopIcons.filter(i => i.type === 'folder').map(folder => (
                 <div key={folder.id} style={{ padding: '4px 8px', cursor: 'pointer', fontSize: '14px', color: 'black' }}
                   onClick={() => { openWindow(folder); setStartMenuOpen(false); }}
@@ -846,7 +846,7 @@ const Win98Portfolio = () => {
 
       {/* ── SHUTDOWN DIALOG ── */}
       {showShutdown && (
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.5)', zIndex: 2000 }}>
+        <div style={{ position: 'fixed', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.5)', zIndex: 3000 }}>
           <div style={{ background: '#C0C0C0', border: '2px solid', borderColor: 'white black black white', padding: '16px', width: '300px' }}>
             <div style={{ background: 'linear-gradient(to right,#000080,#1084d0)', padding: '4px 8px', margin: '-16px -16px 12px -16px' }}>
               <span style={{ color: 'white', fontSize: '14px', fontWeight: 'bold' }}>Shut Down</span>
