@@ -440,6 +440,17 @@ const Win98Portfolio = () => {
       if (newIdx < 0 || newIdx >= w.siblingItems.length) return w;
       const item = w.siblingItems[newIdx];
       const content = item.type === 'info' ? item.content : item.url;
+
+      // Preload the image after this one so it's ready when user hits Next again
+      const preloadIdx = newIdx + direction;
+      if (preloadIdx >= 0 && preloadIdx < w.siblingItems.length) {
+        const next = w.siblingItems[preloadIdx];
+        if (next.type === 'image' && next.url) {
+          const img = new Image();
+          img.src = next.url;
+        }
+      }
+
       return { ...w, title: item.name, type: item.type, content, siblingIndex: newIdx };
     }));
   }, []);
@@ -521,6 +532,11 @@ const Win98Portfolio = () => {
     const idx = siblings.indexOf(item);
     const siblingData = { siblingItems: siblings, siblingIndex: idx, parentId: win.id };
     const base = { id: `${win.id}-${item.name}`, name: item.name, x: 0, y: 0 };
+
+    // Preload the next image in the folder immediately
+    const nextImg = siblings[idx + 1];
+    if (nextImg?.type === 'image' && nextImg.url) { const p = new Image(); p.src = nextImg.url; }
+
     if (item.type === 'info')     openWindow({ ...base, type: 'info'     as const, content: item.content }, siblingData);
     if (item.type === 'image')    openWindow({ ...base, type: 'image'    as const, content: item.url },    siblingData);
     if (item.type === 'video')    openWindow({ ...base, type: 'video'    as const, content: item.url },    siblingData);
@@ -549,19 +565,19 @@ const Win98Portfolio = () => {
               >
                 <div style={{ width: '48px', height: '48px', marginBottom: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {item.type === 'info' && (
-                    <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.info} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'image' && (
-                    <img src={iconDefaults.image} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.image} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'video' && (
-                    <img src={iconDefaults.video} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.video} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'audio' && (
-                    <img src={iconDefaults.audio} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.audio} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                   {item.type === 'bandcamp' && (
-                    <img src={iconDefaults.bandcamp} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                    <img src={iconDefaults.bandcamp} loading="lazy" decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                   )}
                 </div>
                 <span style={{ fontSize: '12px', textAlign: 'center', lineHeight: '1.2', width: '100%', wordBreak: 'break-word', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{item.name}</span>
@@ -666,10 +682,10 @@ const Win98Portfolio = () => {
         >
           <div style={{ width: '48px', height: '48px', marginBottom: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {icon.type === 'folder' && (
-              <img src={iconDefaults.folder} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+              <img src={iconDefaults.folder} decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
             {icon.type === 'info' && (
-              <img src={iconDefaults.info} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+              <img src={iconDefaults.info} decoding="async" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
             )}
           </div>
           <span style={{ fontSize: '12px', color: 'white', textAlign: 'center', textShadow: '1px 1px 2px black', lineHeight: '1.4', paddingBottom: '2px', width: '100%', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', wordBreak: 'break-word' }}>{icon.name}</span>
