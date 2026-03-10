@@ -155,6 +155,33 @@ const onMenuLeave = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 // ============================================================================
+// IMAGE VIEWER COMPONENT
+// Shows white while loading, snaps to image the moment it's ready
+// ============================================================================
+const ImageViewer = ({ src, alt }: { src: string; alt: string }) => {
+  const [visible, setVisible] = useState(false);
+  const [loadedSrc, setLoadedSrc] = useState('');
+
+  useEffect(() => {
+    if (!src) return;
+    setVisible(false); // go white immediately on src change
+    const img = new window.Image();
+    img.onload = () => { setLoadedSrc(src); setVisible(true); };
+    img.src = src;
+  }, [src]);
+
+  return (
+    <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#fff', boxSizing: 'border-box' }}>
+      <img
+        src={loadedSrc || src}
+        alt={alt}
+        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', opacity: visible ? 1 : 0 }}
+      />
+    </div>
+  );
+};
+
+// ============================================================================
 // WINDOWS MEDIA PLAYER COMPONENT
 // ============================================================================
 const WinMediaPlayer = ({ src, title }: { src: string; title: string }) => {
@@ -590,16 +617,7 @@ const Win98Portfolio = () => {
     if (win.type === 'info') return (
       <div style={{ padding: '16px', fontFamily: 'monospace', fontSize: '14px', whiteSpace: 'pre-wrap', color: 'black', userSelect: 'text', cursor: 'text' }}>{win.content}</div>
     );
-    if (win.type === 'image') return (
-      <div style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#fff' }}>
-        <img
-          src={win.content}
-          alt={win.title}
-          decoding="async"
-          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-        />
-      </div>
-    );
+    if (win.type === 'image') return <ImageViewer src={win.content ?? ''} alt={win.title} />;
     if (win.type === 'video') {
       const isEmbed = win.content?.includes('youtube.com') || win.content?.includes('youtu.be') || win.content?.includes('vimeo.com');
       const isVimeo = win.content?.includes('vimeo.com');
