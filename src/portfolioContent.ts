@@ -580,6 +580,7 @@ Shown and commissioned by Projektwohnung Krudebude as part of the group show Fal
       { name: 'Tracker Dog',     type: 'image', url: '/images/Random/dog.png' },
       { name: 'Frog',            type: 'image', url: '/images/Random/Frog.png' },
       { name: 'Sodium Chloride', type: 'image', url: '/images/Random/salt.png' },
+      { name: 'Clarity - Line Rider Track', type: 'video', url: 'https://www.youtube.com/embed/evd4u2Hahmg' },
       { name: 'Plate Gloves',      type: 'image', url: '/images/Random/gloves.jpg' },
       { name: 'Jeff Probst Weird',      type: 'image', url: '/images/Random/jeffprobst.jpg' },
       { name: 'Blizzard Employee Skateboard',      type: 'image', url: '/images/Random/skateboard.webp' },
