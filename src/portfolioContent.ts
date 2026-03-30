@@ -57,7 +57,8 @@ Solo Exhibitions
 
 Group Exhibitions and Screenings
 2026
-  Feminine Urge, (New York, NY) curated by Zarina Nares
+  Fantasy Futbol, High Line Channel, (New York, NY) curated by Constanza Venezuela
+  Feminine Urge, Tribeca Gallery, (New York, NY) curated by Zarina Nares
 2025
   If/Then, Ujazdowski Castle Center for Contemporary Arts, (Warsaw, Poland) curated by Sara Szostak, Marta Grytczuk
   The Mirror Effect, Chateau de Monstsoreau Museum of Contemporary Art (Motsoreau, France), curated by Lara Pan
@@ -194,6 +195,26 @@ Images from the exhibition IF/THEN at the Ujazdowski Castle Center for Contempor
       { name: 'Pro Mouse Grip (3 of 7)',                                         type: 'image', url: '/images/WarsawForWebsite/CloseupMouseHand_01.jpg' },
       { name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing Install 3', type: 'image', url: '/images/WarsawForWebsite/Wide_01.jpg' },
       { name: 'Counter-Strike 1.6 being played in the other room (excerpt)',     type: 'audio',    url: '/images/WarsawForWebsite/CS_OtherRoom_Excerpt.mp3' },
+    ],
+  },
+
+  {
+    id: 'sarcophagus-mouse',
+    name: 'Sarcophagus for my dead motherboard (and mouse)(2025)',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Sarcophagus for my dead motherboard (and mouse), 2025
+        ABS, Crushed Silicon Rock, Polyurethane, Damaged Motherboard, Mouse
+`,
+      },
+      { name: 'Sarcophagus for my dead motherboard (and mouse) 1', type: 'image', url: '/images/SarcophagusMouse/3Quarter.jpg' },
+      { name: 'Sarcophagus for my dead motherboard (and mouse) 2', type: 'image', url: '/images/SarcophagusMouse/3quarter1.jpg' },
+      { name: 'Sarcophagus for my dead motherboard (and mouse) Detail', type: 'image', url: '/images/SarcophagusMouse/Detail.jpg' },
+      { name: 'Sarcophagus for my dead motherboard (and mouse) Deatil Lid', type: 'image', url: '/images/SarcophagusMouse/TopDownView.jpg' },
+      
     ],
   },
 
@@ -396,9 +417,15 @@ Live Streamed Performance
 
 Filip Kostic VS Filip Kostic was a twitch streamed performance in which I (Filip Kostic) played a game of FIFA against Filip Kostic, professional Serbian soccer player of Eintracht Frankfurt, for the Instagram handle @filipkostic. Halftime performance performed by Mark Fingerhut.
 
-Since 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show.`,
+Since 2012 my online identity has been mistaken with that of the Serbian soccer player Filip Kostic through a shared imdb page, randomly being tagged in posts with him in the images on instagram, and being contacted via email for special requests from his fans. In 2019, his PR team contacted me to purchase my instagram handle, I instead counter offered with a proposition to play me in a game of FIFA, winner takes the handle — surprisingly, they agreed. The event was a live performance on Twitch TV complete with a custom layout frame, sponsors, and a half time show.
+
+Filip Kostic, Filip Kostic VS Filip Kostic, 2019. Part of Fantasy Futbol, a High Line Channel, on view May 6, 2026 –July 6, 2026. Photo by Timothy Schenck. Courtesy of the High Line.`,
       },
       { name: 'Filip Kostic VS Filip Kostic (video)', type: 'video', url: 'https://www.youtube.com/embed/hdJ_2KLr6qA' },
+      { name: 'Highline Channel Install 01',        type: 'image', url: '/images/FK_VS_FK/3Quarter_02_Hero.jpg' },
+      { name: 'Highline Channel Install 02',        type: 'image', url: '/images/FK_VS_FK/Front_02_Hero.jpg' },
+      { name: 'Highline Channel Install 03',        type: 'image', url: '/images/FK_VS_FK/Front_01.jpg' },
+      { name: 'Highline Channel Install 04',        type: 'image', url: '/images/FK_VS_FK/3Quarter_01.jpg' },
       { name: 'Jersey',        type: 'image', url: '/images/FK_VS_FK/Jersey.jpg' },
       { name: 'Instagram Tags',type: 'image', url: '/images/FK_VS_FK/insta_tags.jpg' },
       { name: 'Emails',        type: 'image', url: '/images/FK_VS_FK/emails.jpg' },
