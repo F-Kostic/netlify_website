@@ -30,7 +30,7 @@ export const iconDefaults = {
 export const background = {
   type: 'image' as 'image' | 'color', // 'image' or 'color'
   color: '#001EFF',                    // used when type is 'color'
-  image: '/images/Dreamhack1.jpg', // used when type is 'image'
+  image: '/images/BG_Rat_Blue_notext.png', // used when type is 'image'
   tiled: false,                        // true = tile, false = cover/stretch
 };
 
@@ -58,6 +58,7 @@ Solo Exhibitions
 Group Exhibitions and Screenings
 2026
   Fantasy Futbol, High Line Channel, (New York, NY) curated by Constanza Venezuela
+  Game Video Night, THE GALLERY, (New Yor, NY) curated by Dahlia Bloomstone
   Feminine Urge, Tribeca Gallery, (New York, NY) curated by Zarina Nares
 2025
   If/Then, Ujazdowski Castle Center for Contemporary Arts, (Warsaw, Poland) curated by Sara Szostak, Marta Grytczuk
