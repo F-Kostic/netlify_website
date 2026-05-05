@@ -175,7 +175,7 @@ export const desktopIcons: DesktopIcon[] = [
         name: 'Info',
         type: 'info',
         content: `Pro Mouse Grip (1-7), 2025
-Variable size hands on 13x13x31.5" mousepad pedestal
+Variable size hands on 33x33x80cm mousepad pedestal
 Silicon-Copper cold cast
 
 Counter-Strike spray pattern drawing (1-18), 2025
