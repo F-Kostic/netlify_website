@@ -402,6 +402,56 @@ const Win98Portfolio = () => {
     return () => clearInterval(t);
   }, []);
 
+// --------------------------------------------------------------------------
+// RANDOM ARTWORK OPENER — desktop only, runs once on mount
+// --------------------------------------------------------------------------
+const randomOpenedRef = useRef(false);
+useEffect(() => {
+  if (randomOpenedRef.current) return;
+  const mobile = window.innerWidth < 768 && navigator.maxTouchPoints > 0;
+  if (mobile) return;
+  randomOpenedRef.current = true;
+
+  const folders = desktopIcons.filter(i => i.type === 'folder' && i.items && i.items.length > 0);
+  const count = 2 + Math.floor(Math.random() * 4); // 2–5
+  const shuffledFolders = [...folders].sort(() => Math.random() - 0.5).slice(0, count);
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  shuffledFolders.forEach((folder, i) => {
+    const items = folder.items!.filter(item => item.type !== 'info');
+    if (items.length === 0) return;
+    const item = items[Math.floor(Math.random() * items.length)];
+    const allSiblings = folder.items!;
+    const siblingIndex = allSiblings.indexOf(item);
+
+    const winId = `window-${Date.now()}-${i}`;
+    const w = 600 + Math.floor(Math.random() * 150);
+    const h = 480 + Math.floor(Math.random() * 120);
+    const leftBoundary = Math.floor(vw / 3);
+    const x = leftBoundary + Math.floor(Math.random() * Math.max(1, vw - leftBoundary - w));
+    const y = Math.floor(Math.random() * Math.max(1, vh - h - 28));
+
+    setWindows(prev => [...prev, {
+      id: winId,
+      title: item.name,
+      type: item.type,
+      content: item.type === 'info' ? item.content : item.url,
+      items: folder.items,
+      icon: folder,
+      x, y, width: w, height: h,
+      zIndex: i + 1,
+      minimized: false,
+      maximized: false,
+      siblingItems: allSiblings,
+      siblingIndex,
+      parentId: winId,
+    }]);
+    setActiveWindow(winId);
+  });
+}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // --------------------------------------------------------------------------
   // WINDOW MANAGEMENT
   // --------------------------------------------------------------------------
