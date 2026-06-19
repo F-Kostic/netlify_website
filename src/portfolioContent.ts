@@ -30,7 +30,7 @@ export const iconDefaults = {
 export const background = {
   type: 'image' as 'image' | 'color', // 'image' or 'color'
   color: '#001EFF',                    // used when type is 'color'
-  image: '/images/BG_Rat_Blue_notext.png', // used when type is 'image'
+  image: '/images/BG_Thicket.jpg', // used when type is 'image'
   tiled: false,                        // true = tile, false = cover/stretch
 };
 
