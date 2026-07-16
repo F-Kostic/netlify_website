@@ -46,139 +46,118 @@ Education
 MFA Film and Video Candidate, Bard College, 2022
 BFA ArtCenter College of Design, 2016
 
-**Solo Exhibitions**
-
-**2024**
+Solo Exhibitions
+2024
 CATHEDRALS EVERYWHERE FOR THOSE WITH MONITORS TO SEE, Number 1 Main Road (Berlin, Germany)
-
-**2017**
+2017
 Open Loop, Roger's Office (Los Angeles, CA)
-
-**2016**
+2016
 Landgrab the Musical in Virtual Reality, Wind Tunnel Gallery (Pasadena, CA)
-*me, from the future.*, ArtCenter College of Design (Pasadena, CA)
+me, from the future., ArtCenter College of Design (Pasadena, CA)
 
-**Group Exhibitions and Screenings**
-
-**2026**
+Group Exhibitions and Screenings
+2026
 Fantasy Futbol, High Line Channel (New York, NY), curated by Constanza Venezuela
-*5km away from you*, Tribeca Gallery (New York, NY), curated by Arianna Caserta
-*wake me up inside*, Rip Space (Los Angeles, CA), curated by Vera Petukhova
-*The Color Scheme*, HKW Berlin (Berlin, Germany), collaboration with Aria Dean for her PERFORMA commission
-*Feminine Urge*, Tribeca Gallery (New York, NY), curated by Zarina Nares
-*Content Collapse* (Performance Lecture), Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland)
-
-**2025**
-*The Color Scheme*, Abrons Art Center (New York, NY), collaboration with Aria Dean for her PERFORMA commission
-*If/Then*, Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland), curated by Sara Szostak & Marta Grytczuk
-*The Mirror Effect*, Chateau de Montsoreau Museum of Contemporary Art (Montsoreau, France), curated by Lara Pan
-
-**2024**
-*Minotaurs*, Foreign & Domestic (New York, NY), curated by Harris Rosenblum
-*Transcendence Creative*, lower_cavity (Holyoke, MA), as part of the lower_cavity artist residency
-*Abbatoir, U.S.A.! Live*, ICA London (London, UK), live performance with Aria Dean & Evan Zierk
-*Neither Dream, Nor Delusion*, China Heights Gallery (Sydney, Australia), curated by Jarryd Lynagh
-
-**2023**
-*Filip Kostic VS. Filip Kostic*, VRAL, Milan Machinima Festival, curated by Matteo Bittanti
-*Affinities*, Spy Projects (Los Angeles, CA), curated by Sophronia Cook
-*Scrap Yard Screenings*, SARAH'S (New York, NY), co-curated with Theresa Tomi Faison
-*Day Before Tomorrow*, Eugster Belgrade (Belgrade, Serbia), curated by Vuk Cuk
-*The Manic American Humanist Show*, Public Works Administration (New York, NY), curated by Abbey Pusz
-
-**2022**
-*The Influencing Machine*, Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland), curated by Aaron K. Moulton
-*Klammern aus denen Blätter Spriessen* (Berlin), Scherben (Berlin, Germany)
-*Klammern aus denen Blätter Spriessen* (Los Angeles), Hunter Shaw Fine Art
-*Do Not Research: Group Show*, Lower Cavity (Holyoke, MA), curated by Joshua Citarella
-
-**2020**
+5km away from you, Tribeca Gallery (New York, NY), curated by Arianna Caserta
+wake me up inside, Rip Space (Los Angeles, CA), curated by Vera Petukhova
+The Color Scheme, HKW Berlin (Berlin, Germany), collaboration with Aria Dean for her PERFORMA commission
+Feminine Urge, Tribeca Gallery (New York, NY), curated by Zarina Nares
+Content Collapse (Performance Lecture), Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland)
+2025
+The Color Scheme, Abrons Art Center (New York, NY), collaboration with Aria Dean for her PERFORMA commission
+If/Then, Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland), curated by Sara Szostak & Marta Grytczuk
+The Mirror Effect, Chateau de Montsoreau Museum of Contemporary Art (Montsoreau, France), curated by Lara Pan
+2024
+Minotaurs, Foreign & Domestic (New York, NY), curated by Harris Rosenblum
+Transcendence Creative, lower_cavity (Holyoke, MA), as part of the lower_cavity artist residency
+Abbatoir, U.S.A.! Live, ICA London (London, UK), live performance with Aria Dean & Evan Zierk
+Neither Dream, Nor Delusion, China Heights Gallery (Sydney, Australia), curated by Jarryd Lynagh
+2023
+Filip Kostic VS. Filip Kostic, VRAL, Milan Machinima Festival, curated by Matteo Bittanti
+Affinities, Spy Projects (Los Angeles, CA), curated by Sophronia Cook
+Scrap Yard Screenings, SARAH'S (New York, NY), co-curated with Theresa Tomi Faison
+Day Before Tomorrow, Eugster Belgrade (Belgrade, Serbia), curated by Vuk Cuk
+The Manic American Humanist Show, Public Works Administration (New York, NY), curated by Abbey Pusz
+2022
+The Influencing Machine, Ujazdowski Castle Center for Contemporary Arts (Warsaw, Poland), curated by Aaron K. Moulton
+Klammern aus denen Blätter Spriessen (Berlin), Scherben (Berlin, Germany)
+Klammern aus denen Blätter Spriessen (Los Angeles), Hunter Shaw Fine Art
+Do Not Research: Group Show, Lower Cavity (Holyoke, MA), curated by Joshua Citarella
+2020
 Ars Electronica 2020, Ars Electronica (Linz, Austria)
-*Both Ways*, Porto Vecchio di Trieste (Trieste, Italy)
-*Intelligence IO*, Magacin (Belgrade, Serbia)
-*FiDi Arsenale*, Hot-Air/Mery Gates (New York, NY)
-
-**2019**
-*Landgrab the Musical in Virtual Reality*, SPRING/BREAK Art Show LA (Los Angeles, CA)
-*Filip Kostic vs Filip Kostic, Live on Twitch* — Roger's Office (Los Angeles), Mery Gates (Brooklyn), Alyssa Davis Gallery (New York)
-
-**2018**
-*Spatial Reality*, sp[a]ce gallery (Pasadena, CA)
-*Pilot*, Elephant Art Space (Los Angeles, CA)
-*ARC I*, NAVEL (Los Angeles, CA)
-*Fälschung*, Projektwohnung Krudebude (Leipzig, Germany)
-*Belly Flop*, Pool Party (Palm Springs, CA)
-*TWISTER*, Elevator Mondays (Los Angeles, CA)
-
-**2017**
-*CACHE_LA*, MINTMOUE (Los Angeles, CA)
-*Reality Show*, Tiger Strikes Asteroid Los Angeles (Los Angeles, CA)
-*SPRING/BREAK ART SHOW*, 4 Times Square (New York, NY)
-*GHOSTING: 100% REAL VR/AR Exhibition*, GLAS Animation Festival (Berkeley, CA)
-
-**2015**
+Both Ways, Porto Vecchio di Trieste (Trieste, Italy)
+Intelligence IO, Magacin (Belgrade, Serbia)
+FiDi Arsenale, Hot-Air/Mery Gates (New York, NY)
+2019
+Landgrab the Musical in Virtual Reality, SPRING/BREAK Art Show LA (Los Angeles, CA)
+Filip Kostic vs Filip Kostic, Live on Twitch — Roger's Office (Los Angeles), Mery Gates (Brooklyn), Alyssa Davis Gallery (New York)
+2018
+Spatial Reality, sp[a]ce gallery (Pasadena, CA)
+Pilot, Elephant Art Space (Los Angeles, CA)
+ARC I, NAVEL (Los Angeles, CA)
+Fälschung, Projektwohnung Krudebude (Leipzig, Germany)
+Belly Flop, Pool Party (Palm Springs, CA)
+TWISTER, Elevator Mondays (Los Angeles, CA)
+2017
+CACHE_LA, MINTMOUE (Los Angeles, CA)
+Reality Show, Tiger Strikes Asteroid Los Angeles (Los Angeles, CA)
+SPRING/BREAK ART SHOW, 4 Times Square (New York, NY)
+GHOSTING: 100% REAL VR/AR Exhibition, GLAS Animation Festival (Berkeley, CA)
+2015
 Sculpture Exhibition, ArtCenter College of Design (Pasadena, CA)
-
-**2014**
+2014
 Personal Tales, El Camino College (Torrance, CA)
 
-**Awards and Residencies**
-
-**2027**
+Awards and Residencies
+2027
 Research Projects Residency (Do Not Research × Clubhouse 88), Mexico City, Mexico
-
-**2024**
+2026
+Digital Artist Residency Cal State Long Beach
+2024
 Lower Cavity Artist Residency, Holyoke, MA
-
-**2018**
+2018
 ARC (Arts Research Cooperative) Fellow, Los Angeles, CA
-
-**2017**
+2017
 Roger's Office Artist Residency, Los Angeles, CA
-
-**2016**
+2016
 Student Leadership Award, ArtCenter College of Design
 
-**Publications, Lectures, and Podcasts**
-
+Publications, Lectures, and Podcasts
 Visiting Artist Lecturer & Workshop, Pilgrim School (2026)
-*The Big One Magazine*, artwork (2025)
-*NEWCOIN*, interview (2024)
-*New Models Green Room*, podcast (2024)
-*Do Not Research Anthology*, essay (2024)
-*Abattoir, U.S.A.!* Exhibition Catalogue, conversation with Aria Dean, Michael Connor, Evan Zierk & Filip Kostic (2023)
-VRAL: *Filip Kostic VS Filip Kostic*, interview (2023)
+The Big One Magazine, artwork (2025)
+NEWCOIN, interview (2024)
+New Models Green Room, podcast (2024)
+Do Not Research Anthology, essay (2024)
+Abattoir, U.S.A.! Exhibition Catalogue, conversation with Aria Dean, Michael Connor, Evan Zierk & Filip Kostic (2023)
+VRAL: Filip Kostic VS Filip Kostic, interview (2023)
 Visiting Artist Lecture Series, UCI MFA (2023)
 SARAH'S Artist Panel (2023)
-*Design Scene*, interview with Jon Rafman (2023)
-*Do Not Research Anthology*, interview (2023)
-*Personal Computers*, second edition (2023)
-*Brooklyn Rail*, review of *Klammern aus denen Blätter Spriessen* by Hannah Sage Kay (2022)
+Design Scene, interview with Jon Rafman (2023)
+Do Not Research Anthology, interview (2023)
+Personal Computers, second edition (2023)
+Brooklyn Rail, review of Klammern aus denen Blätter Spriessen by Hannah Sage Kay (2022)
 Artist Lecture, U10 Art Space, Belgrade (2022)
-*Personal Computers*, first edition (2022)
-*Do Not Research Anthology*, essay (2022)
-*Design Scene*, cover + interview (2022)
+Personal Computers, first edition (2022)
+Do Not Research Anthology, essay (2022)
+Design Scene, cover + interview (2022)
 Joshua Citarella Live Stream guest (2021)
 Visiting Artist Lecture, Otis College of Art and Design (2019)
 Visiting Artist Lecture, ArtCenter College of Design (2019)
 Artist Lecture & Workshop, CSULB (2018)
-*Extended Reality Pedagogy*, IxDA Conference, lecture with Jennifer Rodenhouse (2017)
+Extended Reality Pedagogy, IxDA Conference, lecture with Jennifer Rodenhouse (2017)
 
-**Professional Experience**
-
-**2024–2026**
-Art Director & Technical Artist, Genpop Interactive — *SLiMECORE*
-
-**2021**
+Professional Experience
+2026-2027
+Adjunct Faculty, Sculpture, Cal State University of Long Beach
+2024–2026
+Art Director & Technical Artist, Genpop Interactive — SLiMECORE
+2021
 Adjunct Faculty, Film & New Media, California State University Northridge
-
-**2018–2021**
+2018–2021
 Lead Technical Artist, Technical Animator & Game Designer, WEVR (Harry Potter VR Experiences)
-
-**2018–2019**
+2018–2019
 Adjunct Faculty, Sculpture Department, Otis College of Art and Design
-
-**2016–2022**
+2016–2022
 Adjunct Faculty, Interaction Design & Fine Art, ArtCenter College of Design
 `;
 
