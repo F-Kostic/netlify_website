@@ -111,8 +111,6 @@ Personal Tales, El Camino College (Torrance, CA)
 Awards and Residencies
 2027
 Research Projects Residency (Do Not Research × Clubhouse 88), Mexico City, Mexico
-2026
-Digital Artist Residency Cal State Long Beach
 2024
 Lower Cavity Artist Residency, Holyoke, MA
 2018
@@ -216,9 +214,9 @@ export const desktopIcons: DesktopIcon[] = [
         type: 'info',
         content: `Falling, 2026
 Software
-Falling is a realtime software which simulates the Unreal Engine Cine Camera falling down a hill perpetually`,
+Falling is a realtime software which simulates the Unreal Engine Cine Camera falling down a hill perpetually.`,
       },
-      { name: 'Falling (recorded excerpt)', type: 'video', url: 'https://www.youtube.com/embed/DtEUWW4cxZM' },
+      { name: 'Falling, 2026 (recorded excerpt)', type: 'video', url: 'https://www.youtube.com/embed/DtEUWW4cxZM' },
     ],
   },
   
