@@ -207,6 +207,22 @@ export const desktopIcons: DesktopIcon[] = [
   // --------------------------------------------------------------------------
 
   {
+    id: 'falling',
+    name: 'Falling (2026))',
+    type: 'folder',
+    items: [
+      {
+        name: 'Info',
+        type: 'info',
+        content: `Falling, 2026
+Software
+Falling is a realtime software which simulates the Unreal Engine Cine Camera falling down a hill perpetually`,
+      },
+      { name: 'Falling (recorded excerpt)', type: 'video', url: 'https://www.youtube.com/embed/DtEUWW4cxZM' },
+    ],
+  },
+  
+  {
     id: 'pro-mouse-grip',
     name: 'Pro Mouse Grip & Counter-Strike spray pattern drawing(2025)',
     type: 'folder',
@@ -406,6 +422,8 @@ Custom built water cooled computer built into the frame of a Bed. Variable scree
       { name: 'Bed PC Home',         type: 'image', url: '/images/BedPC/BedPC_Home.jpg' },
       { name: 'Bed PC (Twin)',       type: 'image', url: '/images/BedPC/Bed_PC_HS_Twin.jpg' },
       { name: 'BedPC(Twin) Install', type: 'image', url: '/images/BedPC/BedPC_HS_Install.jpg' },
+      { name: '24 Hour Stream (2021)', type: 'video', url: 'https://www.youtube.com/embed/PF8PMzxNqJ8'
+       },
     ],
   },
 
