@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated verification screenshots (see scripts/dev-screenshot.mjs)
+screenshots
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

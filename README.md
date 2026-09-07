@@ -1,3 +1,16 @@
+## Taking a screenshot of the desktop
+
+`node scripts/dev-screenshot.mjs [output-path] [width] [height]` builds the
+site, serves the build, and saves a headless-Firefox screenshot (Playwright's
+bundled Firefox — run `npx playwright install firefox` once first). Add
+`--skip-build` to reuse the existing `dist/` folder instead of rebuilding,
+and `--keep-windows` to leave the randomly auto-opened folder windows in the
+shot instead of closing them first.
+
+This exists because the repo lives on a network share, where `vite dev`'s
+first-request dependency scan can take minutes or hang outright — building
+once and serving plain static files sidesteps that.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
