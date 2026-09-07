@@ -710,9 +710,18 @@ Shown and commissioned by Projektwohnung Krudebude as part of the group show Fal
       },
       { name: 'Airport',      type: 'image', url: '/images/ipad/Airport.jpg' },
       { name: 'Harris',      type: 'image', url: '/images/ipad/Harris.jpg' },
-    
+
     ],
-    
+
+  },
+
+  {
+    id: 'test-folder',
+    name: 'Test Folder',
+    type: 'folder',
+    x: 1076,
+    y: 616,
+    items: [],
   },
 
   // --------------------------------------------------------------------------
